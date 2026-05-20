@@ -13,10 +13,30 @@ export default function BlogPostLayout({
       </div>
 
       {/* Article card */}
-      <div className="mx-auto max-w-4xl rounded-2xl border border-zinc-100 dark:border-white/[0.06] bg-white dark:bg-zinc-900 shadow-sm overflow-hidden">
-        {/* Brand red top rule */}
-        <div style={{ height: "3px", background: "linear-gradient(90deg,#FA0143,#ff6b8a)" }} />
-        {children}
+      <div className="relative mx-auto max-w-4xl rounded-2xl border border-zinc-100 dark:border-white/[0.06] bg-white dark:bg-zinc-900 shadow-sm overflow-hidden">
+
+        {/* Subtle dot-grid texture — same as footer for consistency */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.025] dark:opacity-[0.045]"
+          style={{
+            backgroundImage: "radial-gradient(circle, currentColor 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+
+        {/* Faint red ambient glow in top-left corner */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-20 -left-20 w-64 h-64 rounded-full"
+          style={{
+            background: "radial-gradient(circle, rgba(250,1,67,0.07) 0%, transparent 70%)",
+          }}
+        />
+
+        <div className="relative">
+          {children}
+        </div>
       </div>
     </div>
   );

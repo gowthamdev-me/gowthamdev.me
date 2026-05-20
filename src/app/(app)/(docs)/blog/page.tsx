@@ -28,7 +28,26 @@ export default function Page() {
       </div>
 
       {/* Page card */}
-      <div className="rounded-2xl sm:rounded-3xl border border-zinc-100 dark:border-white/[0.06] bg-white dark:bg-zinc-900 shadow-sm overflow-hidden">
+      <div className="relative rounded-2xl sm:rounded-3xl border border-zinc-100 dark:border-white/[0.06] bg-white dark:bg-zinc-900 shadow-sm overflow-hidden">
+
+        {/* Subtle dot-grid texture */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.025] dark:opacity-[0.045]"
+          style={{
+            backgroundImage: "radial-gradient(circle, currentColor 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+
+        {/* Faint red ambient glow in top-left corner */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-20 -left-20 w-64 h-64 rounded-full"
+          style={{
+            background: "radial-gradient(circle, rgba(250,1,67,0.07) 0%, transparent 70%)",
+          }}
+        />
 
         {/* ── Heading section ─────────────────────────────────────────────── */}
         <div className="px-6 sm:px-10 md:px-14 pt-10 sm:pt-14 pb-8 sm:pb-10 border-b border-zinc-100 dark:border-white/[0.06]">
