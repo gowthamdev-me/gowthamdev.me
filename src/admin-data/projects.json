@@ -1,0 +1,40 @@
+[
+  {
+    "id": "gowthamdotcom",
+    "title": "gowtham.com",
+    "description": "A minimal portfolio, component registry, and blog.\n- Clean & modern design\n-\n- integration\n- Light & Dark theme support\n- vCard integration\n- SEO optimization: [JSON-LD schema](https://json-ld.org), sitemap, robots\n- AI-friendly [/llms.txt](https://llmstxt.org)\n- Spam-protected email\n- Installable PWA\n\nBlog Features:\n\n- Syntax Highlighting for better readability\n- RSS Feed for easy content distribution\n- Dynamic OG Images for rich previews",
+    "link": "https://github.com/gowtham/gowtham.com",
+    "skills": "Open Source, Next.js 15, Tailwind CSS v4, Radix UI, Motion, shadcn/ui, Component Registry, Vercel",
+    "logo": "/images/project-logos/gowthamdotcom.svg",
+    "period": "01.2025 - Present",
+    "createdAt": "2026-04-03T06:02:14.544Z",
+    "showInPortfolio": true,
+    "source": "existing",
+    "coverImage": ""
+  },
+  {
+    "id": "react-wheel-picker",
+    "title": "React Wheel Picker",
+    "description": "iOS-like wheel picker for React with smooth inertia scrolling and infinite loop support.\n- 📱 Natural touch scrolling with smooth inertia effect\n- 🖱️ Mouse drag and scroll support for desktop\n- 🔄 Infinite loop scrolling\n- 🎨 Unstyled components for complete style customization\n- ⚡️ Easy installation via shadcn CLI\n\nThis project is proudly supported by:\n\n[![Vercel OSS Program](https://vercel.com/oss/program-badge.svg)](https://vercel.com/oss)\n",
+    "link": "https://react-wheel-picker.gowtham.com",
+    "skills": "Open Source, React, TypeScript, Monorepo, Turborepo, pnpm-workspace, Package Publishing, NPM Registry, GitHub Actions",
+    "logo": "/images/project-logos/react-wheel-picker.svg",
+    "period": "05.2025 - Present",
+    "createdAt": "2026-04-03T06:02:14.544Z",
+    "showInPortfolio": true,
+    "source": "existing",
+    "coverImage": ""
+  },
+  {
+    "id": "quaricdotcom",
+    "title": "quaric.com",
+    "description": "",
+    "link": "https://quaric.com",
+    "skills": "Company Project, Next.js 15, Tailwind CSS v3, shadcn/ui, Strapi 5, VNPAY-QR, Docker, Docker Compose, NGINX",
+    "logo": "/images/project-logos/quaricdotcom.svg",
+    "period": "03.2024 - Present",
+    "createdAt": "2026-04-03T06:02:14.544Z",
+    "showInPortfolio": true,
+    "source": "existing"
+  }
+]

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "simplamo",
+    "companyName": "Simplamo Enterprise JSC",
+    "companyLogo": "https://assets.gowthamdev.com/images/companies/simplamo.webp",
+    "position": "Senior Frontend Developer, UI Design Lead",
+    "employmentType": "Full-time",
+    "period": "10.2022 - Present",
+    "description": "**Senior Frontend Developer** (Full-time)\n- Develop [AI Chat](https://help.simplamo.com/features/simplamo-ai/ai-chat/guide_simplamo_ai_chat?ref=IN-926722) and [AI Assistant](https://help.simplamo.com/features/simplamo-ai/ai-expert/aiexpert-rockdiscribe?ref=IN-926722) features.\n- Develop [Whiteboards](https://help.simplamo.com/features/whiteboard/overview?ref=IN-926722) with real-time collaboration.\n- Build and maintain the [Zalo Mini App](https://zalo.me/s/1736112917405511258/) for Simplamo with seamless integration.\n- Develop interactive chart and analytics widgets for the [Dashboard](https://help.simplamo.com/features/dashboard/overview) to enhance data visualization.\n- Develop and maintain core features to enhance functionality and user experience.\n- Ensure UI/UX consistency and adherence to standards.\n- Implement robust frontend solutions for web and mobile platforms.\n- Analyze technical capabilities and provide optimal solutions.\n\n**UI Design Lead** (Full-time)\n- Ensure UI/UX consistency and high-quality standards.\n- Design intuitive, user-focused interfaces aligned with business goals.\n- Define and establish a cohesive UI style for Simplamo.",
+    "skills": "TypeScript, Next.js, React Native, MobX, MobX-State-Tree, Tailwind CSS, Dify, Zalo Mini App, Agile, Teamwork, Research, Problem-solving, Creativity, UI/UX Design, Figma",
+    "isCurrentEmployer": true,
+    "showInPortfolio": true,
+    "createdAt": "2026-04-03T06:02:14.548Z",
+    "source": "existing"
+  },
+  {
+    "id": "quaric",
+    "companyName": "Quaric Co., Ltd.",
+    "companyLogo": "https://assets.gowthamdev.com/images/companies/quaric.svg",
+    "position": "Design Engineer, Founder & Director",
+    "employmentType": "Part-time",
+    "period": "03.2024 - Present",
+    "description": "**Design Engineer** (Part-time)\n- Created Quaric Brand Identity.\n- Created the Quaric Design System to standardize design practices and accelerate development.\n\nIn-house Project: [Quaric Website](https://quaric.com)\n- Designed the UI/UX for Quaric Website, delivering a seamless experience.\n- Developed online ordering to streamline purchases.\n- Integrated VNPAY-QR for secure transactions.\n- Registered the e-commerce site with [online.gov.vn](http://online.gov.vn/website/chi-tiet-115855) for compliance.\n\nIn-house Project: [ZaDark](https://zadark.com)\n- Build and maintain ZaDark.com with Docusaurus, integrating AdSense.\n- Develop and maintain the ZaDark extension for Zalo Web on Chrome, Safari, Edge, and Firefox — with 15,000+ active users via Chrome Web Store.\n\n**Founder & Director** (Part-time)\n- Lead and manage the company's strategy.\n- Oversee technical teams and product development.\n- Manage relationships with customers and partners.",
+    "skills": "Next.js, Strapi, Auth0, VNPAY-QR, Docker, NGINX, Google Cloud, Docusaurus, Extension, UI/UX Design, UX Writing, Design System, Brand Design, Figma, Research, Business Ownership, Business Law, Business Tax",
+    "isCurrentEmployer": true,
+    "showInPortfolio": true,
+    "createdAt": "2026-04-03T06:02:14.548Z",
+    "source": "existing"
+  },
+  {
+    "id": "tungtung",
+    "companyName": "Tung Tung JSC",
+    "companyLogo": "https://assets.gowthamdev.com/images/companies/tungtung.webp",
+    "position": "Web Developer, Mobile Developer, UI/UX Designer",
+    "employmentType": "Full-time",
+    "period": "2020 - 2022",
+    "description": "**Web Developer** (Full-time)\n- Built a scalable design system for consistency and efficiency.\n- Built a complex rich-text editor based on ProseMirror and Slate for customizable content creation.\n- Integrated APIs with the Backend Team to enhance functionality.\n\n**Mobile Developer** (Full-time)\n- Rebuilt the app with React Native for better UX and performance.\n- Integrated MoMo and in-app purchases for seamless payments.\n- Optimized deployment for staging and production.\n- Published on App Store and Google Play, ensuring compliance.\n\n**UI/UX Designer** (Full-time)\n- Designed a Landing Page for enterprise clients.\n- Redesigned the Online Quiz Platform for a modern look on web and mobile.\n- Redesigned the Pricing interface for individual customers.\n- Enhanced UX by improving usability, navigation, and user flow.",
+    "skills": "React, Redux, Storybook, Lerna, Agile, Teamwork, Research, React Native, MoMo Payment API, App Store, Google Play Store, App Center, UI/UX Design, Sketch",
+    "isCurrentEmployer": false,
+    "showInPortfolio": true,
+    "createdAt": "2026-04-03T06:02:14.548Z",
+    "source": "existing"
+  },
+  {
+    "id": "freelance",
+    "companyName": "Freelance",
+    "companyLogo": "",
+    "position": "Full-stack Developer, Graphic & UI/UX Designer",
+    "employmentType": "Part-time",
+    "period": "2018 - 2020",
+    "description": "**Full-stack Developer** (Part-time)\n- Built an order management website with real-time delivery tracking.\n- Developed an e-commerce site for bird's nest products.\n- Created a map to display monitoring station data.\n- Designed a customizable WordPress landing page.\n\n**Graphic & UI/UX Designer** (Part-time)\nDesigned logos, posters, ads, and UI.",
+    "skills": "Laravel, React, Express.js, Socket.IO, MongoDB, Firebase, WordPress, Docker, NGINX, Creativity, UI/UX Design, Graphic Design, Sketch, Adobe Photoshop, Adobe Illustrator",
+    "isCurrentEmployer": false,
+    "showInPortfolio": true,
+    "createdAt": "2026-04-03T06:02:14.548Z",
+    "source": "existing"
+  },
+  {
+    "id": "education",
+    "companyName": "Education",
+    "companyLogo": "",
+    "position": "University of Science — VNUHCM, Ly Tu Trong High School for the Gifted — Can Tho City, Thuan Hung Secondary School",
+    "employmentType": "",
+    "period": "08.2018 - 2026",
+    "description": "**University of Science — VNUHCM** ()\n- Currently studying for a Bachelor's degree in Information Systems.\n- Language Proficiency: B1 English Level.\n- Achieved several awards, including:\n  - Bronze Medal — 10th Design, Manufacturing, and Application Award 2022\n  - 2nd Prize — Business Startup Competition 2019\n\n**Ly Tu Trong High School for the Gifted — Can Tho City** ()\n- Student of the Specialized Computer Science Program.\n- Granted direct admission to university due to achieving 3rd Prize at the national level.\n- [Achieved numerous awards](https://baocantho.com.vn/nguyen-chanh-dai-17-tuoi-va-19-giai-thuong-a97348.html) at city and national levels, including:\n  - [3rd Prize](https://muctim.tuoitre.vn/cong-cu-ho-tro-viec-day-va-hoc-55107.htm) — National Science and Engineering Fair 2018 (ViSEF)\n  - 1st Prize — Can Tho City Science and Engineering Fair 2018\n  - Creativity Award — Binh Duong Hackathon 2017\n  - Consolation Prize — National Youth and Children's Creativity Contest 2016\n  - [1st Prize](https://www.youtube.com/watch?v=OYgugvjqU4A) — Can Tho City Youth and Children's Creativity Contest 2016\n  - 3rd Prize — National Young Informatics Contest 2016\n- Achieved the title of Outstanding Student from Grade 10-12.\n- Selected for the National Excellent Student Contest in Informatics for two consecutive years during high school.\n- Honored on the school's \"Hall of Fame\" for academic achievements.\n- Developed a feature using Node.js and Pandoc to recognize multiple-choice questions from .docx files and upload them to an [online quiz platform](https://youtu.be/QjR99wdmTyo) I created.\n- Developed websites based on Laravel framework.\n- Built websites with PHP and MySQL, following the MVC architecture.\n\n**Thuan Hung Secondary School** ()\n- Recognized as the most outstanding student of the district.\n- Achieved numerous awards at city and national levels:\n  - Consolation Prize — National Young Informatics Contest 2015\n  - Consolation Prize — National Young Informatics Contest 2014\n  - 1st Prize — Can Tho City Young Informatics Contest 2014\n- Achieved the title of Outstanding Student from Grade 6-9.\n- Developed websites using the open-source NukeViet CMS.",
+    "skills": "C++, Java, Python, Data Structures, Algorithms, Advanced Databases, Systems Design, Distributed Systems, Software Engineering, Self-learning, Teamwork, Presentation, PHP, MySQL, Laravel, Node.js, Pandoc, Pascal, NukeViet, HTML, CSS, JavaScript",
+    "isCurrentEmployer": false,
+    "showInPortfolio": true,
+    "createdAt": "2026-04-03T06:02:14.554Z",
+    "source": "existing"
+  }
+]

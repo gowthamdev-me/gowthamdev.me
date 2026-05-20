@@ -1,0 +1,38 @@
+[
+  {
+    "id": "social-1",
+    "platform": "LinkedIn",
+    "title": "LinkedIn",
+    "description": "@gowtham-io",
+    "href": "https://www.linkedin.com/in/gowtham-io/",
+    "icon": "https://freelogopng.com/images/all_img/1656996524linkedin-app-icon.png",
+    "showInPortfolio": true
+  },
+  {
+    "id": "social-2",
+    "platform": "GitHub",
+    "title": "GitHub",
+    "description": "@gowtham-io",
+    "href": "https://github.com/gowtham-io",
+    "icon": "https://static.vecteezy.com/system/resources/previews/016/833/872/non_2x/github-logo-git-hub-icon-on-white-background-free-vector.jpg",
+    "showInPortfolio": true
+  },
+  {
+    "id": "social-3",
+    "platform": "X",
+    "title": "X",
+    "description": "@Gowtham2906",
+    "href": "https://x.com/Gowtham2906",
+    "icon": "https://wiki.ruliweb.com/images/4/43/X_icon.png",
+    "showInPortfolio": true
+  },
+  {
+    "id": "social-4",
+    "platform": "Instagram",
+    "title": "Instagram",
+    "description": "@gowthamdev_io",
+    "href": "https://www.instagram.com/gowthamdev_io/",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg",
+    "showInPortfolio": true
+  }
+]
