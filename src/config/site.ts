@@ -16,8 +16,8 @@ export const META_THEME_COLORS = {
 
 export const MAIN_NAV: NavItem[] = [];
 
-export const SOURCE_CODE_GITHUB_REPO = "gowtham/gowthamdev.me";
-export const SOURCE_CODE_GITHUB_URL = "https://github.com/gowtham/gowthamdev.me";
+export const SOURCE_CODE_GITHUB_REPO = "gowthamdev-me/gowthamdev.me";
+export const SOURCE_CODE_GITHUB_URL = "https://github.com/gowthamdev-me/gowthamdev.me";
 
 export const UTM_PARAMS = {
   utm_source: "gowthamdev.me",

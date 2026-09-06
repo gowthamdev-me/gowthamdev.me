@@ -16,8 +16,8 @@ export const USER = {
   email: "Z2dvd3RoYW05MjA4OUBnbWFpbC5jb20=", // base64 encoded (ggowtham92089@gmail.com)
   website: "https://gowthamdev.me",
   otherWebsites: [
-    "https://github.com/gowtham",
-    "https://linkedin.com/in/gowtham",
+    "https://github.com/ggowt",
+    "https://linkedin.com/in/ggowt",
   ],
   jobTitle: "Web Developer & Vibe Coder",
   jobs: [
@@ -49,11 +49,10 @@ Let's connect and collaborate!
     displayName: "Gowtham",
     attribution: "Built by Gowtham",
     socialLinks: {
-      twitter: "https://x.com/gowthamdev_io",
-      linkedin: "https://www.linkedin.com/in/gowthamdev-io/",
-      instagram: "https://www.instagram.com/gowthamdev_io/",
-      github: "https://github.com/gowtham-io",
-
+      twitter: "https://x.com/ggowt",
+      linkedin: "https://linkedin.com/in/ggowt",
+      instagram: "https://instagram.com/ggowt",
+      github: "https://github.com/ggowt",
     },
     showRSS: false,
     showDMCA: false,

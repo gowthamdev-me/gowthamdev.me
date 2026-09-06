@@ -1,85 +1,45 @@
-# Installing Prerequisites for chanhdai.com Project
+# Installing Prerequisites for gowthamdev.me
 
-## Prerequisites Required
+This document outlines the necessary tools and environment setup for running the project locally.
 
-Your system needs:
-1. **Node.js** (version 20 or >= 22)
-2. **pnpm** (version >= 9)
+## 1. Node.js
 
-Currently, neither is installed on your system.
+- **Required Version**: `20.x` or `>=22.x`
+- **Download**: [https://nodejs.org/](https://nodejs.org/)
 
-## Installation Instructions
-
-### Step 1: Install Node.js
-
-**Option A: Using Official Installer (Recommended)**
-
-1. Visit [https://nodejs.org/](https://nodejs.org/)
-2. Download the **LTS version** (Long Term Support) - currently v20.x or v22.x
-3. Run the installer
-4. Follow the installation wizard (accept defaults)
-5. Restart your terminal/PowerShell
-
-**Option B: Using Windows Package Manager (winget)**
-
-If you have winget available, run this in PowerShell as Administrator:
-
-```powershell
-winget install OpenJS.NodeJS.LTS
+Verify your installation:
+```bash
+node -v
+npm -v
 ```
 
-### Step 2: Verify Node.js Installation
+## 2. Package Manager (pnpm)
 
-After installation, open a **new** PowerShell window and verify:
+pnpm is recommended for fast and disk-space efficient installations:
 
-```powershell
-node --version
-```
-
-You should see something like `v20.x.x` or `v22.x.x`
-
-### Step 3: Install pnpm
-
-Once Node.js is installed, install pnpm using npm:
-
-```powershell
+```bash
 npm install -g pnpm
 ```
 
-### Step 4: Verify pnpm Installation
-
-Check pnpm is installed:
-
-```powershell
-pnpm --version
+Verify:
+```bash
+pnpm -v
 ```
 
-You should see version 9.x or higher.
+## 3. Git
 
----
+- **Download**: [https://git-scm.com/](https://git-scm.com/)
 
-## After Prerequisites Are Installed
+Verify:
+```bash
+git --version
+```
 
-Once both Node.js and pnpm are installed, you can run the project with:
+## 4. Run the Project
 
-```powershell
-# Navigate to project directory
-cd "c:\Users\ggowt\OneDrive\Desktop\New folder\final project\chanhdai.com\chanhdai.com-main"
-
-# Install dependencies
+```bash
+git clone https://github.com/gowthamdev-me/gowthamdev.me.git
+cd gowthamdev.me
 pnpm install
-
-# Run the development server
 pnpm dev
 ```
-
-Then visit **http://localhost:1408** in your browser.
-
----
-
-## Need Help?
-
-If you encounter any issues during installation:
-- Make sure to restart your terminal/PowerShell after installing Node.js
-- Run PowerShell as Administrator if you get permission errors
-- Check the [DEVELOPMENT.md](file:///c:/Users/ggowt/OneDrive/Desktop/New%20folder/final%20project/chanhdai.com/chanhdai.com-main/DEVELOPMENT.md) for troubleshooting tips
