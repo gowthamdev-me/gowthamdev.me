@@ -97,16 +97,22 @@ export default function AdminTechStackPage() {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Are you sure you want to delete this tech stack item?")) return;
+    setItems((prev) => prev.filter((t) => String(t.id) !== String(id)));
+    showMessage("success", "Deleted successfully");
+
     try {
-      const res = await fetch(`/api/admin/content/tech-stack?id=${id}`, { method: "DELETE" });
+      const res = await fetch(`/api/admin/content/tech-stack?id=${encodeURIComponent(id)}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
       const data = await res.json();
-      if (data.success) {
-        showMessage("success", "Deleted successfully");
+      if (!data.success) {
         await loadItems();
       }
     } catch {
       showMessage("error", "Failed to delete");
+      await loadItems();
     }
   };
 

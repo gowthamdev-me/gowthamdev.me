@@ -12,15 +12,29 @@ function getVisibleExperiences(): Experience[] {
     const adminExperiences = readJsonFile<any[]>("experiences.json", []);
     if (adminExperiences.length === 0) return EXPERIENCES;
 
-    const visibilityMap = new Map<string, boolean>();
-    adminExperiences.forEach((item: any) => {
-      visibilityMap.set(item.id, item.showInPortfolio !== false);
-    });
-
-    return EXPERIENCES.filter((experience) => {
-      const visible = visibilityMap.get(experience.id);
-      return visible === undefined ? true : visible;
-    });
+    const existingMap = new Map(EXPERIENCES.map((e) => [String(e.id), e]));
+    return adminExperiences
+      .filter((item: any) => item.showInPortfolio !== false)
+      .map((item: any) => {
+        const existing = existingMap.get(String(item.id));
+        if (existing) return existing;
+        return {
+          id: String(item.id),
+          companyName: item.companyName,
+          companyLogo: item.companyLogo,
+          isCurrentEmployer: item.isCurrentEmployer,
+          positions: [
+            {
+              id: `${item.id}-pos`,
+              title: item.position || "",
+              employmentPeriod: { start: item.period || "" },
+              employmentType: item.employmentType,
+              description: item.description,
+              skills: item.skills ? item.skills.split(",").map((s: string) => s.trim()) : [],
+            },
+          ],
+        };
+      });
   } catch {
     return EXPERIENCES;
   }

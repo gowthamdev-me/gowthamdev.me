@@ -68,13 +68,22 @@ export async function DELETE(request: NextRequest) {
   }
   try {
     const { searchParams } = new URL(request.url);
-    const id = searchParams.get("id");
+    let id = searchParams.get("id");
+    if (!id) {
+      try {
+        const body = await request.json();
+        id = body?.id;
+      } catch {}
+    }
+    if (!id) {
+      return NextResponse.json({ error: "Missing id" }, { status: 400 });
+    }
     const techStack = readJsonFile("tech-stack.json", [] as any[]);
-    const filtered = techStack.filter((t: any) => t.id !== id);
+    const filtered = techStack.filter((t: any) => String(t.id) !== String(id));
     writeJsonFile("tech-stack.json", filtered);
     revalidatePath("/", "page");
     revalidatePath("/portfolio", "page");
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, count: filtered.length });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }

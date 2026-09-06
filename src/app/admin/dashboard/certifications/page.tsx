@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 
@@ -96,14 +96,21 @@ export default function AdminCertificationsPage() {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Delete this certification?")) return;
+    setItems((prev) => prev.filter((item) => String(item.id) !== String(id)));
+    setMessage("Certification deleted.");
+    setTimeout(() => setMessage(""), 3000);
+
     try {
-      await fetch(`/api/admin/content/certifications?id=${id}`, { method: "DELETE" });
-      loadItems();
-      setMessage("Certification deleted.");
-      setTimeout(() => setMessage(""), 3000);
+      const res = await fetch(`/api/admin/content/certifications?id=${encodeURIComponent(id)}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      if (!res.ok) {
+        loadItems();
+      }
     } catch {
-      setMessage("Error deleting certification");
+      loadItems();
     }
   };
 

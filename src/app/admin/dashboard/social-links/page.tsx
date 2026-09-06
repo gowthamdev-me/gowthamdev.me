@@ -77,11 +77,22 @@ export default function AdminSocialLinksPage() {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Delete this link?")) return;
-    await fetch(`/api/admin/content/social-links?id=${id}`, { method: "DELETE" });
-    loadLinks();
+    setLinks((prev) => prev.filter((l) => String(l.id) !== String(id)));
     setMessage("Link deleted");
     setTimeout(() => setMessage(""), 3000);
+
+    try {
+      const res = await fetch(`/api/admin/content/social-links?id=${encodeURIComponent(id)}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      if (!res.ok) {
+        loadLinks();
+      }
+    } catch {
+      loadLinks();
+    }
   };
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {

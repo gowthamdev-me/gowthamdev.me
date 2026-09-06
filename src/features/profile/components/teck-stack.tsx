@@ -14,18 +14,13 @@ function getVisibleTechStack(): TechStack[] {
     const adminData = readJsonFile<any[]>("tech-stack.json", []);
     if (adminData.length === 0) return TECH_STACK;
 
-    // Build a map of key -> showInPortfolio from admin data
-    const visibilityMap = new Map<string, boolean>();
-    adminData.forEach((item: any) => {
-      visibilityMap.set(item.key, item.showInPortfolio !== false);
-    });
+    const visibleKeys = new Set(
+      adminData
+        .filter((item: any) => item.showInPortfolio !== false)
+        .map((item: any) => item.key)
+    );
 
-    // Filter the original TECH_STACK based on admin visibility
-    return TECH_STACK.filter((tech) => {
-      const visible = visibilityMap.get(tech.key);
-      // If the key exists in admin data, respect its visibility; otherwise show it
-      return visible === undefined ? true : visible;
-    });
+    return TECH_STACK.filter((tech) => visibleKeys.has(tech.key));
   } catch {
     return TECH_STACK;
   }

@@ -40,6 +40,7 @@ function SortableProjectItem({
   handleDelete: (id: string) => void;
   toggleVisibility: (project: Project) => void;
 }) {
+  const [confirmingDelete, setConfirmingDelete] = useState(false);
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
     id: project.id,
   });
@@ -130,13 +131,28 @@ function SortableProjectItem({
             </svg>
           </button>
           <button
-            title="Delete project"
-            onClick={() => handleDelete(project.id)}
-            className="p-2 rounded-lg hover:bg-red-500/10 text-zinc-400 hover:text-red-400 transition-all"
+            type="button"
+            title={confirmingDelete ? "Click again to confirm delete" : "Delete project"}
+            onClick={(e) => {
+              e.stopPropagation();
+              if (confirmingDelete) {
+                handleDelete(project.id);
+                setConfirmingDelete(false);
+              } else {
+                setConfirmingDelete(true);
+                setTimeout(() => setConfirmingDelete(false), 3500);
+              }
+            }}
+            className={`flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+              confirmingDelete
+                ? "bg-red-600 text-white shadow-md shadow-red-600/30"
+                : "text-zinc-400 hover:text-red-400 hover:bg-red-500/10"
+            }`}
           >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
             </svg>
+            {confirmingDelete && <span className="whitespace-nowrap">Sure?</span>}
           </button>
         </div>
       </div>
@@ -267,11 +283,23 @@ export default function AdminProjectsPage() {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Delete this project?")) return;
-    await fetch(`/api/admin/content/projects?id=${id}`, { method: "DELETE" });
-    loadProjects();
+    // Optimistically remove immediately from local state
+    setProjects((prev) => prev.filter((p) => String(p.id) !== String(id)));
     setMessage("Project deleted");
     setTimeout(() => setMessage(""), 3000);
+
+    try {
+      const res = await fetch(`/api/admin/content/projects?id=${encodeURIComponent(id)}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      if (!res.ok) {
+        loadProjects();
+      }
+    } catch {
+      loadProjects();
+    }
   };
 
   const validateImageSize = (file: File, width: number, height: number): Promise<boolean> => {

@@ -91,11 +91,22 @@ export default function AdminExperiencesPage() {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Delete this experience?")) return;
-    await fetch(`/api/admin/content/experiences?id=${id}`, { method: "DELETE" });
-    loadItems();
+    setItems((prev) => prev.filter((item) => String(item.id) !== String(id)));
     setMessage("Experience deleted");
     setTimeout(() => setMessage(""), 3000);
+
+    try {
+      const res = await fetch(`/api/admin/content/experiences?id=${encodeURIComponent(id)}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      if (!res.ok) {
+        loadItems();
+      }
+    } catch {
+      loadItems();
+    }
   };
 
   return (

@@ -77,13 +77,24 @@ export async function DELETE(request: NextRequest) {
   }
   try {
     const { searchParams } = new URL(request.url);
-    const id = searchParams.get("id");
+    let id = searchParams.get("id");
+    if (!id) {
+      try {
+        const body = await request.json();
+        id = body?.id;
+      } catch {}
+    }
+
+    if (!id) {
+      return NextResponse.json({ error: "Missing project id" }, { status: 400 });
+    }
+
     const projects = readJsonFile("projects.json", [] as any[]);
-    const filtered = projects.filter((p: any) => p.id !== id);
+    const filtered = projects.filter((p: any) => String(p.id) !== String(id));
     writeJsonFile("projects.json", filtered);
     revalidatePath("/", "page");
     revalidatePath("/portfolio", "page");
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, count: filtered.length });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }

@@ -1,4 +1,4 @@
-﻿import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { readJsonFile, writeJsonFile } from "@/lib/admin-data";
 
@@ -49,9 +49,18 @@ export async function DELETE(request: NextRequest) {
   if (!(await isAuthenticated())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   try {
     const { searchParams } = new URL(request.url);
-    const id = searchParams.get("id");
+    let id = searchParams.get("id");
+    if (!id) {
+      try {
+        const body = await request.json();
+        id = body?.id;
+      } catch {}
+    }
+    if (!id) {
+      return NextResponse.json({ error: "Missing ID" }, { status: 400 });
+    }
     const items = readJsonFile("awards.json", [] as any[]);
-    writeJsonFile("awards.json", items.filter((p: any) => p.id !== id));
+    writeJsonFile("awards.json", items.filter((p: any) => String(p.id) !== String(id)));
     return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });

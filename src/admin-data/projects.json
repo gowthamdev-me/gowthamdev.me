@@ -10,16 +10,5 @@
     "createdAt": "2026-08-30T09:02:08.440Z",
     "showInPortfolio": true,
     "source": "existing"
-  },
-  {
-    "id": "project-1788521734225",
-    "title": "Best Student Award Management System",
-    "description": "it an to find best student in academic and extra crrear",
-    "link": "",
-    "skills": "",
-    "logo": "/uploads/1788521824548-Untitled__3_.png",
-    "period": "",
-    "showInPortfolio": true,
-    "createdAt": "2026-09-04T11:35:34.228Z"
   }
 ]

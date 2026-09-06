@@ -116,7 +116,7 @@
     "href": "https://motion.dev/",
     "categories": "Library, Animation",
     "theme": false,
-    "showInPortfolio": true,
+    "showInPortfolio": false,
     "createdAt": "2026-08-30T09:02:08.486Z",
     "source": "existing"
   },
@@ -127,7 +127,7 @@
     "href": "https://mobx-state-tree.js.org/",
     "categories": "State Management",
     "theme": false,
-    "showInPortfolio": true,
+    "showInPortfolio": false,
     "createdAt": "2026-08-30T09:02:08.486Z",
     "source": "existing"
   },
@@ -138,7 +138,7 @@
     "href": "https://redux.js.org/",
     "categories": "State Management",
     "theme": false,
-    "showInPortfolio": true,
+    "showInPortfolio": false,
     "createdAt": "2026-08-30T09:02:08.486Z",
     "source": "existing"
   },
@@ -149,7 +149,7 @@
     "href": "https://ant.design/",
     "categories": "Library, UI Library",
     "theme": false,
-    "showInPortfolio": true,
+    "showInPortfolio": false,
     "createdAt": "2026-08-30T09:02:08.486Z",
     "source": "existing"
   },
@@ -160,7 +160,7 @@
     "href": "https://reactrouter.com/",
     "categories": "Library, Navigation",
     "theme": true,
-    "showInPortfolio": true,
+    "showInPortfolio": false,
     "createdAt": "2026-08-30T09:02:08.486Z",
     "source": "existing"
   },
@@ -171,7 +171,7 @@
     "href": "https://reactnavigation.org/",
     "categories": "Library, Navigation",
     "theme": false,
-    "showInPortfolio": true,
+    "showInPortfolio": false,
     "createdAt": "2026-08-30T09:02:08.486Z",
     "source": "existing"
   },
@@ -182,7 +182,7 @@
     "href": "https://loopback.io/",
     "categories": "Framework",
     "theme": false,
-    "showInPortfolio": true,
+    "showInPortfolio": false,
     "createdAt": "2026-08-30T09:02:08.486Z",
     "source": "existing"
   },
@@ -193,7 +193,7 @@
     "href": "https://laravel.com/",
     "categories": "Framework",
     "theme": false,
-    "showInPortfolio": true,
+    "showInPortfolio": false,
     "createdAt": "2026-08-30T09:02:08.486Z",
     "source": "existing"
   },
@@ -259,7 +259,7 @@
     "href": "https://www.adobe.com/vn_en/products/photoshop.html",
     "categories": "Tools, Design",
     "theme": false,
-    "showInPortfolio": true,
+    "showInPortfolio": false,
     "createdAt": "2026-08-30T09:02:08.486Z",
     "source": "existing"
   },

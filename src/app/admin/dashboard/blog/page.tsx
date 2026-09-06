@@ -95,11 +95,22 @@ export default function AdminBlogPage() {
   };
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Delete this blog post?")) return;
-    await fetch(`/api/admin/content/blog?id=${id}`, { method: "DELETE" });
-    loadPosts();
+    setPosts((prev) => prev.filter((p) => String(p.id) !== String(id)));
     setMessage("Blog post deleted");
     setTimeout(() => setMessage(""), 3000);
+
+    try {
+      const res = await fetch(`/api/admin/content/blog?id=${encodeURIComponent(id)}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      if (!res.ok) {
+        loadPosts();
+      }
+    } catch {
+      loadPosts();
+    }
   };
 
   const handleCoverUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {

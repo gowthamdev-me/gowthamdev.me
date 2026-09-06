@@ -11,7 +11,7 @@
     "Vibe Coder"
   ],
   "sectionVisibility": {
-    "aboutMe": true,
+    "aboutMe": false,
     "socialLinks": true,
     "techStack": true,
     "experiences": false,
