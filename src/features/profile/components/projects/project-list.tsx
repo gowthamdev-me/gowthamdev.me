@@ -6,6 +6,7 @@ import {
   ChevronsUpDownIcon,
   InfinityIcon,
   LinkIcon,
+  ArrowUpRightIcon,
 } from "lucide-react";
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
@@ -18,10 +19,19 @@ import { ProjectLogo } from "./project-logo";
 
 import type { Project } from "../../types/projects";
 
+function normalizeUrl(url?: string): string | null {
+  if (!url) return null;
+  const trimmed = url.trim();
+  if (!trimmed || trimmed === "#") return null;
+  if (/^https?:\/\//i.test(trimmed) || trimmed.startsWith("/")) return trimmed;
+  return `https://${trimmed}`;
+}
+
 function ProjectItemClient({ project }: { project: Project }) {
   const [isOpen, setIsOpen] = useState(project.isExpanded ?? false);
   const { start, end } = project.period;
   const isOngoing = !end;
+  const validUrl = normalizeUrl(project.link);
 
   return (
     <div className="rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-50/80 dark:bg-white/[0.03] transition-all duration-200 hover:bg-zinc-50 dark:hover:bg-white/[0.05] hover:border-zinc-300 dark:hover:border-white/15 hover:shadow-xs overflow-hidden">
@@ -71,13 +81,14 @@ function ProjectItemClient({ project }: { project: Project }) {
         </div>
 
         <div className="flex items-center gap-1 shrink-0">
-          {project.link && project.link.trim() !== "" && (
+          {validUrl && (
             <SimpleTooltip content="Open Project Link">
               <a
                 className="relative flex size-7 sm:size-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground hover:text-foreground hover:bg-zinc-200/60 dark:hover:bg-white/10 transition-colors"
-                href={addQueryParams(project.link, UTM_PARAMS)}
+                href={addQueryParams(validUrl, UTM_PARAMS)}
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
               >
                 <LinkIcon className="pointer-events-none size-3.5 sm:size-4" />
                 <span className="sr-only">Open Project Link</span>
@@ -127,6 +138,20 @@ function ProjectItemClient({ project }: { project: Project }) {
                 </li>
               ))}
             </ul>
+          )}
+
+          {validUrl && (
+            <div className="pt-2 flex items-center justify-start">
+              <a
+                href={addQueryParams(validUrl, UTM_PARAMS)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-white bg-[#FA0143] hover:bg-[#ff1e5c] shadow-md shadow-[#FA0143]/20 hover:shadow-[#FA0143]/40 transition-all duration-200 group/btn"
+              >
+                <span>View Project</span>
+                <ArrowUpRightIcon className="size-3.5 sm:size-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+              </a>
+            </div>
           )}
         </div>
       )}

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { revalidatePath } from "next/cache";
 import { readJsonFile, writeJsonFile } from "@/lib/admin-data";
 
 const SESSION_TOKEN = "admin_session_token_2024";
@@ -48,6 +49,8 @@ export async function PUT(request: NextRequest) {
   try {
     const body = await request.json();
     writeJsonFile("profile.json", body);
+    revalidatePath("/", "page");
+    revalidatePath("/portfolio", "page");
     return NextResponse.json({ success: true, data: body });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });

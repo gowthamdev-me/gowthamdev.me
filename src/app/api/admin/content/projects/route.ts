@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { revalidatePath } from "next/cache";
 import { readJsonFile, writeJsonFile } from "@/lib/admin-data";
 
 const SESSION_TOKEN = "admin_session_token_2024";
@@ -32,6 +33,8 @@ export async function POST(request: NextRequest) {
     };
     projects.push(newProject);
     writeJsonFile("projects.json", projects);
+    revalidatePath("/", "page");
+    revalidatePath("/portfolio", "page");
     return NextResponse.json({ success: true, data: newProject });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
@@ -48,6 +51,8 @@ export async function PUT(request: NextRequest) {
     // Support reordering: if an array is passed, overwrite the entire projects list
     if (Array.isArray(body)) {
       writeJsonFile("projects.json", body);
+      revalidatePath("/", "page");
+      revalidatePath("/portfolio", "page");
       return NextResponse.json({ success: true, data: body });
     }
 
@@ -58,6 +63,8 @@ export async function PUT(request: NextRequest) {
     }
     projects[index] = { ...projects[index], ...body };
     writeJsonFile("projects.json", projects);
+    revalidatePath("/", "page");
+    revalidatePath("/portfolio", "page");
     return NextResponse.json({ success: true, data: projects[index] });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
@@ -74,6 +81,8 @@ export async function DELETE(request: NextRequest) {
     const projects = readJsonFile("projects.json", [] as any[]);
     const filtered = projects.filter((p: any) => p.id !== id);
     writeJsonFile("projects.json", filtered);
+    revalidatePath("/", "page");
+    revalidatePath("/portfolio", "page");
     return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });

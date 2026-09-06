@@ -104,15 +104,20 @@ function SortableProjectItem({
           type="button"
           title={project.showInPortfolio !== false ? "Visible on portfolio — click to hide" : "Hidden from portfolio — click to show"}
           onClick={() => toggleVisibility(project)}
-          className={`p-2 rounded-lg transition-all ${project.showInPortfolio !== false ? "text-green-400 hover:bg-green-500/10" : "text-zinc-600 hover:bg-zinc-700/50"}`}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all border ${
+            project.showInPortfolio !== false
+              ? "text-green-400 bg-green-500/10 border-green-500/30 hover:bg-green-500/20"
+              : "text-zinc-400 bg-zinc-700/40 border-zinc-600/50 hover:bg-zinc-700/60"
+          }`}
         >
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             {project.showInPortfolio !== false ? (
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
             ) : (
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878l4.242 4.242M21 21l-4.35-4.35" />
             )}
           </svg>
+          <span>{project.showInPortfolio !== false ? "Visible" : "Hidden"}</span>
         </button>
         <div className="flex gap-2">
           <button
@@ -185,17 +190,28 @@ export default function AdminProjectsPage() {
   };
 
   const toggleVisibility = async (project: Project) => {
-    await fetch("/api/admin/content/projects", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: project.id, showInPortfolio: !(project.showInPortfolio !== false) }),
-    });
-    loadProjects();
+    const nextVal = !(project.showInPortfolio !== false);
+    // Optimistic UI update
+    setProjects((prev) =>
+      prev.map((p) => (p.id === project.id ? { ...p, showInPortfolio: nextVal } : p))
+    );
+    try {
+      const res = await fetch("/api/admin/content/projects", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: project.id, showInPortfolio: nextVal }),
+      });
+      if (!res.ok) {
+        loadProjects();
+      }
+    } catch {
+      loadProjects();
+    }
   };
 
   const loadProjects = async () => {
     try {
-      const res = await fetch("/api/admin/content/projects");
+      const res = await fetch("/api/admin/content/projects", { cache: "no-store" });
       const data = await res.json();
       if (Array.isArray(data)) setProjects(data);
     } catch {}

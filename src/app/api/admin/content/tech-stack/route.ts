@@ -1,5 +1,6 @@
-﻿import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { revalidatePath } from "next/cache";
 import { readJsonFile, writeJsonFile } from "@/lib/admin-data";
 
 const SESSION_TOKEN = "admin_session_token_2024";
@@ -32,6 +33,8 @@ export async function POST(request: NextRequest) {
     };
     techStack.push(newItem);
     writeJsonFile("tech-stack.json", techStack);
+    revalidatePath("/", "page");
+    revalidatePath("/portfolio", "page");
     return NextResponse.json({ success: true, data: newItem });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
@@ -51,6 +54,8 @@ export async function PUT(request: NextRequest) {
     }
     techStack[index] = { ...techStack[index], ...body };
     writeJsonFile("tech-stack.json", techStack);
+    revalidatePath("/", "page");
+    revalidatePath("/portfolio", "page");
     return NextResponse.json({ success: true, data: techStack[index] });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
@@ -67,6 +72,8 @@ export async function DELETE(request: NextRequest) {
     const techStack = readJsonFile("tech-stack.json", [] as any[]);
     const filtered = techStack.filter((t: any) => t.id !== id);
     writeJsonFile("tech-stack.json", filtered);
+    revalidatePath("/", "page");
+    revalidatePath("/portfolio", "page");
     return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });

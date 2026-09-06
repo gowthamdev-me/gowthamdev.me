@@ -41,6 +41,9 @@ const defaultSectionVisibility: SectionVisibility = {
 
 
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default function Page() {
   const profile = readJsonFile<any>("profile.json", {});
   const coverSettings = readJsonFile<any>("cover-settings.json", null);

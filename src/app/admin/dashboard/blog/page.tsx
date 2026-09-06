@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState, useRef } from "react";
 
@@ -36,7 +36,7 @@ export default function AdminBlogPage() {
 
   const loadPosts = async () => {
     try {
-      const res = await fetch("/api/admin/content/blog");
+      const res = await fetch("/api/admin/content/blog", { cache: "no-store" });
       const data = await res.json();
       if (Array.isArray(data)) setPosts(data);
     } catch {}
@@ -216,22 +216,32 @@ export default function AdminBlogPage() {
                   type="button"
                   title={post.showInPortfolio !== false ? "Visible on portfolio — click to hide" : "Hidden from portfolio — click to show"}
                   onClick={async () => {
-                    await fetch("/api/admin/content/blog", {
-                      method: "PUT",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({ id: post.id, showInPortfolio: !(post.showInPortfolio !== false) }),
-                    });
-                    loadPosts();
+                    const nextVal = !(post.showInPortfolio !== false);
+                    setPosts((prev) => prev.map((p) => p.id === post.id ? { ...p, showInPortfolio: nextVal } : p));
+                    try {
+                      await fetch("/api/admin/content/blog", {
+                        method: "PUT",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ id: post.id, showInPortfolio: nextVal }),
+                      });
+                    } catch {
+                      loadPosts();
+                    }
                   }}
-                  className={`p-2 rounded-lg transition-all ${post.showInPortfolio !== false ? "text-green-400 hover:bg-green-500/10" : "text-zinc-600 hover:bg-zinc-700/50"}`}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all border ${
+                    post.showInPortfolio !== false
+                      ? "text-green-400 bg-green-500/10 border-green-500/30 hover:bg-green-500/20"
+                      : "text-zinc-400 bg-zinc-700/40 border-zinc-600/50 hover:bg-zinc-700/60"
+                  }`}
                 >
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     {post.showInPortfolio !== false ? (
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                     ) : (
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878l4.242 4.242M21 21l-4.35-4.35" />
                     )}
                   </svg>
+                  <span>{post.showInPortfolio !== false ? "Visible" : "Hidden"}</span>
                 </button>
                 <button type="button" title="Edit post" onClick={() => handleEdit(post)} className="p-2 rounded-lg hover:bg-zinc-700/50 text-zinc-400 hover:text-white transition-all">
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>

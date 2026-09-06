@@ -1,5 +1,6 @@
-﻿import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { revalidatePath } from "next/cache";
 import { readJsonFile, writeJsonFile } from "@/lib/admin-data";
 
 const SESSION_TOKEN = "admin_session_token_2024";
@@ -36,6 +37,8 @@ export async function POST(request: NextRequest) {
     };
     items.push(newItem);
     writeJsonFile("blog-posts.json", items);
+    revalidatePath("/", "page");
+    revalidatePath("/portfolio", "page");
     return NextResponse.json({ success: true, data: newItem });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
@@ -55,6 +58,8 @@ export async function PUT(request: NextRequest) {
     }
     items[index] = { ...items[index], ...body, updatedAt: new Date().toISOString() };
     writeJsonFile("blog-posts.json", items);
+    revalidatePath("/", "page");
+    revalidatePath("/portfolio", "page");
     return NextResponse.json({ success: true, data: items[index] });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
@@ -71,6 +76,8 @@ export async function DELETE(request: NextRequest) {
     const items = readJsonFile("blog-posts.json", [] as any[]);
     const filtered = items.filter((p: any) => p.id !== id);
     writeJsonFile("blog-posts.json", filtered);
+    revalidatePath("/", "page");
+    revalidatePath("/portfolio", "page");
     return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });

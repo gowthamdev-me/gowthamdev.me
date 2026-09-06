@@ -44,13 +44,13 @@ export default function AdminDashboard() {
     try {
       const [projects, experiences, blog, socialLinks, techStack, uploads, profile] =
         await Promise.all([
-          fetch("/api/admin/content/projects").then((r) => r.json()),
-          fetch("/api/admin/content/experiences").then((r) => r.json()),
-          fetch("/api/admin/content/blog").then((r) => r.json()),
-          fetch("/api/admin/content/social-links").then((r) => r.json()),
-          fetch("/api/admin/content/tech-stack").then((r) => r.json()),
-          fetch("/api/admin/upload").then((r) => r.json()),
-          fetch("/api/admin/content/profile").then((r) => r.json()),
+          fetch("/api/admin/content/projects", { cache: "no-store" }).then((r) => r.json()),
+          fetch("/api/admin/content/experiences", { cache: "no-store" }).then((r) => r.json()),
+          fetch("/api/admin/content/blog", { cache: "no-store" }).then((r) => r.json()),
+          fetch("/api/admin/content/social-links", { cache: "no-store" }).then((r) => r.json()),
+          fetch("/api/admin/content/tech-stack", { cache: "no-store" }).then((r) => r.json()),
+          fetch("/api/admin/upload", { cache: "no-store" }).then((r) => r.json()),
+          fetch("/api/admin/content/profile", { cache: "no-store" }).then((r) => r.json()),
         ]);
 
       setStats({
@@ -98,12 +98,22 @@ export default function AdminDashboard() {
   };
 
   const toggleSectionVisibility = async (section: keyof SectionVisibility) => {
+    const prevVisibility = { ...sectionVisibility };
+    const nextVal = !(sectionVisibility[section] ?? true);
+
+    // Optimistic update for immediate visual feedback
+    setSectionVisibility((prev) => ({
+      ...prev,
+      [section]: nextVal,
+    }));
     setUpdatingSection(section);
+
     try {
-      const profileRes = await fetch("/api/admin/content/profile");
+      const profileRes = await fetch("/api/admin/content/profile", { cache: "no-store" });
       const profile = await profileRes.json();
 
       if (profile?.error) {
+        setSectionVisibility(prevVisibility);
         setSeedResult("Error: Failed to load profile settings");
         return;
       }
@@ -111,7 +121,7 @@ export default function AdminDashboard() {
       const nextSectionVisibility = {
         ...defaultSectionVisibility,
         ...(profile?.sectionVisibility ?? {}),
-        [section]: !(profile?.sectionVisibility?.[section] ?? true),
+        [section]: nextVal,
       };
 
       const saveRes = await fetch("/api/admin/content/profile", {
@@ -124,6 +134,7 @@ export default function AdminDashboard() {
       });
 
       if (!saveRes.ok) {
+        setSectionVisibility(prevVisibility);
         setSeedResult("Error: Failed to update section visibility");
         return;
       }
@@ -131,6 +142,7 @@ export default function AdminDashboard() {
       setSectionVisibility(nextSectionVisibility);
       setSeedResult(null);
     } catch {
+      setSectionVisibility(prevVisibility);
       setSeedResult("Error: Failed to update section visibility");
     } finally {
       setUpdatingSection(null);

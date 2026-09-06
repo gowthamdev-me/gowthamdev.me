@@ -10,7 +10,7 @@ function Panel({ className, ...props }: React.ComponentProps<"section">) {
     <section
       data-slot="panel"
       className={cn(
-        "rounded-[20px] sm:rounded-[28px] lg:rounded-[40px] border border-border bg-card text-card-foreground overflow-hidden",
+        "rounded-[20px] sm:rounded-[28px] lg:rounded-[40px] border border-border bg-card text-card-foreground overflow-hidden scroll-mt-24 sm:scroll-mt-28",
         className
       )}
       {...props}

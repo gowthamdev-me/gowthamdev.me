@@ -323,6 +323,15 @@ export function ProfileBio() {
                         {/* ── Clean minimal "View Projects" button with animated icon ── */}
                         <motion.a
                             href="#projects"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                const el = document.getElementById("projects");
+                                if (el) {
+                                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                                } else {
+                                    window.location.hash = "projects";
+                                }
+                            }}
                             whileHover={{ scale: 1.04 }}
                             whileTap={{ scale: 0.97 }}
                             className="group/btn relative inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 select-none cursor-pointer rounded-full border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 hover:border-[#FA0143]/50 dark:hover:border-[#FA0143]/40 hover:bg-[#FA0143]/5 dark:hover:bg-[#FA0143]/10 transition-colors duration-300 overflow-hidden"

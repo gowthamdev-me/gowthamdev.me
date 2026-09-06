@@ -25,7 +25,7 @@ export default function AdminSocialLinksPage() {
 
   const loadLinks = async () => {
     try {
-      const res = await fetch("/api/admin/content/social-links");
+      const res = await fetch("/api/admin/content/social-links", { cache: "no-store" });
       const data = await res.json();
       if (Array.isArray(data)) setLinks(data);
     } catch {}
@@ -207,22 +207,32 @@ export default function AdminSocialLinksPage() {
                   type="button"
                   title={link.showInPortfolio !== false ? "Visible on portfolio — click to hide" : "Hidden from portfolio — click to show"}
                   onClick={async () => {
-                    await fetch("/api/admin/content/social-links", {
-                      method: "PUT",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({ ...link, showInPortfolio: !(link.showInPortfolio !== false) }),
-                    });
-                    loadLinks();
+                    const nextVal = !(link.showInPortfolio !== false);
+                    setLinks((prev) => prev.map((l) => l.id === link.id ? { ...l, showInPortfolio: nextVal } : l));
+                    try {
+                      await fetch("/api/admin/content/social-links", {
+                        method: "PUT",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ ...link, showInPortfolio: nextVal }),
+                      });
+                    } catch {
+                      loadLinks();
+                    }
                   }}
-                  className={`p-2 rounded-lg transition-all ${link.showInPortfolio !== false ? "text-green-400 hover:bg-green-500/10" : "text-zinc-600 hover:bg-zinc-700/50"}`}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all border ${
+                    link.showInPortfolio !== false
+                      ? "text-green-400 bg-green-500/10 border-green-500/30 hover:bg-green-500/20"
+                      : "text-zinc-400 bg-zinc-700/40 border-zinc-600/50 hover:bg-zinc-700/60"
+                  }`}
                 >
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     {link.showInPortfolio !== false ? (
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                     ) : (
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878l4.242 4.242M21 21l-4.35-4.35" />
                     )}
                   </svg>
+                  <span>{link.showInPortfolio !== false ? "Visible" : "Hidden"}</span>
                 </button>
                 <button onClick={() => handleDelete(link.id)} title="Delete link" className="p-2 rounded-lg hover:bg-red-500/10 text-zinc-400 hover:text-red-400 transition-all">
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>

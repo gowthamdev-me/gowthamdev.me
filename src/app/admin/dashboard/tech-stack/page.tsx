@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState, useRef } from "react";
 
@@ -33,7 +33,7 @@ export default function AdminTechStackPage() {
 
   const loadItems = async () => {
     try {
-      const res = await fetch("/api/admin/content/tech-stack");
+      const res = await fetch("/api/admin/content/tech-stack", { cache: "no-store" });
       const data = await res.json();
       if (Array.isArray(data)) setItems(data);
     } catch {
@@ -111,21 +111,24 @@ export default function AdminTechStackPage() {
   };
 
   const togglePortfolioVisibility = async (item: TechStackItem) => {
+    const nextVal = !item.showInPortfolio;
+    setItems((prev) => prev.map((t) => t.id === item.id ? { ...t, showInPortfolio: nextVal } : t));
     try {
       const res = await fetch("/api/admin/content/tech-stack", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           id: item.id,
-          showInPortfolio: !item.showInPortfolio,
+          showInPortfolio: nextVal,
         }),
       });
       const data = await res.json();
-      if (data.success) {
+      if (!data.success) {
         await loadItems();
       }
     } catch {
       showMessage("error", "Failed to update visibility");
+      loadItems();
     }
   };
 
@@ -381,22 +384,23 @@ export default function AdminTechStackPage() {
                   <button
                     onClick={() => togglePortfolioVisibility(item)}
                     title={item.showInPortfolio ? "Hide from portfolio" : "Show in portfolio"}
-                    className={`p-2 rounded-lg transition-colors ${
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all border ${
                       item.showInPortfolio
-                        ? "text-green-400 hover:bg-green-500/20"
-                        : "text-zinc-500 hover:bg-zinc-700/50"
+                        ? "text-green-400 bg-green-500/10 border-green-500/30 hover:bg-green-500/20"
+                        : "text-zinc-400 bg-zinc-700/40 border-zinc-600/50 hover:bg-zinc-700/60"
                     }`}
                   >
                     {item.showInPortfolio ? (
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                       </svg>
                     ) : (
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
                       </svg>
                     )}
+                    <span>{item.showInPortfolio ? "Visible" : "Hidden"}</span>
                   </button>
                   <button
                     onClick={() => handleEdit(item)}
