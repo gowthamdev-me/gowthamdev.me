@@ -1,4 +1,4 @@
-﻿import dayjs from "dayjs";
+import dayjs from "dayjs";
 import { ArrowUpRightIcon } from "lucide-react";
 import Image from "next/image";
 import React from "react";
@@ -44,7 +44,7 @@ export function CertificationItem({
       )}
 
       <div className="flex-1 space-y-1 border-l border-dashed border-edge p-4 pr-2">
-        <h3 className="leading-snug font-medium text-balance underline-offset-4 group-hover/cert:underline">
+        <h3 className="leading-snug font-semibold text-base sm:text-lg text-zinc-900 dark:text-white text-balance underline-offset-4 group-hover/cert:underline">
           {certification.title}
         </h3>
 

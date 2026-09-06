@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { Command as CommandPrimitive } from "cmdk";
 import * as React from "react";
@@ -50,10 +50,13 @@ function CommandDialog({
 
       <DialogContent
         className={cn(
-          "overflow-hidden p-0 max-sm:top-16 max-sm:translate-y-0",
-          "bg-white/85 dark:bg-zinc-900/85 backdrop-blur-2xl supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-zinc-900/70",
+          "overflow-hidden p-0",
+          /* Mobile: pin to top-2 and cap height so keyboard can't cover it */
+          "max-sm:top-2 max-sm:left-2 max-sm:right-2 max-sm:translate-x-0 max-sm:translate-y-0 max-sm:w-auto max-sm:max-w-none max-sm:max-h-[50dvh]",
+          "bg-white/90 dark:bg-zinc-900/92 backdrop-blur-2xl",
           "border border-zinc-200/80 dark:border-white/[0.08] rounded-2xl sm:rounded-3xl",
-          "shadow-[0_1px_3px_rgba(0,0,0,0.04),0_4px_12px_rgba(0,0,0,0.03)] dark:shadow-[0_1px_3px_rgba(0,0,0,0.2),0_4px_12px_rgba(0,0,0,0.15)]"
+          "shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.5)]",
+          "[&_button[data-slot=dialog-close]]:top-[28px] [&_button[data-slot=dialog-close]]:-translate-y-1/2 [&_button[data-slot=dialog-close]]:right-3.5 [&_button[data-slot=dialog-close]]:size-7 [&_button[data-slot=dialog-close]]:flex [&_button[data-slot=dialog-close]]:items-center [&_button[data-slot=dialog-close]]:justify-center [&_button[data-slot=dialog-close]]:rounded-lg [&_button[data-slot=dialog-close]]:bg-black/5 dark:[&_button[data-slot=dialog-close]]:bg-white/10 [&_button[data-slot=dialog-close]]:hover:bg-black/10 dark:[&_button[data-slot=dialog-close]]:hover:bg-white/20 [&_button[data-slot=dialog-close]_svg]:size-3.5"
         )}
         data-slot="command-dialog-content"
         data-lenis-prevent
@@ -61,7 +64,7 @@ function CommandDialog({
       >
         <Command
           className={cn(
-            "**:data-[slot=command-input-wrapper]:h-12 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-10",
+            "**:data-[slot=command-input-wrapper]:h-10 [&_[cmdk-input-wrapper]_svg]:h-4 [&_[cmdk-input-wrapper]_svg]:w-4 [&_[cmdk-input]]:h-10",
             "[&_[cmdk-group]]:px-1",
             "[&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground",
             "[&_[cmdk-item]]:px-3 [&_[cmdk-item]]:py-2 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5"
@@ -81,7 +84,7 @@ function CommandInput({
   return (
     <div
       data-slot="command-input-wrapper"
-      className="mx-2 mt-2 mb-1 flex h-10 items-center gap-2 rounded-xl border border-zinc-200/70 bg-white/70 px-3 dark:border-white/[0.08] dark:bg-zinc-900/60"
+      className="mx-2 mt-2 mb-1 flex h-10 items-center gap-2 rounded-xl border border-zinc-200/70 bg-white/70 px-3 pr-10 dark:border-white/[0.08] dark:bg-zinc-900/60"
     >
       <svg
         className="size-4 shrink-0 text-muted-foreground/80"
@@ -118,7 +121,7 @@ function CommandList({
     <CommandPrimitive.List
       data-slot="command-list"
       className={cn(
-        "max-h-80 scroll-py-0 overflow-x-hidden overflow-y-auto overscroll-contain px-1 pb-0",
+        "max-h-[35dvh] sm:max-h-80 scroll-py-0 overflow-x-hidden overflow-y-auto overscroll-contain px-1 pb-1",
         className
       )}
       data-lenis-prevent

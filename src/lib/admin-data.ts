@@ -3,7 +3,6 @@
 
 import fs from "fs";
 import path from "path";
-import { cache } from "react";
 
 const DATA_DIR = path.join(process.cwd(), "src/admin-data");
 
@@ -17,7 +16,9 @@ export function getDataPath(filename: string) {
   return path.join(DATA_DIR, filename);
 }
 
-export const readJsonFile = cache(<T>(filename: string, defaultValue: T): T => {
+// NOTE: Not wrapped in React.cache() — cache() only works inside React Server
+// Components, not in API route handlers. Plain function works everywhere.
+export function readJsonFile<T>(filename: string, defaultValue: T): T {
   ensureDataDir();
   const filePath = getDataPath(filename);
   if (fs.existsSync(filePath)) {
@@ -28,11 +29,10 @@ export const readJsonFile = cache(<T>(filename: string, defaultValue: T): T => {
     }
   }
   return defaultValue;
-});
+}
 
 export function writeJsonFile<T>(filename: string, data: T): void {
   ensureDataDir();
   const filePath = getDataPath(filename);
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf-8");
 }
-

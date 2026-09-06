@@ -12,17 +12,13 @@ export function BlogPostCard({ post }: { post: Post }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-white/[0.06] shadow-sm hover:shadow-lg transition-shadow duration-300"
+      className="group relative flex flex-col h-full overflow-hidden rounded-2xl bg-card border border-border shadow-sm hover:shadow-lg transition-shadow duration-300"
     >
-      {/* ── Top accent line (brand red, revealed on hover) ─────────────────── */}
-      <div
-        className="absolute top-0 inset-x-0 h-[2px] z-10 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"
-        style={{ background: "#FA0143" }}
-      />
+
 
       {/* ── Cover image ────────────────────────────────────────────────────── */}
       {post.metadata.image ? (
-        <div className="relative aspect-[16/9] w-full overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+        <div className="relative aspect-[16/9] w-full overflow-hidden bg-accent">
           <Image
             src={post.metadata.image}
             alt={post.metadata.title}
@@ -78,7 +74,7 @@ export function BlogPostCard({ post }: { post: Post }) {
 
         {/* Description */}
         {post.metadata.description && (
-          <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-2 leading-relaxed flex-1">
+          <p className="text-sm text-zinc-500 dark:text-zinc-400 font-medium line-clamp-2 leading-relaxed flex-1">
             {post.metadata.description}
           </p>
         )}

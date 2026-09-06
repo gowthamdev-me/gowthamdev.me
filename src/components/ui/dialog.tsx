@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { XIcon } from "lucide-react";
 import { Dialog as DialogPrimitive } from "radix-ui";
@@ -66,7 +66,10 @@ function DialogContent({
         {...props}
       >
         {children}
-        <DialogPrimitive.Close className="absolute top-2 right-2 p-1.5 opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-6 rounded-md hover:bg-muted">
+        <DialogPrimitive.Close
+          data-slot="dialog-close"
+          className="absolute top-3 right-3 flex size-7 items-center justify-center rounded-lg bg-black/5 text-muted-foreground opacity-70 transition-all hover:bg-black/10 hover:text-foreground hover:opacity-100 dark:bg-white/10 dark:hover:bg-white/20 focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg]:size-4"
+        >
           <XIcon />
           <span className="sr-only">Close</span>
         </DialogPrimitive.Close>

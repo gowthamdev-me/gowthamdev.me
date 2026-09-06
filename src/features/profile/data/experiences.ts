@@ -4,7 +4,7 @@ export const EXPERIENCES: Experience[] = [
   {
     id: "simplamo",
     companyName: "Simplamo Enterprise JSC",
-    companyLogo: "https://assets.gowthamdev.com/images/companies/simplamo.webp",
+    companyLogo: "https://assets.gowthamdev.me/images/companies/simplamo.webp",
     positions: [
       {
         id: "20f8bfe5-b6a3-4b0d-ac2f-6fccd50d417e",
@@ -57,7 +57,7 @@ export const EXPERIENCES: Experience[] = [
   {
     id: "quaric",
     companyName: "Quaric Co., Ltd.",
-    companyLogo: "https://assets.gowthamdev.com/images/companies/quaric.svg",
+    companyLogo: "https://assets.gowthamdev.me/images/companies/quaric.svg",
     positions: [
       {
         id: "30d3a9fb-021d-452a-9d27-83655369b4b9",
@@ -117,7 +117,7 @@ In-house Project: [ZaDark](https://zadark.com)
   {
     id: "tungtung",
     companyName: "Tung Tung JSC",
-    companyLogo: "https://assets.gowthamdev.com/images/companies/tungtung.webp",
+    companyLogo: "https://assets.gowthamdev.me/images/companies/tungtung.webp",
     positions: [
       {
         id: "3e831244-8d8c-41e2-b2ce-7f3946956afd",

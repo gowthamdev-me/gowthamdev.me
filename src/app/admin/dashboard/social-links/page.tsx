@@ -1,12 +1,16 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
+import { SocialIcon } from "@/components/social-icon";
 
 interface SocialLink {
   id: string;
-  title: string;
-  description: string;
-  href: string;
+  title?: string;
+  platform?: string;
+  description?: string;
+  username?: string;
+  href?: string;
+  url?: string;
   icon: string;
   showInPortfolio: boolean;
 }
@@ -17,6 +21,7 @@ export default function AdminSocialLinksPage() {
   const [editing, setEditing] = useState<SocialLink | null>(null);
   const [form, setForm] = useState({ title: "", description: "", href: "", icon: "", showInPortfolio: true });
   const [message, setMessage] = useState("");
+  const [uploading, setUploading] = useState(false);
 
   const loadLinks = async () => {
     try {
@@ -40,14 +45,14 @@ export default function AdminSocialLinksPage() {
         await fetch("/api/admin/content/social-links", {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...form, id: editing.id }),
+          body: JSON.stringify({ ...form, platform: form.title, url: form.href, username: form.description, id: editing.id }),
         });
         setMessage("Social link updated!");
       } else {
         await fetch("/api/admin/content/social-links", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(form),
+          body: JSON.stringify({ ...form, platform: form.title, url: form.href, username: form.description }),
         });
         setMessage("Social link added!");
       }
@@ -61,9 +66,9 @@ export default function AdminSocialLinksPage() {
 
   const handleEdit = (link: SocialLink) => {
     setForm({
-      title: link.title || "",
-      description: link.description || "",
-      href: link.href || "",
+      title: link.title || link.platform || "",
+      description: link.description || link.username || "",
+      href: link.href || link.url || "",
       icon: link.icon || "",
       showInPortfolio: link.showInPortfolio ?? true,
     });
@@ -77,6 +82,34 @@ export default function AdminSocialLinksPage() {
     loadLinks();
     setMessage("Link deleted");
     setTimeout(() => setMessage(""), 3000);
+  };
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const res = await fetch("/api/admin/upload", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+      if (data.url) {
+        setForm((prev) => ({ ...prev, icon: data.url }));
+        setMessage("Icon uploaded successfully!");
+      } else {
+        alert(data.error || "Upload failed");
+      }
+    } catch {
+      alert("Failed to upload icon");
+    } finally {
+      setUploading(false);
+      setTimeout(() => setMessage(""), 3000);
+    }
   };
 
   return (
@@ -100,11 +133,11 @@ export default function AdminSocialLinksPage() {
           <h2 className="text-lg font-semibold text-white">{editing ? "Edit Social Link" : "Add Social Link"}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-zinc-300 mb-2">Platform</label>
+              <label className="block text-sm font-medium text-zinc-300 mb-2">Platform / Title</label>
               <input type="text" value={form.title} onChange={(e) => setForm((p) => ({ ...p, title: e.target.value }))} className="w-full px-4 py-3 rounded-xl bg-zinc-900/50 border border-zinc-600/50 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all" placeholder="GitHub, LinkedIn, X..." />
             </div>
             <div>
-              <label className="block text-sm font-medium text-zinc-300 mb-2">Username</label>
+              <label className="block text-sm font-medium text-zinc-300 mb-2">Username / Subtitle</label>
               <input type="text" value={form.description} onChange={(e) => setForm((p) => ({ ...p, description: e.target.value }))} className="w-full px-4 py-3 rounded-xl bg-zinc-900/50 border border-zinc-600/50 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all" placeholder="@username" />
             </div>
           </div>
@@ -113,8 +146,17 @@ export default function AdminSocialLinksPage() {
             <input type="url" value={form.href} onChange={(e) => setForm((p) => ({ ...p, href: e.target.value }))} className="w-full px-4 py-3 rounded-xl bg-zinc-900/50 border border-zinc-600/50 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all" placeholder="https://github.com/username" />
           </div>
           <div>
-            <label className="block text-sm font-medium text-zinc-300 mb-2">Icon URL (optional)</label>
-            <input type="text" value={form.icon} onChange={(e) => setForm((p) => ({ ...p, icon: e.target.value }))} className="w-full px-4 py-3 rounded-xl bg-zinc-900/50 border border-zinc-600/50 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all" placeholder="https://..." />
+            <label className="block text-sm font-medium text-zinc-300 mb-2">Icon (Upload image or paste URL)</label>
+            <div className="flex items-center gap-3">
+              <div className="w-11 h-11 rounded-xl bg-zinc-900 border border-zinc-700 flex items-center justify-center text-white shrink-0">
+                <SocialIcon title={form.title || "Icon"} iconUrl={form.icon} size={24} className="w-6 h-6" />
+              </div>
+              <input type="text" value={form.icon} onChange={(e) => setForm((p) => ({ ...p, icon: e.target.value }))} className="flex-1 px-4 py-3 rounded-xl bg-zinc-900/50 border border-zinc-600/50 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all text-sm" placeholder="https://... or upload file" />
+              <label className="px-4 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium cursor-pointer transition-all shrink-0 flex items-center gap-2">
+                {uploading ? "Uploading..." : "Upload File"}
+                <input type="file" accept="image/*" className="hidden" onChange={handleFileUpload} disabled={uploading} />
+              </label>
+            </div>
           </div>
           <div className="flex items-center gap-2">
             <input type="checkbox" id="showInPortfolio" checked={form.showInPortfolio} onChange={(e) => setForm((p) => ({ ...p, showInPortfolio: e.target.checked }))} className="rounded border-zinc-600" />
@@ -135,15 +177,21 @@ export default function AdminSocialLinksPage() {
             No social links yet. Click &quot;Add Link&quot; to start.
           </div>
         ) : (
-          links.map((link) => (
-            <div key={link.id} className="bg-zinc-800/50 border border-zinc-700/50 rounded-2xl p-5 flex items-center justify-between gap-4">
-              <div className="flex items-center gap-4 flex-1 min-w-0">
-                {link.icon && <img src={link.icon} alt={link.title} className="w-10 h-10 rounded-lg object-cover border border-zinc-600/50 shrink-0" />}
-                <div className="min-w-0">
-                  <h3 className="font-semibold text-white">{link.title}</h3>
-                  <p className="text-sm text-zinc-400 truncate">{link.description} &middot; <a href={link.href} target="_blank" rel="noopener" className="text-blue-400 hover:underline">{link.href}</a></p>
+          links.map((link) => {
+            const displayTitle = link.title || link.platform || "";
+            const displayHref = link.href || link.url || "";
+            const displayDesc = link.description || link.username || "";
+            return (
+              <div key={link.id} className="bg-zinc-800/50 border border-zinc-700/50 rounded-2xl p-5 flex items-center justify-between gap-4">
+                <div className="flex items-center gap-4 flex-1 min-w-0">
+                  <div className="w-10 h-10 rounded-xl bg-zinc-900 border border-zinc-700/50 flex items-center justify-center text-white shrink-0">
+                    <SocialIcon title={displayTitle} iconUrl={link.icon} size={20} className="w-5 h-5" />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="font-semibold text-white">{displayTitle}</h3>
+                    <p className="text-sm text-zinc-400 truncate">{displayDesc} &middot; <a href={displayHref} target="_blank" rel="noopener" className="text-blue-400 hover:underline">{displayHref}</a></p>
+                  </div>
                 </div>
-              </div>
               <div className="flex items-center gap-2 shrink-0">
                 <button
                   type="button"
@@ -181,7 +229,8 @@ export default function AdminSocialLinksPage() {
                 </button>
               </div>
             </div>
-          ))
+            );
+          })
         )}
       </div>
     </div>

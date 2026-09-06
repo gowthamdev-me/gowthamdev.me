@@ -38,7 +38,6 @@ export async function POST(request: NextRequest) {
     const filepath = path.join(uploadsDir, filename);
 
     fs.writeFileSync(filepath, buffer);
-    console.log(`Uploaded file: ${filepath}`);
 
     return NextResponse.json({
       success: true,

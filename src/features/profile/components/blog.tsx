@@ -46,11 +46,8 @@ export function Blog() {
       <PanelHeader className="px-5 sm:px-8 md:px-10 py-5 sm:py-7">
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 sm:gap-4">
-            <PanelTitle className="text-xl sm:text-2xl md:text-3xl font-black tracking-tight">
+            <PanelTitle className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight">
               Blog
-              <sup className="ml-2 text-sm font-mono text-muted-foreground/60 select-none">
-                {visiblePosts.length}
-              </sup>
             </PanelTitle>
           </div>
 

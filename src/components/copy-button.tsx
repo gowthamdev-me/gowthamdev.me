@@ -1,9 +1,11 @@
-﻿"use client";
+"use client";
 
-import { CheckIcon, CircleXIcon, CopyIcon } from "lucide-react";
+import { CircleXIcon } from "lucide-react";
 import React, { useOptimistic, useTransition } from "react";
 
 import { cn } from "@/lib/utils";
+import { CopyIcon } from "@/components/ui/copy";
+import { CheckIcon } from "@/components/ui/check";
 
 import { Button } from "./ui/button";
 
@@ -22,12 +24,16 @@ export function CopyButton({
     <Button
       size="icon"
       variant="secondary"
-      className={cn("z-10 size-6 rounded-md", className)}
+      className={cn("z-10 size-6 rounded-md flex items-center justify-center", className)}
       onClick={() => {
         startTransition(async () => {
           try {
-            await navigator.clipboard.writeText(value);
-            setState("copied");
+            if (typeof navigator !== "undefined" && navigator.clipboard && navigator.clipboard.writeText) {
+              await navigator.clipboard.writeText(value);
+              setState("copied");
+            } else {
+              setState("failed");
+            }
           } catch {
             setState("failed");
           }
@@ -37,9 +43,9 @@ export function CopyButton({
       {...props}
     >
       {state === "idle" ? (
-        <CopyIcon className="size-3" />
+        <CopyIcon size={14} />
       ) : state === "copied" ? (
-        <CheckIcon className="size-3" />
+        <CheckIcon size={14} />
       ) : state === "failed" ? (
         <CircleXIcon className="size-3" />
       ) : null}

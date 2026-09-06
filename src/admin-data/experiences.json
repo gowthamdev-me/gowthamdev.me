@@ -2,7 +2,7 @@
   {
     "id": "simplamo",
     "companyName": "Simplamo Enterprise JSC",
-    "companyLogo": "https://assets.gowthamdev.com/images/companies/simplamo.webp",
+    "companyLogo": "https://assets.gowthamdev.me/images/companies/simplamo.webp",
     "position": "Senior Frontend Developer, UI Design Lead",
     "employmentType": "Full-time",
     "period": "10.2022 - Present",
@@ -10,13 +10,13 @@
     "skills": "TypeScript, Next.js, React Native, MobX, MobX-State-Tree, Tailwind CSS, Dify, Zalo Mini App, Agile, Teamwork, Research, Problem-solving, Creativity, UI/UX Design, Figma",
     "isCurrentEmployer": true,
     "showInPortfolio": true,
-    "createdAt": "2026-04-03T06:02:14.548Z",
+    "createdAt": "2026-08-30T09:02:08.443Z",
     "source": "existing"
   },
   {
     "id": "quaric",
     "companyName": "Quaric Co., Ltd.",
-    "companyLogo": "https://assets.gowthamdev.com/images/companies/quaric.svg",
+    "companyLogo": "https://assets.gowthamdev.me/images/companies/quaric.svg",
     "position": "Design Engineer, Founder & Director",
     "employmentType": "Part-time",
     "period": "03.2024 - Present",
@@ -24,13 +24,13 @@
     "skills": "Next.js, Strapi, Auth0, VNPAY-QR, Docker, NGINX, Google Cloud, Docusaurus, Extension, UI/UX Design, UX Writing, Design System, Brand Design, Figma, Research, Business Ownership, Business Law, Business Tax",
     "isCurrentEmployer": true,
     "showInPortfolio": true,
-    "createdAt": "2026-04-03T06:02:14.548Z",
+    "createdAt": "2026-08-30T09:02:08.443Z",
     "source": "existing"
   },
   {
     "id": "tungtung",
     "companyName": "Tung Tung JSC",
-    "companyLogo": "https://assets.gowthamdev.com/images/companies/tungtung.webp",
+    "companyLogo": "https://assets.gowthamdev.me/images/companies/tungtung.webp",
     "position": "Web Developer, Mobile Developer, UI/UX Designer",
     "employmentType": "Full-time",
     "period": "2020 - 2022",
@@ -38,7 +38,7 @@
     "skills": "React, Redux, Storybook, Lerna, Agile, Teamwork, Research, React Native, MoMo Payment API, App Store, Google Play Store, App Center, UI/UX Design, Sketch",
     "isCurrentEmployer": false,
     "showInPortfolio": true,
-    "createdAt": "2026-04-03T06:02:14.548Z",
+    "createdAt": "2026-08-30T09:02:08.443Z",
     "source": "existing"
   },
   {
@@ -52,7 +52,7 @@
     "skills": "Laravel, React, Express.js, Socket.IO, MongoDB, Firebase, WordPress, Docker, NGINX, Creativity, UI/UX Design, Graphic Design, Sketch, Adobe Photoshop, Adobe Illustrator",
     "isCurrentEmployer": false,
     "showInPortfolio": true,
-    "createdAt": "2026-04-03T06:02:14.548Z",
+    "createdAt": "2026-08-30T09:02:08.443Z",
     "source": "existing"
   },
   {
@@ -66,7 +66,7 @@
     "skills": "C++, Java, Python, Data Structures, Algorithms, Advanced Databases, Systems Design, Distributed Systems, Software Engineering, Self-learning, Teamwork, Presentation, PHP, MySQL, Laravel, Node.js, Pandoc, Pascal, NukeViet, HTML, CSS, JavaScript",
     "isCurrentEmployer": false,
     "showInPortfolio": true,
-    "createdAt": "2026-04-03T06:02:14.554Z",
+    "createdAt": "2026-08-30T09:02:08.443Z",
     "source": "existing"
   }
 ]

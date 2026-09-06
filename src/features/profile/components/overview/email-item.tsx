@@ -12,13 +12,13 @@ export function EmailItem({ email }: { email: string }) {
     <div className="relative group mt-5 mb-2">
       <a
         href={isClient ? `mailto:${emailDecoded}` : "#"}
-        className="relative flex items-center justify-between w-full p-3 sm:p-4 bg-gradient-to-r from-zinc-100/50 to-zinc-50 dark:from-zinc-900/50 dark:to-zinc-900/80 rounded-[20px] border border-zinc-200/80 dark:border-white/5 transition-all duration-300 hover:border-[#A3E635]/50 overflow-hidden shadow-sm hover:shadow-[0_8px_30px_rgba(163,230,53,0.15)]"
+        className="relative flex items-center justify-between w-full p-3 sm:p-4 bg-gradient-to-r from-zinc-100/50 to-zinc-50 dark:from-[#222526]/50 dark:to-[#222526]/80 rounded-[20px] border border-border transition-all duration-300 hover:border-[#A3E635]/50 overflow-hidden shadow-sm hover:shadow-[0_8px_30px_rgba(163,230,53,0.15)]"
       >
         {/* Animated Background Shimmer */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#A3E635]/0 via-[#A3E635]/15 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out" />
 
         <div className="flex items-center gap-3.5 sm:gap-4 relative z-10 min-w-0">
-          <div className="flex items-center justify-center size-10 sm:size-12 rounded-[14px] bg-white dark:bg-zinc-800 shadow-sm border border-zinc-200 dark:border-white/10 text-zinc-500 dark:text-zinc-400 group-hover:text-black dark:group-hover:text-[#A3E635] group-hover:scale-105 group-hover:-rotate-3 transition-all duration-300 ease-out shrink-0">
+          <div className="flex items-center justify-center size-10 sm:size-12 rounded-[14px] bg-card dark:bg-secondary shadow-sm border border-border text-zinc-500 dark:text-zinc-400 group-hover:text-black dark:group-hover:text-[#A3E635] group-hover:scale-105 group-hover:-rotate-3 transition-all duration-300 ease-out shrink-0">
             <MailIcon className="size-5 sm:size-6" />
           </div>
           <div className="flex flex-col min-w-0">
@@ -32,7 +32,7 @@ export function EmailItem({ email }: { email: string }) {
           </div>
         </div>
         
-        <div className="flex items-center justify-center size-8 sm:size-10 shrink-0 rounded-[12px] bg-zinc-200/50 dark:bg-white/5 text-zinc-500 dark:text-zinc-400 group-hover:bg-[#A3E635] group-hover:text-black group-hover:scale-105 transition-all duration-300 ease-out shadow-sm relative z-10">
+        <div className="flex items-center justify-center size-8 sm:size-10 shrink-0 rounded-[12px] bg-zinc-200/50 dark:bg-[#353A3E] text-zinc-500 dark:text-zinc-400 group-hover:bg-[#A3E635] group-hover:text-black group-hover:scale-105 transition-all duration-300 ease-out shadow-sm relative z-10">
           <ArrowUpRight className="size-4 sm:size-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </div>
       </a>

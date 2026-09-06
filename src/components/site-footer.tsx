@@ -1,4 +1,4 @@
-import { RssIcon } from "lucide-react";
+import { RssIcon, Mail } from "lucide-react";
 
 import { SITE_INFO } from "@/config/site";
 import { USER } from "@/data/user";
@@ -27,24 +27,42 @@ export function SiteFooter() {
     return key ? visibility[key] !== false : true;
   });
 
+  const linksConfig = footerConfig.socialLinks as any;
+
+  let adminSocialLinks: any[] = [];
+  try {
+    adminSocialLinks = readJsonFile<any[]>("social-links.json", []);
+  } catch (error) {
+    // Keep it empty, fallback to config
+  }
+
+  const getSocialUrl = (platform: string, fallback: string) => {
+    const link = adminSocialLinks.find(
+      (l: any) =>
+        l.platform?.toLowerCase() === platform.toLowerCase() ||
+        l.title?.toLowerCase() === platform.toLowerCase()
+    );
+    return link?.href || fallback;
+  };
+
   const socialLinks = [
-    footerConfig.socialLinks.twitter && {
-      href: footerConfig.socialLinks.twitter,
+    linksConfig.twitter && {
+      href: getSocialUrl("twitter", getSocialUrl("x", linksConfig.twitter)),
       label: "X / Twitter",
       icon: <Icons.x className="h-4 w-4" />,
     },
-    footerConfig.socialLinks.github && {
-      href: footerConfig.socialLinks.github,
+    linksConfig.github && {
+      href: getSocialUrl("github", linksConfig.github),
       label: "GitHub",
       icon: <Icons.github className="h-4 w-4" />,
     },
-    footerConfig.socialLinks.linkedin && {
-      href: footerConfig.socialLinks.linkedin,
+    linksConfig.linkedin && {
+      href: getSocialUrl("linkedin", linksConfig.linkedin),
       label: "LinkedIn",
       icon: <Icons.linkedin className="h-4 w-4" />,
     },
-    footerConfig.socialLinks.instagram && {
-      href: footerConfig.socialLinks.instagram,
+    linksConfig.instagram && {
+      href: getSocialUrl("instagram", linksConfig.instagram),
       label: "Instagram",
       icon: (
         <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
@@ -52,8 +70,8 @@ export function SiteFooter() {
         </svg>
       ),
     },
-    footerConfig.socialLinks.youtube && {
-      href: footerConfig.socialLinks.youtube,
+    linksConfig.youtube && {
+      href: getSocialUrl("youtube", linksConfig.youtube),
       label: "YouTube",
       icon: (
         <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
@@ -66,53 +84,43 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative w-full rounded-2xl sm:rounded-3xl border border-zinc-100 dark:border-white/[0.06] bg-white dark:bg-zinc-900 shadow-sm overflow-hidden">
+    <footer className="relative w-full rounded-[20px] sm:rounded-[28px] lg:rounded-[40px] border border-border bg-card overflow-hidden">
+      <div className="relative px-6 sm:px-10 py-6 sm:py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        {/* Left: Brand name + copyright */}
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+          <h2
+            className="text-2xl font-bold inline-flex items-center tracking-normal select-none"
+            style={{ fontFamily: "'JapanDaisuki', serif" }}
+          >
+            <span
+              style={{
+                color: "#FA0143",
+                textShadow: "0 0 20px rgba(250, 1, 67, 0.5)",
+              }}
+            >
+              G
+            </span>
+            <span className="text-zinc-900 dark:text-zinc-50">owtham</span>
+          </h2>
+          <p className="text-xs font-semibold text-zinc-400 dark:text-zinc-500">
+            &copy; {year} Gowtham. All rights reserved.
+          </p>
+        </div>
 
-      {/* Subtle dot-grid texture */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.025] dark:opacity-[0.045]"
-        style={{
-          backgroundImage: "radial-gradient(circle, currentColor 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-        }}
-      />
-
-      <div className="relative px-6 sm:px-10 md:px-14 py-10 sm:py-12">
-
-        {/* ── Top row: name + social icons ─────────────────────────────────── */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-10">
-
-          {/* Name + tagline */}
-          <div>
-            {/* Small glowing dot + label */}
-            <div className="flex items-center gap-2 mb-1.5">
-              <span
-                className="inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
-                style={{
-                  background: "#FA0143",
-                  boxShadow: "0 0 6px rgba(250,1,67,0.8), 0 0 14px rgba(250,1,67,0.4)",
-                }}
-              />
-              <p className="text-[11px] font-bold uppercase tracking-[0.28em]"
-                style={{ color: "#FA0143" }}>
-                Portfolio
-              </p>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-zinc-900 dark:text-zinc-50">
-              <span style={{ color: "#FA0143" }}>G</span>owtham
-            </h2>
-            {footerConfig.contactEmail && (
+        {/* Right: Nav Links + Socials */}
+        <div className="flex flex-wrap items-center gap-6">
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            {filteredLinks.map((link, i) => (
               <a
-                href={`mailto:${footerConfig.contactEmail}`}
-                className="mt-1 text-xs text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors"
+                key={i}
+                href={link.href}
+                className="text-xs font-bold text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-50 uppercase tracking-widest transition-colors duration-200"
               >
-                {footerConfig.contactEmail}
+                {link.label}
               </a>
-            )}
+            ))}
           </div>
 
-          {/* Social icons */}
           <div className="flex items-center gap-2">
             {socialLinks.map(({ href, label, icon }) => (
               <a
@@ -121,61 +129,12 @@ export function SiteFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="flex items-center justify-center w-9 h-9 rounded-xl border border-zinc-200/80 dark:border-white/[0.08] text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-50 hover:border-zinc-300 dark:hover:border-white/20 transition-all duration-200"
+                className="flex items-center justify-center w-8 h-8 rounded-lg border border-border text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-50 hover:bg-zinc-50 dark:hover:bg-white/5 transition-all duration-200"
               >
                 {icon}
               </a>
             ))}
           </div>
-        </div>
-
-        {/* ── Divider ──────────────────────────────────────────────────────── */}
-        <div className="h-px bg-zinc-100 dark:bg-white/[0.06] mb-8" />
-
-        {/* ── Nav links ────────────────────────────────────────────────────── */}
-        <div className="flex flex-wrap gap-x-6 gap-y-2 mb-8">
-          {filteredLinks.map((link, i) => (
-            <a
-              key={i}
-              href={link.href}
-              className="text-xs font-medium text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-50 uppercase tracking-widest transition-colors duration-200"
-            >
-              {link.label}
-            </a>
-          ))}
-          {footerConfig.showRSS && (
-            <a
-              href={`${SITE_INFO.url}/rss`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 text-xs font-medium text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-50 uppercase tracking-widest transition-colors"
-            >
-              <RssIcon className="w-3 h-3" />
-              RSS
-            </a>
-          )}
-        </div>
-
-        {/* ── Quote ────────────────────────────────────────────────────────── */}
-        {footerConfig.quote && (
-          <div className="mb-8 pl-4 border-l-2" style={{ borderColor: "#FA0143" }}>
-            <p className="text-sm italic text-zinc-500 dark:text-zinc-400 leading-relaxed">
-              "{footerConfig.quote.text}"
-            </p>
-            <p className="mt-1 text-xs font-semibold text-zinc-400 dark:text-zinc-500">
-              — {footerConfig.quote.author}
-            </p>
-          </div>
-        )}
-
-        {/* ── Bottom row: copyright ─────────────────────────────────────────── */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pt-6 border-t border-zinc-100 dark:border-white/[0.06]">
-          <p className="text-xs text-zinc-400 dark:text-zinc-500">
-            © {year} {footerConfig.displayName}. All rights reserved.
-          </p>
-          <p className="text-xs text-zinc-400 dark:text-zinc-500">
-            {footerConfig.attribution}
-          </p>
         </div>
       </div>
     </footer>

@@ -34,25 +34,20 @@ export function SocialLinks() {
 
   return (
     <Panel>
-      <PanelHeader className="px-5 sm:px-8 md:px-10 py-5 sm:py-7">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3 sm:gap-4">
-            <PanelTitle className="text-xl sm:text-2xl md:text-3xl font-black tracking-tight">
-              Social Links
-              <sup className="ml-2 text-sm font-mono text-muted-foreground/60 select-none">
-                {links.length}
-              </sup>
-            </PanelTitle>
-          </div>
+      <PanelHeader className="px-4 sm:px-8 md:px-10 py-3.5 sm:py-6">
+        <div className="flex items-center justify-between gap-3">
+          <PanelTitle className="text-lg sm:text-2xl md:text-3xl font-black tracking-tight whitespace-nowrap">
+            Social Links
+          </PanelTitle>
 
-          <div className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-[12px] sm:rounded-[16px] bg-zinc-100 text-xs sm:text-sm font-semibold text-muted-foreground border border-zinc-200 dark:bg-white/5 dark:border-white/10">
+          <div className="px-2.5 py-1 sm:px-4 sm:py-2 rounded-[10px] sm:rounded-[16px] bg-zinc-100 text-[11px] sm:text-sm font-semibold text-muted-foreground border border-zinc-200 dark:bg-white/5 dark:border-white/10 uppercase tracking-wider shrink-0">
             Connect
           </div>
         </div>
       </PanelHeader>
 
-      <PanelContent className="p-4 sm:p-6 md:p-8 bg-transparent dark:bg-white/[0.02]">
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+      <PanelContent className="p-3.5 sm:p-6 md:p-8 bg-transparent dark:bg-white/[0.02]">
+        <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-4">
           {links.map((link, index) => {
             return <SocialLinkItem key={index} {...link} />;
           })}

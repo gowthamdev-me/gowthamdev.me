@@ -14,6 +14,8 @@ import { TeckStack } from "@/features/profile/components/teck-stack";
 import { SocialLinks } from "@/features/profile/components/social-links";
 import { AboutMe } from "@/features/profile/components/about-me";
 import { Experiences } from "@/features/profile/components/experiences";
+import { Awards } from "@/features/profile/components/awards";
+import { Certifications } from "@/features/profile/components/certifications";
 
 type SectionVisibility = {
   aboutMe: boolean;
@@ -22,6 +24,8 @@ type SectionVisibility = {
   experiences: boolean;
   blog: boolean;
   projects: boolean;
+  awards: boolean;
+  certifications: boolean;
 };
 
 const defaultSectionVisibility: SectionVisibility = {
@@ -31,33 +35,30 @@ const defaultSectionVisibility: SectionVisibility = {
   experiences: true,
   blog: true,
   projects: true,
+  awards: true,
+  certifications: true,
 };
 
-function getSectionVisibility(): SectionVisibility {
-  const profile = readJsonFile<{ sectionVisibility?: Partial<SectionVisibility> }>(
-    "profile.json",
-    {}
-  );
 
-  return {
+
+export default function Page() {
+  const profile = readJsonFile<any>("profile.json", {});
+  const coverSettings = readJsonFile<any>("cover-settings.json", null);
+  const sectionVisibility = {
     ...defaultSectionVisibility,
     ...(profile.sectionVisibility ?? {}),
   };
-}
-
-export default function Page() {
-  const sectionVisibility = getSectionVisibility();
 
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(getPageJsonLd()).replace(/</g, "\\u003c"),
+          __html: JSON.stringify(getPageJsonLd(profile)).replace(/</g, "\\u003c"),
         }}
       />
 
-      <div className="w-full px-3 sm:px-6 md:px-8 max-w-[1600px] mx-auto py-4 sm:py-8 lg:py-12">
+      <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-14 py-4 sm:py-6 lg:py-8">
         {/* Header */}
         <div className="sticky top-3 sm:top-4 lg:top-6 z-50 mb-2 sm:mb-3 lg:mb-5">
           <SiteHeader />
@@ -65,7 +66,7 @@ export default function Page() {
 
         {/* Cover */}
         <div className="mb-2 sm:mb-3 lg:mb-5">
-          <ProfileCover />
+          <ProfileCover initialSettings={coverSettings} />
         </div>
 
         {/* Main content: HeroLayout handles card slide-in + full-width bio */}
@@ -79,6 +80,8 @@ export default function Page() {
           {sectionVisibility.experiences ? <Experiences /> : null}
           {sectionVisibility.blog ? <Blog /> : null}
           {sectionVisibility.projects ? <Projects /> : null}
+          {sectionVisibility.awards ? <Awards /> : null}
+          {sectionVisibility.certifications ? <Certifications /> : null}
         </HeroLayout>
 
         {/* Footer */}
@@ -90,17 +93,17 @@ export default function Page() {
   );
 }
 
-function getPageJsonLd(): WithContext<PageSchema> {
+function getPageJsonLd(profile: any): WithContext<PageSchema> {
   return {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
     dateCreated: dayjs(USER.dateCreated).toISOString(),
-    dateModified: dayjs().toISOString(),
+    dateModified: dayjs(USER.dateCreated).toISOString(),
     mainEntity: {
       "@type": "Person",
-      name: USER.displayName,
+      name: profile?.displayName || USER.displayName,
       identifier: USER.username,
-      image: USER.avatar,
+      image: profile?.avatar || USER.avatar,
     },
   };
 }

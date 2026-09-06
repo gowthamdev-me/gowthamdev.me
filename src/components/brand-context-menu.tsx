@@ -56,7 +56,7 @@ export function BrandContextMenu({ children }: { children: React.ReactNode }) {
         </ContextMenuItem>
 
         <ContextMenuItem asChild>
-          <a href="https://assets.gowthamdev.com/gowtham-brand.zip" download>
+          <a href="https://assets.gowthamdev.me/gowtham-brand.zip" download>
             <DownloadIcon />
             Download Brand Assets
           </a>

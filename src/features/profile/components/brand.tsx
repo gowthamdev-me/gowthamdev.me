@@ -16,8 +16,10 @@ const BrandContextMenu = dynamic(() =>
 export function Brand() {
   return (
     <Panel>
-      <PanelHeader>
-        <PanelTitle>Brand</PanelTitle>
+      <PanelHeader className="px-5 sm:px-8 md:px-10 py-5 sm:py-7">
+        <PanelTitle className="text-xl sm:text-2xl md:text-3xl font-black tracking-tight">
+          Brand
+        </PanelTitle>
       </PanelHeader>
 
       <BrandContextMenu>

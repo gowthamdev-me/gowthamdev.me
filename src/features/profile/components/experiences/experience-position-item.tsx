@@ -1,4 +1,4 @@
-﻿import {
+import {
   ChevronsDownUpIcon,
   ChevronsUpDownIcon,
   InfinityIcon,
@@ -44,7 +44,7 @@ export function ExperiencePositionItem({
               <ExperienceIcon className="size-4" icon={position.icon} />
             </div>
 
-            <h4 className="flex-1 font-medium text-balance">
+            <h4 className="flex-1 font-semibold text-sm sm:text-base text-zinc-500 dark:text-zinc-400 text-balance">
               {position.title}
             </h4>
 
@@ -57,7 +57,7 @@ export function ExperiencePositionItem({
             </div>
           </div>
 
-          <div className="flex items-center gap-2 pl-9 text-sm text-muted-foreground">
+          <div className="flex items-center gap-2 pl-9 text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 font-medium">
             {position.employmentType && (
               <>
                 <dl>

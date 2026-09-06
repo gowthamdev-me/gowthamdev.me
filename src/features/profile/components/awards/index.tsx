@@ -18,9 +18,6 @@ export function Awards() {
           <div className="flex items-center gap-3 sm:gap-4">
             <PanelTitle className="text-xl sm:text-2xl md:text-3xl font-black tracking-tight">
               Honors & Awards
-              <sup className="ml-2 text-sm font-mono text-muted-foreground/60 select-none">
-                {AWARDS.length}
-              </sup>
             </PanelTitle>
           </div>
 

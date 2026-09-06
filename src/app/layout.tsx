@@ -3,8 +3,6 @@ import "@/styles/globals.css";
 import type { Metadata, Viewport } from "next";
 import type { WebSite, WithContext } from "schema-dts";
 
-import { ClientLoadingWrapper } from "@/components/client-loading-wrapper";
-import { PageTransition } from "@/components/page-transition";
 import { Providers } from "@/components/providers";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { META_THEME_COLORS, SITE_INFO } from "@/config/site";
@@ -86,6 +84,8 @@ export const viewport: Viewport = {
   themeColor: META_THEME_COLORS.light,
 };
 
+import { ClientLoadingWrapper } from "@/components/client-loading-wrapper";
+
 export default function RootLayout({
   children,
 }: {
@@ -111,9 +111,7 @@ export default function RootLayout({
         {/* GSAP — loaded early so SVG stroke animations are ready */}
         <script
           src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          async="true"
+          async
         />
         <link
           rel="preload"
@@ -141,7 +139,6 @@ export default function RootLayout({
         <SmoothScroll />
         <Providers>
           <ClientLoadingWrapper>
-            <PageTransition />
             {children}
           </ClientLoadingWrapper>
         </Providers>

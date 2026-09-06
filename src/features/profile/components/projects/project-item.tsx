@@ -40,7 +40,7 @@ export function ProjectItem({
           <div className="flex-1 border-l border-dashed border-zinc-200 dark:border-white/10 ml-[-20px] pl-5">
             <CollapsibleTrigger className="group/project flex w-full items-center gap-4 p-4 pr-2 text-left select-none">
               <div className="flex-1">
-                <h3 className="mb-1 leading-snug font-medium text-balance">
+                <h3 className="mb-1 leading-snug font-semibold text-balance text-zinc-900 dark:text-white">
                   {project.title}
                 </h3>
 
@@ -69,7 +69,9 @@ export function ProjectItem({
                   className="relative flex size-6 shrink-0 items-center justify-center text-muted-foreground after:absolute after:-inset-2 hover:text-foreground"
                   href={addQueryParams(project.link, UTM_PARAMS)}
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
+                  aria-label={`Open ${project.title} Project Link`}
+                  onClick={(e) => e.stopPropagation()}
                 >
                   <LinkIcon className="pointer-events-none size-4" />
                   <span className="sr-only">Open Project Link</span>

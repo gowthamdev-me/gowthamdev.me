@@ -8,13 +8,13 @@ import { registrySchema } from "shadcn/registry";
 
 const coreRegistry: Registry = {
   name: "gowtham",
-  homepage: "https://gowthamdev.com/components",
+  homepage: "https://gowthamdev.me/components",
   items: [
     {
       name: "utils",
       type: "registry:lib",
       title: "Utility Functions",
-      author: "gowtham <gowtham@gowthamdev.com>",
+      author: "gowtham <gowtham@gowthamdev.me>",
       dependencies: ["clsx", "tailwind-merge"],
       files: [
         {
@@ -44,7 +44,7 @@ const coreRegistry: Registry = {
       description:
         "A theme switcher component for Next.js apps with next-themes and Tailwind CSS, supporting system, light, and dark modes.",
       title: "Theme Switcher",
-      author: "gowtham <gowtham@gowthamdev.com>",
+      author: "gowtham <gowtham@gowthamdev.me>",
       dependencies: ["next-themes", "lucide-react", "motion"],
       registryDependencies: ["<registryBaseUrl>/utils.json"],
       files: [
@@ -53,13 +53,13 @@ const coreRegistry: Registry = {
           type: "registry:component",
         },
       ],
-      docs: "https://gowthamdev.com/components/theme-switcher-component",
+      docs: "https://gowthamdev.me/components/theme-switcher-component",
     },
     {
       name: "flip-sentences",
       type: "registry:component",
       title: "Flip Sentences",
-      author: "gowtham <gowtham@gowthamdev.com>",
+      author: "gowtham <gowtham@gowthamdev.me>",
       dependencies: ["motion"],
       registryDependencies: ["<registryBaseUrl>/utils.json"],
       files: [
@@ -75,7 +75,7 @@ const coreRegistry: Registry = {
       description:
         "Create a Xin chào and Hello writing effect inspired by Apple using Motion for React.",
       title: "Apple Hello Effect",
-      author: "gowtham <gowtham@gowthamdev.com>",
+      author: "gowtham <gowtham@gowthamdev.me>",
       dependencies: ["motion"],
       registryDependencies: ["<registryBaseUrl>/utils.json"],
       files: [
@@ -84,7 +84,7 @@ const coreRegistry: Registry = {
           type: "registry:component",
         },
       ],
-      docs: "https://gowthamdev.com/components/writing-effect-inspired-by-apple",
+      docs: "https://gowthamdev.me/components/writing-effect-inspired-by-apple",
     },
     {
       name: "wheel-picker",
@@ -92,7 +92,7 @@ const coreRegistry: Registry = {
       description:
         "iOS-like wheel picker for React with smooth inertia scrolling and infinite loop support.",
       title: "Wheel Picker",
-      author: "gowtham <gowtham@gowthamdev.com>",
+      author: "gowtham <gowtham@gowthamdev.me>",
       dependencies: ["@ncdai/react-wheel-picker"],
       registryDependencies: ["<registryBaseUrl>/utils.json"],
       files: [
@@ -101,7 +101,7 @@ const coreRegistry: Registry = {
           type: "registry:component",
         },
       ],
-      docs: "https://gowthamdev.com/components/react-wheel-picker",
+      docs: "https://gowthamdev.me/components/react-wheel-picker",
     },
     {
       name: "work-experience",
@@ -109,7 +109,7 @@ const coreRegistry: Registry = {
       description:
         "Displays a list of work experiences with role details and durations.",
       title: "Work Experience",
-      author: "gowtham <gowtham@gowthamdev.com>",
+      author: "gowtham <gowtham@gowthamdev.me>",
       dependencies: ["react-markdown", "lucide-react"],
       devDependencies: ["@tailwindcss/typography"],
       registryDependencies: [
@@ -123,7 +123,7 @@ const coreRegistry: Registry = {
           type: "registry:component",
         },
       ],
-      docs: "https://gowthamdev.com/components/work-experience-component",
+      docs: "https://gowthamdev.me/components/work-experience-component",
     },
     {
       name: "apple-hello-effect-vi-demo",
@@ -245,7 +245,7 @@ export const Index: Record<string, any> = {`;
     {
       $schema: "https://ui.shadcn.com/schema/registry.json",
       name: "gowtham",
-      homepage: "https://gowthamdev.com",
+      homepage: "https://gowthamdev.me",
       items: registry.items
         .filter((item) => item.type !== "registry:example")
         .map((item) => {
@@ -269,7 +269,7 @@ export const Index: Record<string, any> = {`;
     2
   );
 
-  const registryBaseUrl = "https://gowthamdev.com/r";
+  const registryBaseUrl = "https://gowthamdev.me/r";
   const registryBaseUrlRegex = /<registryBaseUrl>/g;
   registryJSON = registryJSON.replace(registryBaseUrlRegex, registryBaseUrl);
 

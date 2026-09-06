@@ -28,7 +28,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
           delay={9999}
           options={{ showSpinner: false }}
         >
-          <LazyMotion features={loadFeatures} strict>
+          <LazyMotion features={loadFeatures}>
             {children}
           </LazyMotion>
         </AppProgressProvider>

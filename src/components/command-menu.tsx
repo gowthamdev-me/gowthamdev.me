@@ -6,15 +6,12 @@ import {
   BriefcaseBusinessIcon,
   CircleUserIcon,
   CornerDownLeftIcon,
-  DownloadIcon,
   HomeIcon,
   LetterTextIcon,
   MoonStarIcon,
   RssIcon,
   SunIcon,
   TextIcon,
-  TriangleDashedIcon,
-  TypeIcon,
 } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -36,10 +33,9 @@ import { cn } from "@/lib/utils";
 import type { Post } from "@/types/blog";
 import { copyText } from "@/utils/copy";
 
-import { getMarkSVG } from "./gowtham-mark";
-import { GowthamMark } from "./gowtham-mark";
-import { getWordmarkSVG } from "./gowtham-wordmark";
+import { SearchIcon } from "@/components/ui/search";
 import { Icons } from "./icons";
+import { SocialIcon } from "./social-icon";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 
@@ -49,6 +45,7 @@ type CommandLinkItem = {
 
   icon?: React.ComponentType<LucideProps>;
   iconImage?: string;
+  isSocial?: boolean;
   keywords?: string[];
   openInNewTab?: boolean;
 };
@@ -82,17 +79,13 @@ const PORTFOLIO_LINKS: CommandLinkItem[] = [
     href: "/#projects",
     icon: Icons.project,
   },
-  {
-    title: "Download vCard",
-    href: "/vcard",
-    icon: CircleUserIcon,
-  },
 ];
 
 const SOCIAL_LINK_ITEMS: CommandLinkItem[] = SOCIAL_LINKS.map((item) => ({
   title: item.title,
   href: item.href,
   iconImage: item.icon,
+  isSocial: true,
   openInNewTab: true,
 }));
 
@@ -102,6 +95,35 @@ export function CommandMenu({ posts }: { posts: Post[] }) {
   const { setTheme, resolvedTheme } = useTheme();
 
   const [open, setOpen] = useState(false);
+  const [socialItems, setSocialItems] = useState<CommandLinkItem[]>(SOCIAL_LINK_ITEMS);
+
+  useEffect(() => {
+    async function fetchSocialLinks() {
+      try {
+        // Use the public /api/content endpoint — no auth required
+        const res = await fetch("/api/content");
+        if (res.ok) {
+          const data = await res.json();
+          const links = data?.socialLinks;
+          if (Array.isArray(links) && links.length > 0) {
+            const formatted = links
+              .filter((link: any) => link.showInPortfolio !== false)
+              .map((link: any) => ({
+                title: link.title || link.platform || "",
+                href: link.href || link.url || "",
+                iconImage: link.icon || "",
+                isSocial: true,
+                openInNewTab: true,
+              }));
+            if (formatted.length > 0) {
+              setSocialItems(formatted);
+            }
+          }
+        }
+      } catch {}
+    }
+    fetchSocialLinks();
+  }, []);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -128,6 +150,12 @@ export function CommandMenu({ posts }: { posts: Post[] }) {
     );
 
     return () => abortController.abort();
+  }, []);
+
+  useEffect(() => {
+    const handleCustomOpen = () => setOpen(true);
+    window.addEventListener("open-command-menu", handleCustomOpen);
+    return () => window.removeEventListener("open-command-menu", handleCustomOpen);
   }, []);
 
   const handleOpenLink = useCallback(
@@ -170,28 +198,20 @@ export function CommandMenu({ posts }: { posts: Post[] }) {
     <>
       <Button
         variant="secondary"
+        aria-label="Search site"
         className={cn(
-          "h-8 sm:h-9 gap-1 sm:gap-1.5 rounded-lg sm:rounded-full bg-zinc-50 px-2 sm:px-2.5 text-muted-foreground select-none hover:bg-zinc-50 dark:bg-zinc-900 dark:hover:bg-zinc-900",
-          "not-dark:border dark:inset-shadow-[1px_1px_1px,0px_0px_2px] dark:inset-shadow-white/15"
+          /* Hidden on mobile, visible on sm+ */
+          "hidden sm:inline-flex items-center justify-center h-9 w-9 sm:h-9 sm:w-auto sm:gap-1.5 sm:rounded-full sm:px-2.5",
+          "rounded-xl bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900",
+          "text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-50",
+          "border border-zinc-200/50 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-200",
+          "select-none"
         )}
         onClick={() => setOpen(true)}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 16 16"
-          aria-hidden
-          className="w-4 h-4 sm:w-5 sm:h-5"
-        >
-          <path
-            d="M10.278 11.514a5.824 5.824 0 1 1 1.235-1.235l3.209 3.208A.875.875 0 0 1 14.111 15a.875.875 0 0 1-.624-.278l-3.209-3.208Zm.623-4.69a4.077 4.077 0 1 1-8.154 0 4.077 4.077 0 0 1 8.154 0Z"
-            fill="currentColor"
-            fillRule="evenodd"
-            clipRule="evenodd"
-          />
-        </svg>
+        <SearchIcon size={16} />
 
-        <span className="font-sans text-xs sm:text-sm/4 font-medium hidden sm:inline">
+        <span className="font-sans text-sm/4 font-medium hidden sm:inline text-muted-foreground">
           Search
         </span>
 
@@ -206,86 +226,10 @@ export function CommandMenu({ posts }: { posts: Post[] }) {
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput placeholder="Type a command or search..." />
 
-        <CommandList className="min-h-80">
+        <CommandList className="sm:min-h-80">
           <CommandEmpty>No results found.</CommandEmpty>
 
-          <CommandLinkGroup
-            heading="Menu"
-            links={MENU_LINKS}
-            onLinkSelect={handleOpenLink}
-          />
-
-          <CommandSeparator />
-
-          <CommandLinkGroup
-            heading="Portfolio"
-            links={PORTFOLIO_LINKS}
-            onLinkSelect={handleOpenLink}
-          />
-
-          <CommandSeparator />
-
-          <CommandLinkGroup
-            heading="Blog"
-            links={blogLinks}
-            fallbackIcon={TextIcon}
-            onLinkSelect={handleOpenLink}
-          />
-
-          <CommandSeparator />
-
-
-
-          <CommandLinkGroup
-            heading="Social Links"
-            links={SOCIAL_LINK_ITEMS}
-            onLinkSelect={handleOpenLink}
-          />
-
-          <CommandSeparator />
-
-          <CommandGroup heading="Brand Assets">
-            <CommandItem
-              onSelect={() => {
-                handleCopyText(
-                  getMarkSVG(resolvedTheme === "light" ? "#000" : "#fff"),
-                  "Copied Mark as SVG"
-                );
-              }}
-            >
-              <svg className="size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden><text x="50%" y="70%" textAnchor="middle" fontSize="18" fontWeight="700">G</text></svg>
-              Copy Mark as SVG
-            </CommandItem>
-
-            <CommandItem
-              onSelect={() => {
-                handleCopyText(
-                  getWordmarkSVG(resolvedTheme === "light" ? "#000" : "#fff"),
-                  "Copied Logotype as SVG"
-                );
-              }}
-            >
-              <TypeIcon />
-              Copy Logotype as SVG
-            </CommandItem>
-
-            <CommandItem
-              onSelect={() => handleOpenLink("/blog/gowtham-brand")}
-            >
-              <TriangleDashedIcon />
-              Brand Guidelines
-            </CommandItem>
-
-            <CommandItem asChild>
-              <a href="https://assets.chanhdai.com/gowtham-brand.zip" download>
-                <DownloadIcon />
-                Download Brand Assets
-              </a>
-            </CommandItem>
-          </CommandGroup>
-
-          <CommandSeparator />
-
+          {/* Theme switcher — top for quick access on mobile */}
           <CommandGroup heading="Theme">
             <CommandItem
               keywords={["theme"]}
@@ -309,6 +253,31 @@ export function CommandMenu({ posts }: { posts: Post[] }) {
               Auto
             </CommandItem>
           </CommandGroup>
+
+          <CommandSeparator />
+
+          <CommandLinkGroup
+            heading="Navigate"
+            links={PORTFOLIO_LINKS}
+            onLinkSelect={handleOpenLink}
+          />
+
+          <CommandSeparator />
+
+          <CommandLinkGroup
+            heading="Social Links"
+            links={socialItems}
+            onLinkSelect={handleOpenLink}
+          />
+
+          <CommandSeparator />
+
+          <CommandLinkGroup
+            heading="Blog"
+            links={blogLinks}
+            fallbackIcon={TextIcon}
+            onLinkSelect={handleOpenLink}
+          />
         </CommandList>
 
         <CommandMenuFooter />
@@ -339,14 +308,12 @@ function CommandLinkGroup({
             keywords={link.keywords}
             onSelect={() => onLinkSelect(link.href, link.openInNewTab)}
           >
-            {link?.iconImage ? (
-              <Image
-                className="rounded-sm"
-                src={link.iconImage}
-                alt={link.title}
-                width={16}
-                height={16}
-                unoptimized
+            {link?.isSocial || link?.iconImage ? (
+              <SocialIcon
+                title={link.title}
+                iconUrl={link.iconImage}
+                size={16}
+                className="size-4 shrink-0"
               />
             ) : (
               <Icon />
@@ -371,21 +338,10 @@ type CommandMetaMap = Map<
 function buildCommandMetaMap() {
   const commandMetaMap: CommandMetaMap = new Map();
 
-  commandMetaMap.set("Download vCard", { commandKind: "command" });
 
   commandMetaMap.set("Light", { commandKind: "command" });
   commandMetaMap.set("Dark", { commandKind: "command" });
   commandMetaMap.set("Auto", { commandKind: "command" });
-
-  commandMetaMap.set("Copy Mark as SVG", {
-    commandKind: "command",
-  });
-  commandMetaMap.set("Copy Logotype as SVG", {
-    commandKind: "command",
-  });
-  commandMetaMap.set("Download Brand Assets", {
-    commandKind: "command",
-  });
 
   SOCIAL_LINK_ITEMS.forEach((item) => {
     commandMetaMap.set(item.title, {
@@ -411,10 +367,15 @@ function CommandMenuFooter() {
 
   return (
     <>
-      <div className="flex h-10" />
+      <div className="hidden sm:flex h-10" />
 
-      <div className="absolute inset-x-0 bottom-0 flex h-10 items-center justify-between gap-2 border-t bg-zinc-100/30 px-4 text-xs font-medium dark:bg-zinc-800/30">
-        <svg className="h-7 w-auto text-muted-foreground" viewBox="0 0 60 24" fill="currentColor" aria-hidden><text x="2" y="18" fontSize="18" fontWeight="700">Gowtham</text></svg>
+      <div className="hidden sm:flex absolute inset-x-0 bottom-0 h-10 items-center justify-between gap-2 border-t bg-zinc-100/30 px-4 text-xs font-medium dark:bg-zinc-800/30">
+        <span
+          className="text-muted-foreground text-lg font-bold leading-none select-none"
+          style={{ fontFamily: "'JapanDaisuki', serif", letterSpacing: "0.01em" }}
+        >
+          <span style={{ color: "#FA0143" }}>G</span>owtham
+        </span>
 
         <div className="flex shrink-0 items-center gap-2">
           <span>{ENTER_ACTION_LABELS[selectedCommandKind]}</span>
@@ -446,12 +407,10 @@ function CommandMenuKbd({ className, ...props }: React.ComponentProps<"kbd">) {
 }
 
 function postToCommandLinkItem(post: Post): CommandLinkItem {
-  const isComponent = post.metadata?.category === "components";
-
   return {
     title: post.metadata.title,
-    href: isComponent ? `/components/${post.slug}` : `/blog/${post.slug}`,
-    keywords: isComponent ? ["component"] : undefined,
+    href: `/blog/${post.slug}`,
+    keywords: post.metadata?.category === "components" ? ["component"] : undefined,
   };
 }
 

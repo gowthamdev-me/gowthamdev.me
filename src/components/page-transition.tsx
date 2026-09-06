@@ -86,7 +86,7 @@ export function PageTransition() {
         tl.to(p, {
           strokeDashoffset: -len,
           attr: { "stroke-width": 200 },
-          duration: 0.7,
+          duration: 0.35,
           ease: "power2.inOut",
           onComplete: () => gsap.set(p, { strokeDashoffset: len }),
         }, 0);
@@ -130,7 +130,7 @@ export function PageTransition() {
           tl.to(p, {
             strokeDashoffset: 0,
             attr: { "stroke-width": 700 },
-            duration: 0.7,
+            duration: 0.35,
             ease: "power2.inOut",
           }, 0);
         });

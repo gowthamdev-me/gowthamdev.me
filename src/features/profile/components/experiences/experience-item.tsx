@@ -1,4 +1,4 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import React from "react";
 
 import type { Experience } from "../../types/experiences";
@@ -25,7 +25,7 @@ export function ExperienceItem({ experience }: { experience: Experience }) {
           )}
         </div>
 
-        <h3 className="text-lg leading-snug font-medium">
+        <h3 className="text-base sm:text-lg leading-snug font-semibold text-zinc-500 dark:text-zinc-400">
           {experience.companyName}
         </h3>
 

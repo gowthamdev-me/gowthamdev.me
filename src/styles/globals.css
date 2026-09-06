@@ -109,179 +109,179 @@
 }
 
 :root {
-  /* soft gray-white - professional neutral tone */
-  --background: #f5f5f5;
+  /* MINIMAL PREMIUM - MODERN LUXURY (Light Theme) */
+  /* Silver Gray background (#EAEAEF) for distinct luxury contrast against pure white cards */
+  --background: #EAEAEF;
 
-  /* zinc-950 */
-  --foreground: oklch(0.141 0.005 285.823);
+  /* Jet Black (#0B0B0B) for crisp, high-contrast typography */
+  --foreground: #0B0B0B;
 
-  /* zinc-950 */
-  --primary: oklch(0.141 0.005 285.823);
+  /* Primary color - Jet Black */
+  --primary: #0B0B0B;
 
-  /* zinc-50 */
-  --primary-foreground: oklch(0.985 0 0);
+  /* Primary text/foreground */
+  --primary-foreground: #FFFFFF;
 
-  /* zinc-100 */
-  --secondary: oklch(0.967 0.001 286.375);
+  /* Secondary background - Soft Silver */
+  --secondary: #DCDCDE;
 
-  /* zinc-950 */
-  --secondary-foreground: oklch(0.141 0.005 285.823);
+  /* Secondary text/foreground */
+  --secondary-foreground: #0B0B0B;
 
-  /* zinc-100 */
-  --muted: oklch(0.967 0.001 286.375);
+  /* Muted backgrounds */
+  --muted: #DCDCDE;
 
-  /* zinc-500 */
-  --muted-foreground: oklch(0.552 0.016 285.938);
+  /* Muted foreground text - Neutral Gray */
+  --muted-foreground: #374151;
 
-  /* white */
-  --card: oklch(1 0 0);
+  /* Pure White cards (#FFFFFF) */
+  --card: #FFFFFF;
 
-  /* zinc-950 */
-  --card-foreground: oklch(0.141 0.005 285.823);
+  /* Card foreground text */
+  --card-foreground: #0B0B0B;
 
-  /* white */
-  --popover: oklch(1 0 0);
+  /* Popover background */
+  --popover: #FFFFFF;
 
-  /* zinc-950 */
-  --popover-foreground: oklch(0.141 0.005 285.823);
+  /* Popover foreground text */
+  --popover-foreground: #0B0B0B;
 
-  --popover-border: color-mix(in oklab, var(--color-black) 15%, transparent);
+  --popover-border: rgba(11, 11, 11, 0.15);
 
-  /* zinc-100 */
-  --accent: oklch(0.967 0.001 286.375);
+  /* Accent background */
+  --accent: #EAEAEF;
 
-  /* zinc-900 */
-  --accent-foreground: oklch(0.21 0.006 285.885);
+  /* Accent foreground text */
+  --accent-foreground: #0B0B0B;
 
-  /* zinc-200 */
-  --border: oklch(0.92 0.004 286.32);
+  /* Neutral Gray borders (#D1D5DB) for crisp card definition */
+  --border: #D1D5DB;
 
-  /* color-mix */
+  /* Color-mix edge */
   --edge: color-mix(in oklab, var(--border) 64%, var(--background));
 
-  /* zinc-200 */
-  --input: oklch(0.92 0.004 286.32);
+  /* Input backgrounds */
+  --input: #D1D5DB;
 
-  /* zinc-400 */
-  --ring: oklch(0.705 0.015 286.067);
+  /* Focus ring color */
+  --ring: #2C2C2C;
 
   --info: oklch(0.67 0.17 244.98);
 
-  /* green-500 */
+  /* Success green */
   --success: oklch(0.723 0.219 149.579);
 
-  /* red-600 */
+  /* Destructive red */
   --destructive: oklch(0.577 0.245 27.325);
 
-  /* blue-700 */
+  /* Hyperlink color */
   --link: oklch(0.488 0.243 264.376);
 
-  /* zinc-50 */
-  --code: oklch(0.985 0 0);
+  /* Code snippet background */
+  --code: #EAEAEF;
 
-  /* zinc-950 */
-  --code-foreground: oklch(0.141 0.005 285.823);
+  /* Code text color */
+  --code-foreground: #0B0B0B;
 
-  /* zinc-400 */
-  --code-number: oklch(0.705 0.015 286.067);
+  /* Code line numbers */
+  --code-number: #71717A;
 
-  /* zinc-100 */
-  --code-highlight: oklch(0.967 0.001 286.375);
+  /* Code highlight background */
+  --code-highlight: #DCDCDE;
 
-  /* zinc-950 */
-  --selection: oklch(0.141 0.005 285.823);
+  /* Text selection bg */
+  --selection: #0B0B0B;
 
-  /* zinc-50 */
-  --selection-foreground: oklch(0.985 0 0);
+  /* Text selection fg */
+  --selection-foreground: #FFFFFF;
 
-  --shadow-popover: 0 6px 24px rgba(0, 0, 0, 0.25);
+  --shadow-popover: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 .dark {
-  /* dark neutral #161616 */
-  --background: rgb(22, 22, 22);
+  /* MINIMAL PREMIUM - MODERN LUXURY (Dark Theme) */
+  /* Jet Black background (#0B0B0B) for ultimate depth */
+  --background: #0B0B0B;
 
-  /* zinc-50 */
-  --foreground: oklch(0.985 0 0);
+  /* Pure White text (#F4F4F6) */
+  --foreground: #F4F4F6;
 
-  /* zinc-700 */
-  --primary: oklch(0.37 0.013 285.805);
+  /* Primary color */
+  --primary: #F4F4F6;
 
-  /* zinc-50 */
-  --primary-foreground: oklch(0.985 0 0);
+  /* Primary text/foreground */
+  --primary-foreground: #0B0B0B;
 
-  /* zinc-800 */
-  --secondary: oklch(0.274 0.006 286.033);
+  /* Secondary background using Neutral Gray */
+  --secondary: #1C1C1E;
 
-  /* zinc-50 */
-  --secondary-foreground: oklch(0.985 0 0);
+  /* Secondary text/foreground */
+  --secondary-foreground: #F4F4F6;
 
-  /* zinc-800 */
-  --muted: oklch(0.274 0.006 286.033);
+  /* Muted backgrounds */
+  --muted: #1C1C1E;
 
-  /* zinc-400 */
-  --muted-foreground: oklch(0.705 0.015 286.067);
+  /* Muted foreground text */
+  --muted-foreground: #A1A1AA;
 
-  /* custom dark surface rgb(35, 35, 35) */
-  --card: rgb(35, 35, 35);
+  /* Card backgrounds using Deep Luxury Charcoal */
+  --card: #141416;
 
-  /* zinc-50 */
-  --card-foreground: oklch(0.985 0 0);
+  /* Card foreground text */
+  --card-foreground: #F4F4F6;
 
-  /* custom dark surface rgb(35, 35, 35) */
-  --popover: rgb(35, 35, 35);
+  /* Popover background */
+  --popover: #141416;
 
-  /* zinc-50 */
-  --popover-foreground: oklch(0.985 0 0);
+  /* Popover foreground text */
+  --popover-foreground: #F4F4F6;
 
-  /* zinc-700 */
-  --popover-border: oklch(0.37 0.013 285.805);
+  /* Popover border using Neutral Gray */
+  --popover-border: #2C2C2C;
 
-  /* zinc-800 */
-  --accent: oklch(0.274 0.006 286.033);
+  /* Accent background */
+  --accent: #1C1C1E;
 
-  /* zinc-50 */
-  --accent-foreground: oklch(0.985 0 0);
+  /* Accent foreground text */
+  --accent-foreground: #F4F4F6;
 
-  /* zinc-800 */
-  --border: oklch(0.274 0.006 286.033);
+  /* Border colors using Neutral Gray */
+  --border: #2C2C2C;
 
-  /* --edge: color-mix(in oklab, var(--border) 64%, var(--background)); */
+  /* Input backgrounds */
+  --input: #2C2C2C;
 
-  /* zinc-800 */
-  --input: oklch(0.274 0.006 286.033);
+  /* Focus ring color */
+  --ring: #71717A;
 
-  /* zinc-500 */
-  --ring: oklch(0.552 0.016 285.938);
-
-  /* green-500 */
+  /* Success green */
   --success: oklch(0.723 0.219 149.579);
 
-  /* red-700 */
+  /* Destructive red */
   --destructive: oklch(0.505 0.213 27.518);
 
-  /* blue-500 */
+  /* Hyperlink color */
   --link: oklch(0.623 0.214 259.815);
 
-  /* custom dark surface rgb(35, 35, 35) */
-  --code: rgb(35, 35, 35);
+  /* Code snippet background */
+  --code: #141416;
 
-  /* zinc-50 */
-  --code-foreground: oklch(0.985 0 0);
+  /* Code text color */
+  --code-foreground: #F4F4F6;
 
-  /* zinc-500 */
-  --code-number: oklch(0.552 0.016 285.938);
+  /* Code line numbers */
+  --code-number: #71717A;
 
-  /* zinc-800 */
-  --code-highlight: oklch(0.274 0.006 286.033);
+  /* Code highlight background */
+  --code-highlight: #1C1C1E;
 
-  /* zinc-50 */
-  --selection: oklch(0.985 0 0);
+  /* Text selection bg */
+  --selection: #F4F4F6;
 
-  /* zinc-950 */
-  --selection-foreground: oklch(0.141 0.005 285.823);
+  /* Text selection fg */
+  --selection-foreground: #0B0B0B;
 
-  --shadow-popover: 0 0 24px rgba(0, 0, 0, 0.5);
+  --shadow-popover: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 @layer base {
@@ -340,14 +340,17 @@
   }
 
   html {
-    /* @apply motion-safe:scroll-smooth; */
+    font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     height: auto;
     overflow-y: initial;
     overflow-x: clip;
+    scrollbar-gutter: stable;
   }
 
   body {
-    @apply bg-background font-sans text-foreground antialiased;
+    font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    background-color: var(--background) !important;
+    color: var(--foreground) !important;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
     height: auto;
@@ -355,23 +358,41 @@
     overflow-x: clip;
   }
 
-  /* Custom scrollbar styling. Thanks @shadcn-ui */
-  ::-webkit-scrollbar {
-    width: 6px;
+  /* Custom scrollbar styling for Desktop */
+  @media (min-width: 1025px) and (pointer: fine) {
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: oklch(0.705 0.015 286.067);
+      border-radius: 3px;
+    }
+
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: oklch(0.705 0.015 286.067) transparent;
+    }
   }
 
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
+  /* Hide scrollbars in mobile view & touch devices */
+  @media (max-width: 1024px), (pointer: coarse) {
+    html,
+    body,
+    * {
+      -ms-overflow-style: none !important;
+      scrollbar-width: none !important;
+    }
 
-  ::-webkit-scrollbar-thumb {
-    background: oklch(0.705 0.015 286.067);
-    border-radius: 3px;
-  }
-
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: oklch(0.705 0.015 286.067) transparent;
+    ::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
   }
 
   [id] {
@@ -455,4 +476,17 @@
   .blog-marquee-zone:hover .blog-marquee-track {
     animation-play-state: paused;
   }
+}
+
+@keyframes profile-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
 }

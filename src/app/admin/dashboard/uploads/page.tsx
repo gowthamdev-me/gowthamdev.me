@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 
@@ -62,9 +62,13 @@ export default function AdminUploadsPage() {
   };
 
   const copyUrl = (url: string) => {
-    navigator.clipboard.writeText(url);
-    setMessage("URL copied to clipboard!");
-    setTimeout(() => setMessage(""), 2000);
+    if (typeof navigator !== "undefined" && navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url);
+      setMessage("URL copied to clipboard!");
+    } else {
+      setMessage("Please copy: " + url);
+    }
+    setTimeout(() => setMessage(""), 3000);
   };
 
   const isImage = (filename: string) => /\.(jpg|jpeg|png|gif|webp|svg|ico)$/i.test(filename);

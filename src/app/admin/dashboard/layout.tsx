@@ -1,17 +1,22 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
+import LogoImg from "@/Logo.png";
 
 const NAV_ITEMS = [
   { label: "Dashboard", href: "/admin/dashboard", icon: "home" },
+  { label: "Cover Background", href: "/admin/dashboard/cover", icon: "cover" },
   { label: "Profile", href: "/admin/dashboard/profile", icon: "user" },
   { label: "Projects", href: "/admin/dashboard/projects", icon: "folder" },
   { label: "Tech Stack", href: "/admin/dashboard/tech-stack", icon: "stack" },
   { label: "Experience", href: "/admin/dashboard/experiences", icon: "briefcase" },
   { label: "Blog Posts", href: "/admin/dashboard/blog", icon: "edit" },
   { label: "Social Links", href: "/admin/dashboard/social-links", icon: "link" },
+  { label: "Honors & Awards", href: "/admin/dashboard/awards", icon: "trophy" },
+  { label: "Certifications", href: "/admin/dashboard/certifications", icon: "certificate" },
   { label: "Uploads", href: "/admin/dashboard/uploads", icon: "upload" },
 ];
 
@@ -19,6 +24,11 @@ const ICONS: Record<string, React.ReactNode> = {
   home: (
     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+    </svg>
+  ),
+  cover: (
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
     </svg>
   ),
   user: (
@@ -56,6 +66,16 @@ const ICONS: Record<string, React.ReactNode> = {
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
     </svg>
   ),
+  trophy: (
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+    </svg>
+  ),
+  certificate: (
+    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+    </svg>
+  ),
 };
 
 export default function AdminDashboardLayout({
@@ -66,6 +86,7 @@ export default function AdminDashboardLayout({
   const [authenticated, setAuthenticated] = useState(false);
   const [checking, setChecking] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [profile, setProfile] = useState<{ displayName?: string; avatar?: string } | null>(null);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -74,6 +95,15 @@ export default function AdminDashboardLayout({
       .then((res) => {
         if (res.ok) {
           setAuthenticated(true);
+          // Fetch profile details for avatar & display name
+          fetch("/api/admin/content/profile")
+            .then((r) => r.json())
+            .then((data) => {
+              if (data && !data.error) {
+                setProfile(data);
+              }
+            })
+            .catch(() => {});
         } else {
           router.push("/admin/login");
         }
@@ -115,25 +145,19 @@ export default function AdminDashboardLayout({
       >
         <div className="flex flex-col h-full">
           {/* Sidebar Header */}
-          <div className="p-6 border-b border-zinc-700/50">
+          <div className="h-16 flex items-center px-6 border-b border-zinc-700/50 shrink-0">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center">
-                <svg
-                  className="w-5 h-5 text-blue-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  />
-                </svg>
+              <div className="w-10 h-10 rounded-xl overflow-hidden bg-black border border-zinc-700/50 flex items-center justify-center shrink-0">
+                <Image
+                  src={LogoImg}
+                  alt="Logo"
+                  width={36}
+                  height={36}
+                  className="object-contain"
+                />
               </div>
               <div>
-                <h2 className="font-bold text-white">Admin Panel</h2>
+                <h2 className="font-bold text-white leading-tight">Admin Panel</h2>
                 <p className="text-xs text-zinc-400">Content Manager</p>
               </div>
             </div>
@@ -188,8 +212,8 @@ export default function AdminDashboardLayout({
       {/* Main Content */}
       <div className="lg:pl-64">
         {/* Top Bar */}
-        <header className="sticky top-0 z-30 bg-zinc-900/80 backdrop-blur-xl border-b border-zinc-700/50 px-4 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
+        <header className="sticky top-0 z-30 h-16 bg-zinc-900/80 backdrop-blur-xl border-b border-zinc-700/50 px-4 lg:px-8">
+          <div className="flex items-center justify-between h-full w-full">
             <button
               onClick={() => setSidebarOpen(true)}
               className="lg:hidden p-2 rounded-lg hover:bg-zinc-700/50 transition-colors"
@@ -198,11 +222,25 @@ export default function AdminDashboardLayout({
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center">
-                <span className="text-sm font-bold text-blue-400">A</span>
-              </div>
-              <span className="text-sm text-zinc-400">Admin</span>
+            <div className="flex items-center gap-3 ml-auto">
+              {profile?.avatar ? (
+                <div className="w-8 h-8 rounded-full overflow-hidden border border-zinc-700/50 flex items-center justify-center shrink-0">
+                  <img
+                    src={profile.avatar}
+                    alt={profile.displayName || "Admin"}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ) : (
+                <div className="w-8 h-8 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center shrink-0">
+                  <span className="text-sm font-bold text-blue-400">
+                    {(profile?.displayName || "Admin").charAt(0).toUpperCase()}
+                  </span>
+                </div>
+              )}
+              <span className="text-sm text-zinc-300 font-medium">
+                {profile?.displayName || "Admin"}
+              </span>
             </div>
           </div>
         </header>

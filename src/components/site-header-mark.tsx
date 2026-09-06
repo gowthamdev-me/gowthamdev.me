@@ -14,17 +14,16 @@ export function SiteHeaderMark() {
 function HeaderGowthamMark() {
   return (
     <div
-      className="flex items-center justify-center"
-      style={{ width: 44, height: 44 }}
+      className="flex items-center justify-center w-full h-full p-0.5"
     >
       <Image
         src={LogoImg}
         alt="Gowtham Logo"
-        width={44}
-        height={44}
-        className="object-contain"
+        width={48}
+        height={48}
+        className="w-full h-full object-contain scale-110"
         style={{
-          borderRadius: 8,
+          borderRadius: 6,
           background: "transparent",
         }}
         priority
@@ -60,8 +59,7 @@ function GowthamMarkMotion() {
 
   return (
     <motion.div
-      className="flex items-center justify-center"
-      style={{ width: 44, height: 44 }}
+      className="flex items-center justify-center w-full h-full p-0.5"
       initial={{ opacity: 0, transform: "translateY(8px)" }}
       animate={{
         opacity: visible ? 1 : 0,
@@ -72,10 +70,10 @@ function GowthamMarkMotion() {
       <Image
         src={LogoImg}
         alt="Gowtham Logo"
-        width={44}
-        height={44}
-        className="object-contain"
-        style={{ borderRadius: 8, background: "transparent" }}
+        width={48}
+        height={48}
+        className="w-full h-full object-contain scale-110"
+        style={{ borderRadius: 6, background: "transparent" }}
       />
     </motion.div>
   );

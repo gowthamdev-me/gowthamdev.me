@@ -37,6 +37,7 @@
   ],
   "exclude": [
     "node_modules",
+    "text-animation",
     "./src/__registry__"
   ]
 }

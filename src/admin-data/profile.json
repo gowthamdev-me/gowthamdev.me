@@ -1,24 +1,30 @@
 {
-  "firstName": "Gowtham",
-  "lastName": "",
   "displayName": "Gowtham",
+  "jobTitle": "Web Developer & Vibe Coder",
   "bio": "Creating with code. Small details matter.",
-  "about": "\nHello, World! I am Gowtham — a Design Engineer passionate about creating high-performance, user-centric software solutions with intuitive and engaging designs.\n\nWith experience in building high-quality web and mobile applications using Next.js, React, TypeScript, and modern front-end technologies. I love exploring new technologies and turning ideas into reality through personal projects.\n\nI'm passionate about creating user-centric software solutions with intuitive and engaging designs. Always eager to learn new technologies and collaborate on exciting projects.\n\nLet's connect and collaborate!\n  ",
-  "jobTitle": "Design Engineer",
+  "about": "\nHello, World! I am Gowtham — a Web Developer passionate about creating high-performance, user-centric software solutions with intuitive and engaging designs.\n\nWith experience in building high-quality web and mobile applications using Next.js, React, TypeScript, and modern front-end technologies. I love exploring new technologies and turning ideas into reality through personal projects.\n\nI'm passionate about creating user-centric software solutions with intuitive and engaging designs. Always eager to learn new technologies and collaborate on exciting projects.\n\nLet's connect and collaborate!\n  ",
   "email": "ggowtham92089@gmail.com",
-  "address": "Tamil Nadu, India",
-  "website": "https://gowtham.com",
-  "avatar": "/gowtham.jpg",
-  "cvUrl": "/uploads/1775220568848-Gowtham_CV.pdf",
-  "phoneNumber": "",
+  "avatar": "/uploads/1779344010991-photo_2026-05-21_11-41-58.jpg",
+  "cvUrl": "",
+  "typingWords": [
+    "Web Developer",
+    "Vibe Coder"
+  ],
   "sectionVisibility": {
     "aboutMe": true,
     "socialLinks": true,
     "techStack": true,
     "experiences": false,
     "blog": true,
-    "projects": true
+    "projects": true,
+    "awards": false,
+    "certifications": false
   },
+  "firstName": "Gowtham",
+  "lastName": "",
+  "address": "Web Developer & Vibe Coder",
+  "website": "https://gowthamdev.me",
+  "phoneNumber": "",
   "pronouns": "he/him",
   "gender": "male",
   "keywords": "gowtham, developer, design engineer, frontend developer, react developer, typescript"

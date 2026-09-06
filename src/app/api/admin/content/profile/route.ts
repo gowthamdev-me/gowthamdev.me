@@ -12,18 +12,14 @@ async function isAuthenticated() {
 
 // Default profile data
 const defaultProfile = {
-  firstName: "",
-  lastName: "",
   displayName: "",
   bio: "",
   about: "",
   jobTitle: "",
   email: "",
-  address: "",
-  website: "",
   avatar: "",
   cvUrl: "",
-  phoneNumber: "",
+  typingWords: ["Web Developer", "Vibe Coder"],
   sectionVisibility: {
     aboutMe: true,
     socialLinks: true,
@@ -31,8 +27,11 @@ const defaultProfile = {
     experiences: true,
     blog: true,
     projects: true,
+    awards: true,
+    certifications: true,
   },
 };
+
 
 export async function GET() {
   if (!(await isAuthenticated())) {
