@@ -1,9 +1,9 @@
-﻿import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
-// Admin credentials - in production use environment variables
-const ADMIN_USERNAME = "admin";
-const ADMIN_PASSWORD = "admin123";
+// Admin credentials - can be overridden with environment variables
+const ADMIN_USERNAME = process.env.ADMIN_USERNAME || "gowtham@2906";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "gowtham@2006";
 const SESSION_TOKEN = "admin_session_token_2024";
 
 export async function POST(request: NextRequest) {

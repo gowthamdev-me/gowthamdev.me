@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -133,14 +133,6 @@ export default function AdminLoginPage() {
               )}
             </button>
           </form>
-
-          {/* Info */}
-          <div className="mt-6 pt-6 border-t border-zinc-700/50">
-            <p className="text-xs text-zinc-500 text-center">
-              Default credentials: <span className="text-zinc-400">admin</span> /{" "}
-              <span className="text-zinc-400">admin123</span>
-            </p>
-          </div>
         </div>
       </div>
     </div>
