@@ -7,18 +7,18 @@
   "author": {
     "name": "Gowtham",
     "email": "ggowtham92089@gmail.com",
-    "url": "https://github.com/gowtham"
+    "url": "https://github.com/ggowt"
   },
   "contributors": [
     {
       "name": "Gowtham",
       "email": "ggowtham92089@gmail.com",
-      "url": "https://github.com/gowtham"
+      "url": "https://github.com/ggowt"
     }
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ggowt/gowthamdev.me.git"
+    "url": "git+https://github.com/gowthamdev-me/gowthamdev.me.git"
   },
   "scripts": {
     "dev": "next dev -p 1408 --turbopack",

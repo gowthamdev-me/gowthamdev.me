@@ -1,89 +1,100 @@
-# [chanhdai.com](https://chanhdai.com)
+# [gowthamdev.me](https://gowthamdev.me)
 
-A minimal portfolio, component registry, and blog to showcase my work as a Design Engineer.
+A modern, high-performance portfolio, blog, and admin dashboard built with **Next.js 15**, **React 19**, **Tailwind CSS v4**, and **Motion**.
 
-Check out the live site: [chanhdai.com](https://chanhdai.com)
+Check out the live site: [gowthamdev.me](https://gowthamdev.me)
 
-<a href="https://frogdr.com/chanhdai.com?via=ncdai&utm_source=chanhdai.com">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://frogdr.com/chanhdai.com/badge-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://frogdr.com/chanhdai.com/badge-white.svg">
-    <img src="https://frogdr.com/chanhdai.com/badge-white.svg" alt="Monitor your Domain Rating" style="width: auto; height: 40px">
-  </picture>
-</a>
+---
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://assets.chanhdai.com/images/screenshot-desktop-dark.webp">
-  <source media="(prefers-color-scheme: light)" srcset="https://assets.chanhdai.com/images/screenshot-desktop-light.webp">
-  <img src="https://assets.chanhdai.com/images/screenshot-desktop-light.webp" alt="Screenshot">
-</picture>
+## 🚀 Overview
 
-## Overview
+Personal portfolio and developer platform created by **Gowtham** — Web Developer & Vibe Coder. Features dynamic content management via an integrated admin dashboard, interactive covers, responsive design, dark/light modes, and modern animations.
 
-### Tech Stack
+### 🛠️ Tech Stack
 
-- Next.js 15
-- Tailwind CSS v4
-- shadcn/ui
+- **Framework**: [Next.js 15](https://nextjs.org) (App Router, Turbopack)
+- **Library**: [React 19](https://react.dev)
+- **Language**: [TypeScript](https://www.typescriptlang.org)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com) & [shadcn/ui](https://ui.shadcn.com)
+- **Animations**: [Motion](https://motion.dev)
+- **Icons**: [Lucide React](https://lucide.dev) & Custom SVG Icons
+- **Content**: MDX, [Fumadocs](https://fumadocs.dev), JSON-backed admin content
 
-### Featured
+---
 
-- Clean & modern design
-- Light & Dark theme support
-- vCard integration
-- SEO optimization: [JSON-LD schema](https://json-ld.org), sitemap, robots
-- AI-friendly [/llms.txt](https://llmstxt.org)
-- Spam-protected email
-- Installable PWA
+## ✨ Features
 
-### Blog
+- **⚡ Modern & Responsive UI**: Sleek dark/light theme switcher, fluid transitions, and interactive grid backgrounds.
+- **🛠️ Admin Dashboard**: Built-in visual dashboard (`/admin/dashboard`) to manage profile details, cover styles, projects, experiences, blog posts, tech stack, and social links in real time.
+- **🎨 Dynamic Cover Customizer**: Real-time customizable profile cover animations and style toggles.
+- **📝 MDX Blog & Technical Notes**: Fast MDX rendering with code syntax highlighting, RSS feeds, and dynamic OG preview images.
+- **💼 Project Showcase**: Bento-grid style project gallery with live previews, tags, and GitHub repositories.
+- **📱 Mobile Optimized**: Smooth mobile navigation, collapsible drawer menus, and touch interactions.
+- **🔍 SEO & Social Ready**: Full metadata configuration, OpenGraph cards, JSON-LD structured data, sitemap, and robots.txt.
+- **🤖 AI-Friendly**: Structured `/llms.txt` and LLM endpoints for AI discovery.
 
-- MDX & Markdown support
-- Access markdown by adding `.mdx` to URLs, e.g. `/blog/welcome.mdx`
-- Syntax Highlighting for better readability
-- RSS Feed for easy content distribution
-- Dynamic OG Images for rich previews
+---
 
-### Component Registry
+## 📦 Getting Started
 
-Easily build and distribute your own components, hooks, and pages using a custom registry powered by the [shadcn CLI](https://ui.shadcn.com/docs/cli).
+### Prerequisites
 
-Each component is well-documented through the Blog, featuring:
+- **Node.js**: `20.x` or `>=22.x`
+- **Package Manager**: `pnpm` (recommended), `npm`, or `bun`
 
-- **Live Preview**: Interactive component demos
-- **Code Snippets**: Readable and copyable examples
-- **Beautiful Code Blocks**: Styled for clarity and dark mode
-- **Command Blocks**: One-click copy for quick install commands (`pnpm`, `npm`, `yarn`, `bun`)
+### Installation
 
-## Development
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/gowthamdev-me/gowthamdev.me.git
+   cd gowthamdev.me
+   ```
 
-Please refer to the [Development Guide](./DEVELOPMENT.md) for more details.
+2. **Install dependencies:**
+   ```bash
+   pnpm install
+   # or
+   npm install
+   ```
 
-## License
+3. **Start the local development server:**
+   ```bash
+   pnpm dev
+   # or
+   npm run dev
+   ```
 
-Licensed under the [MIT license](./LICENSE).
+4. Open [http://localhost:1408](http://localhost:1408) (or [http://localhost:3000](http://localhost:3000)) in your browser to see the live site.
 
-You're free to use my code! Just make sure to <ins>remove all my personal information</ins> before publishing your website. It's awesome to see my code being useful to someone!
+---
 
-## Star History
+## 📜 Available Scripts
 
-[![Star History](https://starchart.cc/ncdai/chanhdai.com.svg?variant=adaptive)](https://starchart.cc/ncdai/chanhdai.com)
+| Command | Description |
+| :--- | :--- |
+| `pnpm dev` | Starts the Next.js development server with Turbopack |
+| `pnpm build` | Builds the production bundle |
+| `pnpm start` | Runs the production build locally |
+| `pnpm lint` | Checks code formatting and lints with ESLint |
+| `pnpm check-types` | Runs TypeScript compiler checks |
 
-## Acknowledgments
+---
 
-- [React](https://react.dev)
-- [Next.js](https://nextjs.org)
-- [Tailwind CSS](https://tailwindcss.com)
-- [Radix UI](https://www.radix-ui.com)
-- [Motion](https://motion.dev)
-- [shadcn/ui](https://ui.shadcn.com)
-- [Aceternity UI](https://ui.aceternity.com)
-- [Lucide](https://lucide.dev)
-- [Fumadocs](https://fumadocs.dev)
-- And many other open-source libraries used in `package.json`
+## 🌟 Star History
 
-## GitAds Sponsored
+[![Star History](https://starchart.cc/gowthamdev-me/gowthamdev.me.svg?variant=adaptive)](https://github.com/gowthamdev-me/gowthamdev.me)
 
-[![Sponsored by GitAds](https://gitads.dev/v1/ad-serve?source=ncdai/chanhdai.com@github)](https://gitads.dev/v1/ad-track?source=ncdai/chanhdai.com@github)
+---
 
-<!-- GitAds-Verify: QICCAB4PFWV9MHUGPGPN5B2I8SAXLAOK -->
+## 📄 License
+
+Licensed under the [MIT License](./LICENSE).
+
+---
+
+## 🤝 Connect & Socials
+
+- **Website**: [gowthamdev.me](https://gowthamdev.me)
+- **GitHub**: [@ggowt](https://github.com/ggowt) / [@gowthamdev-me](https://github.com/gowthamdev-me)
+- **LinkedIn**: [ggowt](https://linkedin.com/in/ggowt)
+- **Email**: [ggowtham92089@gmail.com](mailto:ggowtham92089@gmail.com)
