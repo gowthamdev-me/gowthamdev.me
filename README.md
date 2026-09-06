@@ -2,7 +2,7 @@
 
 A modern, high-performance portfolio, blog, and admin dashboard built with **Next.js 15**, **React 19**, **Tailwind CSS v4**, and **Motion**.
 
-Check out the live site: [gowthamdev.me](https://gowthamdev.me)
+Check out the live site: [gowthamdev.me](http://gowthamdev.me)
 
 ---
 
@@ -94,7 +94,7 @@ Licensed under the [MIT License](./LICENSE).
 
 ## 🤝 Connect & Socials
 
-- **Website**: [gowthamdev.me](https://gowthamdev.me)
-- **GitHub**: [@ggowt](https://github.com/ggowt) / [@gowthamdev-me](https://github.com/gowthamdev-me)
+- **Website**: [gowthamdev.me](http://gowthamdev.me)
+- **GitHub**: [@gowthamdev-me](https://github.com/gowthamdev-me)
 - **LinkedIn**: [ggowt](https://linkedin.com/in/ggowt)
 - **Email**: [ggowtham92089@gmail.com](mailto:ggowtham92089@gmail.com)
