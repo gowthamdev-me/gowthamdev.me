@@ -137,6 +137,102 @@ export function SiteFooter() {
           </div>
         </div>
       </div>
+
+      {/* ── Giant Wireframe Architectural "Gowtham" Wordmark ── */}
+      <div className="relative w-full overflow-hidden select-none pointer-events-none border-t border-zinc-100 dark:border-white/5 pt-2">
+        <div className="overflow-hidden">
+          <div className="flex w-full translate-y-[37.5%] items-center justify-center">
+            <svg
+              className="w-full max-w-6xl h-auto"
+              viewBox="0 0 1410 258"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <linearGradient
+                  id="gowtham_footer_gradient"
+                  x1="705"
+                  y1="1"
+                  x2="705"
+                  y2="257"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop offset="0.5" stopColor="currentColor" stopOpacity="0" />
+                  <stop offset="1" stopColor="currentColor" stopOpacity="0.12" />
+                </linearGradient>
+              </defs>
+
+              {/* Faded linear gradient fill */}
+              <text
+                x="50%"
+                y="75%"
+                textAnchor="middle"
+                dominantBaseline="middle"
+                fill="url(#gowtham_footer_gradient)"
+                className="text-zinc-900 dark:text-white"
+                style={{
+                  fontFamily: "'JapanDaisuki', serif",
+                  fontSize: "240px",
+                  fontWeight: 900,
+                  letterSpacing: "0.06em",
+                }}
+              >
+                Gowtham
+              </text>
+
+              {/* Primary outline stroke */}
+              <text
+                x="50%"
+                y="75%"
+                textAnchor="middle"
+                dominantBaseline="middle"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                className="text-zinc-900/20 dark:text-white/20"
+                style={{
+                  fontFamily: "'JapanDaisuki', serif",
+                  fontSize: "240px",
+                  fontWeight: 900,
+                  letterSpacing: "0.06em",
+                }}
+              >
+                Gowtham
+              </text>
+
+              {/* Architectural isometric offset stroke */}
+              <text
+                x="50.3%"
+                y="76%"
+                textAnchor="middle"
+                dominantBaseline="middle"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                className="text-zinc-900/10 dark:text-white/10"
+                style={{
+                  fontFamily: "'JapanDaisuki', serif",
+                  fontSize: "240px",
+                  fontWeight: 900,
+                  letterSpacing: "0.06em",
+                }}
+              >
+                Gowtham
+              </text>
+            </svg>
+          </div>
+        </div>
+
+        {/* Ambient glow line at the bottom center */}
+        <div
+          className="pointer-events-none absolute bottom-0 left-1/2 hidden h-px w-[50%] max-w-full -translate-x-1/2 dark:block"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0) 0%, rgba(228, 228, 231, 0.3) 50%, rgba(0, 0, 0, 0) 100%)",
+          }}
+          aria-hidden="true"
+        />
+      </div>
     </footer>
   );
 }

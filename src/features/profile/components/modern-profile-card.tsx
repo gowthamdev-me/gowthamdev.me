@@ -327,9 +327,16 @@ export function ProfileBio() {
                                 e.preventDefault();
                                 const el = document.getElementById("projects");
                                 if (el) {
-                                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                                    const headerOffset = 80;
+                                    const elementPosition = el.getBoundingClientRect().top;
+                                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                                    window.scrollTo({
+                                        top: offsetPosition,
+                                        behavior: "smooth"
+                                    });
+                                    window.history.pushState(null, "", "#projects");
                                 } else {
-                                    window.location.hash = "projects";
+                                    window.location.href = "/#projects";
                                 }
                             }}
                             whileHover={{ scale: 1.04 }}

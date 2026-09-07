@@ -139,20 +139,6 @@ function ProjectItemClient({ project }: { project: Project }) {
               ))}
             </ul>
           )}
-
-          {validUrl && (
-            <div className="pt-2 flex items-center justify-start">
-              <a
-                href={addQueryParams(validUrl, UTM_PARAMS)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-white bg-[#FA0143] hover:bg-[#ff1e5c] shadow-md shadow-[#FA0143]/20 hover:shadow-[#FA0143]/40 transition-all duration-200 group/btn"
-              >
-                <span>View Project</span>
-                <ArrowUpRightIcon className="size-3.5 sm:size-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-              </a>
-            </div>
-          )}
         </div>
       )}
     </div>
