@@ -139,11 +139,11 @@ export function SiteFooter() {
       </div>
 
       {/* ── Giant Wireframe Architectural "Gowtham" Wordmark ── */}
-      <div className="relative w-full overflow-hidden select-none pointer-events-none border-t border-zinc-100 dark:border-white/5 pt-2">
+      <div className="relative w-full overflow-hidden select-none pointer-events-none -mt-4 sm:-mt-6">
         <div className="overflow-hidden">
-          <div className="flex w-full translate-y-[37.5%] items-center justify-center">
+          <div className="flex w-full translate-y-[28%] sm:translate-y-[32%] items-center justify-center">
             <svg
-              className="w-full max-w-6xl h-auto"
+              className="w-full max-w-5xl h-auto"
               viewBox="0 0 1410 258"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -157,7 +157,7 @@ export function SiteFooter() {
                   y2="257"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop offset="0.5" stopColor="currentColor" stopOpacity="0" />
+                  <stop offset="0.55" stopColor="currentColor" stopOpacity="0" />
                   <stop offset="1" stopColor="currentColor" stopOpacity="0.12" />
                 </linearGradient>
               </defs>
@@ -165,56 +165,36 @@ export function SiteFooter() {
               {/* Faded linear gradient fill */}
               <text
                 x="50%"
-                y="75%"
+                y="130"
                 textAnchor="middle"
-                dominantBaseline="middle"
+                dominantBaseline="central"
                 fill="url(#gowtham_footer_gradient)"
                 className="text-zinc-900 dark:text-white"
                 style={{
                   fontFamily: "'JapanDaisuki', serif",
-                  fontSize: "240px",
+                  fontSize: "210px",
                   fontWeight: 900,
-                  letterSpacing: "0.06em",
+                  letterSpacing: "0.04em",
                 }}
               >
                 Gowtham
               </text>
 
-              {/* Primary outline stroke */}
+              {/* Clean, sharp wireframe stroke */}
               <text
                 x="50%"
-                y="75%"
+                y="130"
                 textAnchor="middle"
-                dominantBaseline="middle"
+                dominantBaseline="central"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="2.5"
+                strokeWidth="2"
                 className="text-zinc-900/20 dark:text-white/20"
                 style={{
                   fontFamily: "'JapanDaisuki', serif",
-                  fontSize: "240px",
+                  fontSize: "210px",
                   fontWeight: 900,
-                  letterSpacing: "0.06em",
-                }}
-              >
-                Gowtham
-              </text>
-
-              {/* Architectural isometric offset stroke */}
-              <text
-                x="50.3%"
-                y="76%"
-                textAnchor="middle"
-                dominantBaseline="middle"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                className="text-zinc-900/10 dark:text-white/10"
-                style={{
-                  fontFamily: "'JapanDaisuki', serif",
-                  fontSize: "240px",
-                  fontWeight: 900,
-                  letterSpacing: "0.06em",
+                  letterSpacing: "0.04em",
                 }}
               >
                 Gowtham
