@@ -117,14 +117,14 @@ export function ProfileSidebar() {
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 z-30 p-6 lg:p-7">
                     <div className="mb-4">
-                        <h2 className="text-2xl lg:text-3xl xl:text-4xl font-black text-white leading-none tracking-tight" style={{ fontFamily: "'JapanDaisuki', serif" }}>{renderDisplayName(displayName)}</h2>
+                        <h1 className="text-2xl lg:text-3xl xl:text-4xl font-black text-white leading-none tracking-tight" style={{ fontFamily: "'JapanDaisuki', serif" }}>{renderDisplayName(displayName)}</h1>
                         <p className="text-white/95 text-sm lg:text-base mt-2 font-bold tracking-wide drop-shadow">
                             <TypingAnimation />
                         </p>
                     </div>
                     <div className="flex items-center gap-2 lg:gap-2.5 mb-4">
                         {socialLinks.slice(0, 4).map(({ name, href, Icon }) => (
-                            <motion.a key={name} href={href} target="_blank" rel="noopener noreferrer" whileHover={{ scale: 1.12 }} transition={{ type: "spring", stiffness: 300, damping: 20 }} className="flex items-center justify-center size-8.5 lg:size-9.5 rounded-xl bg-white/15 hover:bg-white/25 border border-white/20 text-white/80 hover:text-white transition-colors backdrop-blur-sm">
+                            <motion.a key={name} href={href} target="_blank" rel="noopener noreferrer" aria-label={`Visit Gowtham's ${name}`} whileHover={{ scale: 1.12 }} transition={{ type: "spring", stiffness: 300, damping: 20 }} className="flex items-center justify-center size-8.5 lg:size-9.5 rounded-xl bg-white/15 hover:bg-white/25 border border-white/20 text-white/80 hover:text-white transition-colors backdrop-blur-sm">
                                 <Icon size={15} className="flex-shrink-0" />
                             </motion.a>
                         ))}
@@ -153,7 +153,6 @@ export function ProfileSidebar() {
                     src={avatar}
                     alt={displayName}
                     fill
-                    priority
                     sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover object-top"
                 />
@@ -176,7 +175,7 @@ export function ProfileSidebar() {
                 <div className="absolute bottom-0 left-0 right-0 z-30 p-4 sm:p-5">
                     {/* Name + Typing */}
                     <div className="mb-2.5 sm:mb-3">
-                        <h2
+                        <h1
                             className="font-black text-white leading-none tracking-tight"
                             style={{
                                 fontFamily: "'JapanDaisuki', serif",
@@ -184,7 +183,7 @@ export function ProfileSidebar() {
                             }}
                         >
                             {renderDisplayName(displayName)}
-                        </h2>
+                        </h1>
                         <p className="text-white/90 mt-1.5 font-bold drop-shadow-sm"
                            style={{ fontSize: "clamp(0.72rem, 3.2vw, 0.95rem)" }}>
                             <TypingAnimation />
@@ -199,6 +198,7 @@ export function ProfileSidebar() {
                                 href={href}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                aria-label={`Visit Gowtham's ${name}`}
                                 whileTap={{ scale: 0.92 }}
                                 style={{ width: "clamp(2rem, 9vw, 2.5rem)", height: "clamp(2rem, 9vw, 2.5rem)" }}
                                 className="flex items-center justify-center rounded-xl bg-white/15 hover:bg-white/25 border border-white/20 text-white/80 hover:text-white transition-colors backdrop-blur-sm flex-shrink-0"

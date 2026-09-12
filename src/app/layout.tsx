@@ -1,7 +1,8 @@
 import "@/styles/globals.css";
 
 import type { Metadata, Viewport } from "next";
-import type { WebSite, WithContext } from "schema-dts";
+import Script from "next/script";
+import type { Person, WebSite, WithContext } from "schema-dts";
 
 import { Providers } from "@/components/providers";
 import { SmoothScroll } from "@/components/smooth-scroll";
@@ -9,14 +10,50 @@ import { META_THEME_COLORS, SITE_INFO } from "@/config/site";
 import { USER } from "@/data/user";
 import { fontMono, fontSans } from "@/lib/fonts";
 
-function getWebSiteJsonLd(): WithContext<WebSite> {
-  return {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: SITE_INFO.name,
-    url: SITE_INFO.url,
-    alternateName: [USER.username],
-  };
+function getJsonLd(): (WithContext<WebSite> | WithContext<Person>)[] {
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "Gowtham | GowthamDev Portfolio",
+      url: SITE_INFO.url,
+      alternateName: [
+        "gowthamdev",
+        "gowtham",
+        "gowtham portfolio",
+        "gowtham dev",
+        "gowthamdev.me",
+      ],
+      description: SITE_INFO.description,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      name: "Gowtham",
+      alternateName: ["gowthamdev", "gowtham dev", "GowthamDev"],
+      url: SITE_INFO.url,
+      image: `${SITE_INFO.url}${USER.avatar}`,
+      jobTitle: USER.jobTitle,
+      description: SITE_INFO.description,
+      sameAs: [
+        "https://github.com/ggowt",
+        "https://linkedin.com/in/ggowt",
+        "https://x.com/ggowt",
+        "https://instagram.com/ggowt",
+      ],
+      knowsAbout: [
+        "Web Development",
+        "Frontend Engineering",
+        "React",
+        "Next.js",
+        "TypeScript",
+        "JavaScript",
+        "Tailwind CSS",
+        "Full Stack Development",
+        "UI/UX Design",
+      ],
+    },
+  ];
 }
 
 // Thanks @shadcn-ui, @tailwindcss
@@ -40,42 +77,57 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   title: {
-    template: `%s – ${SITE_INFO.name}`,
-    default: `${USER.displayName} – ${USER.jobTitle}`,
+    template: `%s | GowthamDev`,
+    default: `Gowtham (gowthamdev) | Web Developer Portfolio`,
   },
   description: SITE_INFO.description,
-  keywords: SITE_INFO.keywords,
+  keywords: USER.keywords.split(",").map((k) => k.trim()),
   authors: [
     {
-      name: USER.username,
+      name: "Gowtham",
       url: SITE_INFO.url,
     },
   ],
-  creator: USER.username,
+  creator: "gowtham",
+  publisher: "gowthamdev",
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
-    siteName: SITE_INFO.name,
+    siteName: "Gowtham | GowthamDev",
     url: "/",
-    type: "profile",
-    firstName: USER.firstName,
-    lastName: USER.lastName,
-    username: USER.username,
-    gender: USER.gender,
+    type: "website",
+    title: `Gowtham (gowthamdev) | Web Developer Portfolio`,
+    description: SITE_INFO.description,
+    locale: "en_US",
     images: [
       {
         url: SITE_INFO.ogImage,
         width: 1200,
         height: 630,
-        alt: SITE_INFO.name,
+        alt: "Gowtham | GowthamDev Portfolio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    creator: `@${USER.username}`, // Twitter username
+    title: `Gowtham (gowthamdev) | Web Developer Portfolio`,
+    description: SITE_INFO.description,
+    creator: `@ggowt`,
     images: [SITE_INFO.ogImage],
   },
 };
-
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -105,13 +157,8 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(getWebSiteJsonLd()).replace(/</g, "\\u003c"),
+            __html: JSON.stringify(getJsonLd()).replace(/</g, "\\u003c"),
           }}
-        />
-        {/* GSAP — loaded early so SVG stroke animations are ready */}
-        <script
-          src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
-          async
         />
         <link
           rel="preload"
@@ -120,22 +167,14 @@ export default function RootLayout({
           type="font/otf"
           crossOrigin="anonymous"
         />
-        <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com"
-        />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-          rel="stylesheet"
-        />
       </head>
 
       <body className="min-h-screen">
+        {/* GSAP loaded with afterInteractive to prevent render blocking */}
+        <Script
+          src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+          strategy="afterInteractive"
+        />
         <SmoothScroll />
         <Providers>
           <ClientLoadingWrapper>

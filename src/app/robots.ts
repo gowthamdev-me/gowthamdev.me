@@ -1,4 +1,4 @@
-﻿import type { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 
 import { SITE_INFO } from "@/config/site";
 
@@ -7,9 +7,12 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "*",
+        allow: "/",
+        disallow: ["/admin/", "/api/"],
       },
     ],
     sitemap: `${SITE_INFO.url}/sitemap.xml`,
+    host: SITE_INFO.url,
   };
 }
 

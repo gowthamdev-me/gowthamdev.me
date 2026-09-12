@@ -2,7 +2,7 @@ import { USER } from "@/data/user";
 import type { NavItem } from "@/types/nav";
 
 export const SITE_INFO = {
-  name: USER.displayName,
+  name: "Gowtham | GowthamDev",
   url: process.env.APP_URL || "https://gowthamdev.me",
   ogImage: USER.ogImage,
   description: USER.bio,

@@ -5,13 +5,13 @@ export const USER = {
   username: "gowtham",
   gender: "male",
   pronouns: "he/him",
-  bio: "Creating with code. Small details matter.",
+  bio: "Creating with code. Official portfolio of Gowtham (gowthamdev) – Web Developer & Creative Engineer crafting modern, high-performance web applications and interactive digital experiences.",
   flipSentences: [
     "Creating with code. Small details matter.",
-    "Web Developer",
+    "Web Developer & Creative Engineer",
     "Open Source Contributor",
   ],
-  address: "Web Developer & Vibe Coder",
+  address: "Web Developer & Creative Engineer",
   phoneNumber: "", // Phone number removed
   email: "Z2dvd3RoYW05MjA4OUBnbWFpbC5jb20=", // base64 encoded (ggowtham92089@gmail.com)
   website: "https://gowthamdev.me",
@@ -19,12 +19,12 @@ export const USER = {
     "https://github.com/ggowt",
     "https://linkedin.com/in/ggowt",
   ],
-  jobTitle: "Web Developer & Vibe Coder",
+  jobTitle: "Web Developer & Creative Engineer",
   jobs: [
     {
       title: "Web Developer",
-      company: "Your Company",
-      website: "https://yourcompany.com",
+      company: "gowthamdev",
+      website: "https://gowthamdev.me",
     },
   ],
   about: `
@@ -41,7 +41,7 @@ Let's connect and collaborate!
   ogImage: "/uploads/1779344010991-photo_2026-05-21_11-41-58.jpg",
   namePronunciationUrl: "",
   keywords:
-    "gowtham, developer, design engineer, frontend developer, react developer, typescript",
+    "gowtham, gowthamdev, gowtham portfolio, gowtham dev, gowtham web developer, gowtham frontend developer, gowtham software engineer, gowthamdev portfolio, gowthamdev.me, react developer, nextjs, typescript, web developer portfolio",
   dateCreated: "2023-10-20", // YYYY-MM-DD,
 
   // Footer-specific configuration

@@ -1,7 +1,14 @@
-﻿import { ArrowRightIcon } from "lucide-react";
+import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
+import { Press_Start_2P } from "next/font/google";
 
 import { cn } from "@/lib/utils";
+
+const pressStart = Press_Start_2P({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export function NotFound({ className }: { className?: string }) {
   return (
@@ -27,11 +34,7 @@ export function NotFound({ className }: { className?: string }) {
       </div>
 
       <h1
-        className="mt-8 mb-6 text-7xl font-medium"
-        style={{
-          fontFamily: "'Press Start 2P', cursive",
-          letterSpacing: "0.1em",
-        }}
+        className={cn("mt-8 mb-6 text-7xl font-medium tracking-widest", pressStart.className)}
       >
         404
       </h1>
