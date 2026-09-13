@@ -7,11 +7,11 @@
     "content": "\n## Tech Stack\n\n- Next.js 15\n- Tailwind CSS v4\n- shadcn/ui\n\n## Featured\n\n- Clean & modern design\n- Light & Dark theme support\n- vCard integration\n- SEO optimization: [JSON-LD schema](https://json-ld.org), sitemap, robots\n- AI-friendly [/llms.txt](https://llmstxt.org)\n- Spam-protected email\n- Installable PWA\n\n## Blog\n\n- MDX & Markdown support\n- Access markdown by adding `.md` to URLs, e.g. `/blog/welcome.md`\n- Syntax Highlighting for better readability\n- RSS Feed for easy content distribution\n- Dynamic OG Images for rich previews\n\n## Component Registry\n\nEasily build and distribute your own components, hooks, and pages using a custom registry powered by the [shadcn CLI](https://ui.shadcn.com/docs/cli).\n\nEach component is well-documented through the Blog, featuring:\n\n- **Live Preview**: Interactive component demos\n- **Code Snippets**: Readable and copyable examples\n- **Beautiful Code Blocks**: Styled for clarity and dark mode\n- **Command Blocks**: One-click copy for quick install commands (`pnpm`, `npm`, `yarn`, `bun`)\n\n## License\n\nLicensed under the [MIT license](https://github.com/gowtham/gowthamdev.me/blob/main/LICENSE).\n\nThe source code is available on [GitHub](https://github.com/gowtham/gowthamdev.me). You're free to use my code! Just make sure to remove all my personal information before publishing your website. It's awesome to see my code being useful to someone!\n\r\n\r\n",
     "category": "",
     "tags": "",
-    "coverImage": "https://assets.gowthamdev.me/images/blog/welcome.webp",
+    "coverImage": "/uploads/1789302050284-Screenshot_2026-09-12_212054.png",
     "published": true,
     "showInPortfolio": true,
     "createdAt": "2025-02-14T00:00:00.000Z",
-    "updatedAt": "2025-07-20T00:00:00.000Z",
+    "updatedAt": "2026-09-13T12:20:53.348Z",
     "source": "existing-mdx"
   }
 ]

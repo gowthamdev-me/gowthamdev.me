@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
-import { readJsonFile, writeJsonFile } from "@/lib/admin-data";
+import { readJsonFile, writeJsonFile, writeJsonFileAsync } from "@/lib/admin-data";
 
 const SESSION_TOKEN = "admin_session_token_2024";
 
@@ -36,10 +36,12 @@ export async function POST(request: NextRequest) {
       createdAt: new Date().toISOString(),
     };
     items.push(newItem);
-    writeJsonFile("blog-posts.json", items);
+    const result = await writeJsonFileAsync("blog-posts.json", items);
     revalidatePath("/", "page");
     revalidatePath("/portfolio", "page");
-    return NextResponse.json({ success: true, data: newItem });
+    revalidatePath("/blog", "page");
+    revalidatePath(`/blog/${newItem.slug}`, "page");
+    return NextResponse.json({ success: true, data: newItem, syncedToGitHub: result.syncedToGitHub });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
@@ -57,10 +59,12 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
     }
     items[index] = { ...items[index], ...body, updatedAt: new Date().toISOString() };
-    writeJsonFile("blog-posts.json", items);
+    const result = await writeJsonFileAsync("blog-posts.json", items);
     revalidatePath("/", "page");
     revalidatePath("/portfolio", "page");
-    return NextResponse.json({ success: true, data: items[index] });
+    revalidatePath("/blog", "page");
+    revalidatePath(`/blog/${items[index].slug}`, "page");
+    return NextResponse.json({ success: true, data: items[index], syncedToGitHub: result.syncedToGitHub });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
@@ -84,11 +88,11 @@ export async function DELETE(request: NextRequest) {
     }
     const items = readJsonFile("blog-posts.json", [] as any[]);
     const filtered = items.filter((p: any) => String(p.id) !== String(id));
-    writeJsonFile("blog-posts.json", filtered);
+    const result = await writeJsonFileAsync("blog-posts.json", filtered);
     revalidatePath("/", "page");
     revalidatePath("/portfolio", "page");
     revalidatePath("/blog", "page");
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, syncedToGitHub: result.syncedToGitHub });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
