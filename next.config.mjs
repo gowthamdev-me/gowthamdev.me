@@ -21,6 +21,16 @@ const nextConfig = {
                 port: "",
                 pathname: "/images/**",
             },
+            {
+                protocol: "https",
+                hostname: "raw.githubusercontent.com",
+                pathname: "/**",
+            },
+            {
+                protocol: "https",
+                hostname: "avatars.githubusercontent.com",
+                pathname: "/**",
+            },
         ],
     },
     async headers() {

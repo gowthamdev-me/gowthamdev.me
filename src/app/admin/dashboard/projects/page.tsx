@@ -320,20 +320,21 @@ export default function AdminProjectsPage() {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Validate size 500x500
-    const isValid = await validateImageSize(file, 500, 500);
-    if (!isValid) {
-      alert("Please upload an image with exact dimensions: 500x500 pixels.");
-      return;
-    }
-
     const formData = new FormData();
     formData.append("file", file);
     try {
       const res = await fetch("/api/admin/upload", { method: "POST", body: formData });
       const data = await res.json();
-      if (data.success) setForm((p) => ({ ...p, [field]: data.url }));
-    } catch {}
+      if (data.success) {
+        setForm((p) => ({ ...p, [field]: data.url }));
+        setMessage("Image uploaded successfully!");
+        setTimeout(() => setMessage(""), 3000);
+      } else {
+        alert(data.error || "Image upload failed");
+      }
+    } catch {
+      alert("Error uploading image");
+    }
   };
 
   return (

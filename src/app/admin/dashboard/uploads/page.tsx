@@ -41,16 +41,20 @@ export default function AdminUploadsPage() {
       for (let i = 0; i < fileList.length; i++) {
         const formData = new FormData();
         formData.append("file", fileList[i]);
-        await fetch("/api/admin/upload", { method: "POST", body: formData });
+        const res = await fetch("/api/admin/upload", { method: "POST", body: formData });
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          throw new Error(data.error || "Upload failed");
+        }
       }
       setMessage(`${fileList.length} file(s) uploaded successfully!`);
       loadFiles();
-    } catch {
-      setMessage("Upload failed");
+    } catch (err: any) {
+      setMessage(err.message || "Upload failed");
     }
     setUploading(false);
     e.target.value = "";
-    setTimeout(() => setMessage(""), 3000);
+    setTimeout(() => setMessage(""), 4000);
   };
 
   const handleDelete = async (filename: string) => {

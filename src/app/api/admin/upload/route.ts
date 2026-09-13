@@ -24,32 +24,89 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "No file provided" }, { status: 400 });
     }
 
-    const uploadsDir = path.join(process.cwd(), "public/uploads");
-    if (!fs.existsSync(uploadsDir)) {
-      fs.mkdirSync(uploadsDir, { recursive: true });
-    }
-
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
     // Create unique filename
-    const ext = path.extname(file.name);
     const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, "_")}`;
-    const filepath = path.join(uploadsDir, filename);
+    const uploadsDir = path.join(process.cwd(), "public/uploads");
 
-    fs.writeFileSync(filepath, buffer);
+    let savedLocally = false;
+    try {
+      if (!fs.existsSync(uploadsDir)) {
+        fs.mkdirSync(uploadsDir, { recursive: true });
+      }
+      const filepath = path.join(uploadsDir, filename);
+      fs.writeFileSync(filepath, buffer);
+      savedLocally = true;
+    } catch (fsErr) {
+      // Expected in read-only serverless hosts like Vercel
+      console.warn("[Upload] Local filesystem is read-only:", fsErr);
+    }
 
-    return NextResponse.json({
-      success: true,
-      url: `/uploads/${filename}`,
-      filename: filename,
-    });
+    // Attempt GitHub direct commit if token is present
+    const token = process.env.GITHUB_TOKEN || process.env.GITHUB_PAT;
+    const repo = process.env.GITHUB_REPOSITORY || "gowthamdev-me/gowthamdev.me";
+    const branch = process.env.GITHUB_BRANCH || "main";
+
+    if (token) {
+      try {
+        const ghUrl = `https://api.github.com/repos/${repo}/contents/public/uploads/${filename}`;
+        const putRes = await fetch(ghUrl, {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/vnd.github.v3+json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message: `Upload ${filename} via admin panel`,
+            content: buffer.toString("base64"),
+            branch,
+          }),
+        });
+
+        if (putRes.ok) {
+          const rawUrl = `https://raw.githubusercontent.com/${repo}/${branch}/public/uploads/${filename}`;
+          return NextResponse.json({
+            success: true,
+            url: rawUrl,
+            filename: filename,
+            syncedToGitHub: true,
+          });
+        } else {
+          const errBody = await putRes.json();
+          console.error("[Upload] GitHub API upload failed:", errBody);
+        }
+      } catch (ghErr) {
+        console.error("[Upload] Error uploading to GitHub:", ghErr);
+      }
+    }
+
+    if (savedLocally) {
+      return NextResponse.json({
+        success: true,
+        url: `/uploads/${filename}`,
+        filename: filename,
+      });
+    }
+
+    return NextResponse.json(
+      {
+        error:
+          "Serverless filesystem is read-only. Please set GITHUB_TOKEN in your Vercel Environment Variables to allow live image uploads, or upload locally via http://localhost:1408/admin.",
+      },
+      { status: 500 }
+    );
   } catch (err: any) {
     console.error("Upload handler error:", err);
-    return NextResponse.json({ 
-      error: err.message || "Upload failed",
-      details: err.toString()
-    }, { status: 500 });
+    return NextResponse.json(
+      {
+        error: err.message || "Upload failed",
+        details: err.toString(),
+      },
+      { status: 500 }
+    );
   }
 }
 
