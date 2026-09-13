@@ -3,7 +3,7 @@
     "id": "gowthamdotcom",
     "title": "gowthamdev.me",
     "description": "A minimal portfolio, component registry, and blog.\n- Clean & modern design\n- Light & Dark theme support\n- vCard integration\n- SEO optimization: [JSON-LD schema](https://json-ld.org), sitemap, robots\n- AI-friendly [/llms.txt](https://llmstxt.org)\n- Spam-protected email\n- Installable PWA\n\nBlog Features:\n- MDX & Markdown support\n- Syntax Highlighting for better readability\n- RSS Feed for easy content distribution\n- Dynamic OG Images for rich previews",
-    "link": "https://github.com/gowtham/gowtham.com",
+    "link": "https://github.com/gowthamdev-me/gowthamdev.me",
     "skills": "Open Source, Next.js 15, Tailwind CSS v4, Radix UI, Motion, shadcn/ui, Component Registry, Vercel",
     "logo": "/uploads/1788087032723-Untitled-1__1_.png",
     "period": "01.2026 - Present",

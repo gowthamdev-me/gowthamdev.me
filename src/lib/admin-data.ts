@@ -26,19 +26,33 @@ export function getDataPath(filename: string) {
 }
 
 export function readJsonFile<T>(filename: string, defaultValue: T): T {
-  // 1. Check /tmp first (holds runtime updates on serverless platforms)
   const tmpPath = path.join(TMP_DIR, filename);
-  if (fs.existsSync(tmpPath)) {
+  const filePath = path.join(DATA_DIR, filename);
+
+  const hasTmp = fs.existsSync(tmpPath);
+  const hasFile = fs.existsSync(filePath);
+
+  if (hasTmp && hasFile) {
     try {
+      const tmpMtime = fs.statSync(tmpPath).mtimeMs;
+      const fileMtime = fs.statSync(filePath).mtimeMs;
+      // If the file in source code was modified after or at the same time as temp, use source code
+      if (fileMtime >= tmpMtime) {
+        return JSON.parse(fs.readFileSync(filePath, "utf-8"));
+      }
       return JSON.parse(fs.readFileSync(tmpPath, "utf-8"));
     } catch {}
   }
 
-  // 2. Check source data directory
-  const filePath = path.join(DATA_DIR, filename);
-  if (fs.existsSync(filePath)) {
+  if (hasFile) {
     try {
       return JSON.parse(fs.readFileSync(filePath, "utf-8"));
+    } catch {}
+  }
+
+  if (hasTmp) {
+    try {
+      return JSON.parse(fs.readFileSync(tmpPath, "utf-8"));
     } catch {}
   }
 

@@ -7,7 +7,7 @@ export const PROJECTS: Project[] = [
     period: {
       start: "01.2026",
     },
-    link: "https://github.com/gowtham/gowtham.com",
+    link: "https://github.com/gowthamdev-me/gowthamdev.me",
     skills: [
       "Open Source",
       "Next.js 15",
