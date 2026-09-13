@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
-import { readJsonFile, writeJsonFile } from "@/lib/admin-data";
+import { readJsonFile, writeJsonFile, writeJsonFileAsync } from "@/lib/admin-data";
 
 const SESSION_TOKEN = "admin_session_token_2024";
 
@@ -32,10 +32,10 @@ export async function POST(request: NextRequest) {
       createdAt: new Date().toISOString(),
     };
     projects.push(newProject);
-    writeJsonFile("projects.json", projects);
+    const result = await writeJsonFileAsync("projects.json", projects);
     revalidatePath("/", "page");
     revalidatePath("/portfolio", "page");
-    return NextResponse.json({ success: true, data: newProject });
+    return NextResponse.json({ success: true, data: newProject, syncedToGitHub: result.syncedToGitHub });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
@@ -50,10 +50,10 @@ export async function PUT(request: NextRequest) {
     
     // Support reordering: if an array is passed, overwrite the entire projects list
     if (Array.isArray(body)) {
-      writeJsonFile("projects.json", body);
+      const result = await writeJsonFileAsync("projects.json", body);
       revalidatePath("/", "page");
       revalidatePath("/portfolio", "page");
-      return NextResponse.json({ success: true, data: body });
+      return NextResponse.json({ success: true, data: body, syncedToGitHub: result.syncedToGitHub });
     }
 
     const projects = readJsonFile("projects.json", [] as any[]);
@@ -62,10 +62,10 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ error: "Project not found" }, { status: 404 });
     }
     projects[index] = { ...projects[index], ...body };
-    writeJsonFile("projects.json", projects);
+    const result = await writeJsonFileAsync("projects.json", projects);
     revalidatePath("/", "page");
     revalidatePath("/portfolio", "page");
-    return NextResponse.json({ success: true, data: projects[index] });
+    return NextResponse.json({ success: true, data: projects[index], syncedToGitHub: result.syncedToGitHub });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
@@ -91,10 +91,10 @@ export async function DELETE(request: NextRequest) {
 
     const projects = readJsonFile("projects.json", [] as any[]);
     const filtered = projects.filter((p: any) => String(p.id) !== String(id));
-    writeJsonFile("projects.json", filtered);
+    const result = await writeJsonFileAsync("projects.json", filtered);
     revalidatePath("/", "page");
     revalidatePath("/portfolio", "page");
-    return NextResponse.json({ success: true, count: filtered.length });
+    return NextResponse.json({ success: true, count: filtered.length, syncedToGitHub: result.syncedToGitHub });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
