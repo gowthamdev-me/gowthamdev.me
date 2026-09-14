@@ -193,7 +193,7 @@ export default function Page() {
 
       {/* Simplified Footer */}
       <div className="mt-2">
-        <SiteFooter />
+        <SiteFooter variant="compact" />
       </div>
     </div>
   );
