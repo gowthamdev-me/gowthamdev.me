@@ -21,23 +21,25 @@ export function ClientLoadingWrapper({ children }: ClientLoadingWrapperProps) {
         setIsDone(true);
         return;
       }
+
+      // Check if signature font is already available in document.fonts
+      if (typeof document !== "undefined" && document.fonts) {
+        if (document.fonts.check("1em JapanDaisuki")) {
+          setFontLoaded(true);
+        } else {
+          document.fonts.ready
+            .then(() => setFontLoaded(true))
+            .catch(() => setFontLoaded(true));
+        }
+      } else {
+        setFontLoaded(true);
+      }
     }
 
-    // Load signature font
-    const font = new FontFace(
-      "JapanDaisuki",
-      "url(/signatur/japan-daisuki-font/JapanDaisuki-8OeaZ.otf)"
-    );
-    font.load()
-      .then(() => {
-        document.fonts.add(font);
-        setFontLoaded(true);
-      })
-      .catch(() => setFontLoaded(true));
+    // Snappy splash duration: 850ms display -> 400ms fadeout -> done
+    const timer1 = setTimeout(() => setIsFadingOut(true), 850);
+    const timer2 = setTimeout(() => setIsDone(true), 1300);
 
-    // Snappy splash duration: 800ms display -> 400ms fadeout -> done
-    const timer1 = setTimeout(() => setIsFadingOut(true), 800);
-    const timer2 = setTimeout(() => setIsDone(true), 1200);
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
@@ -46,70 +48,49 @@ export function ClientLoadingWrapper({ children }: ClientLoadingWrapperProps) {
 
   return (
     <>
-      {/* Page content renders with full opacity so LCP is recorded immediately */}
-      <div
-        style={{
-          filter: isDone ? "none" : isFadingOut ? "blur(0px)" : "blur(4px)",
-          transform: isDone ? "none" : isFadingOut ? "scale(1)" : "scale(1.005)",
-          opacity: 1,
-          transition: isDone
-            ? "none"
-            : "filter 0.4s cubic-bezier(0.16,1,0.3,1), transform 0.4s cubic-bezier(0.16,1,0.3,1)",
-          willChange: isDone ? "auto" : "filter, transform",
-        }}
-      >
+      {/* Page content renders with full layout stability */}
+      <div className="w-full">
         {children}
       </div>
 
-      {/* ── Gowtham Loading Screen Overlay ─────────────────────────────────── */}
+      {/* ── Gowtham Loading Screen Overlay ── */}
       {!isDone && (
         <div
           aria-hidden="true"
           style={{
             position: "fixed",
             inset: 0,
-            zIndex: 9999,
+            zIndex: 99999,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            background: "#090909",
+            backgroundColor: "#090909",
             opacity: isFadingOut ? 0 : 1,
             pointerEvents: isFadingOut ? "none" : "all",
-            backdropFilter: isFadingOut ? "blur(16px)" : "blur(0px)",
-            transform: isFadingOut ? "scale(1.03)" : "scale(1)",
-            transition: [
-              "opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-              "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-              "backdrop-filter 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-            ].join(", "),
+            transition: "opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1)",
+            willChange: "opacity",
           }}
         >
           <div
             style={{
-              fontFamily: fontLoaded ? "'JapanDaisuki', serif" : "serif",
+              fontFamily: "'JapanDaisuki', serif",
               fontSize: "clamp(3.8rem, 11vw, 13rem)",
               color: "#ffffff",
               margin: 0,
               lineHeight: 1,
               letterSpacing: "0.01em",
-              opacity: fontLoaded ? 1 : 0,
-              transform: fontLoaded
-                ? isFadingOut ? "translateY(-8px) scale(1.02)" : "translateY(0px) scale(1)"
-                : "translateY(8px) scale(0.98)",
-              filter: isFadingOut ? "blur(4px)" : "blur(0px)",
-              transition: [
-                "opacity 0.3s cubic-bezier(0.22,1,0.36,1)",
-                "transform 0.4s cubic-bezier(0.22,1,0.36,1)",
-                "filter 0.4s cubic-bezier(0.22,1,0.36,1)",
-              ].join(", "),
+              opacity: fontLoaded ? (isFadingOut ? 0 : 1) : 0,
+              transform: isFadingOut ? "scale(1.04)" : "scale(1)",
+              transition: "opacity 0.4s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)",
+              userSelect: "none",
             }}
           >
             <span
               style={{
                 color: "#FA0143",
                 textShadow:
-                  "0 0 40px rgba(250,1,67,0.55), 0 0 80px rgba(250,1,67,0.2)",
+                  "0 0 40px rgba(250,1,67,0.6), 0 0 80px rgba(250,1,67,0.25)",
               }}
             >
               G

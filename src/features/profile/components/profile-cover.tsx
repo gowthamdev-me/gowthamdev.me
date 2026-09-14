@@ -38,7 +38,11 @@ export function ProfileCover({
       .then((r) => r.json())
       .then((data) => {
         if (data?.coverSettings && typeof data.coverSettings === "object") {
-          setSettings({ ...DEFAULT_COVER_SETTINGS, ...data.coverSettings });
+          const newSettings = { ...DEFAULT_COVER_SETTINGS, ...data.coverSettings };
+          setSettings((prev) => {
+            if (JSON.stringify(prev) === JSON.stringify(newSettings)) return prev;
+            return newSettings;
+          });
         }
       })
       .catch(() => {});

@@ -59,14 +59,24 @@ function getJsonLd(): (WithContext<WebSite> | WithContext<Person>)[] {
 // Thanks @shadcn-ui, @tailwindcss
 const darkModeScript = String.raw`
   try {
-    if (localStorage.theme === 'dark' || ((!('theme' in localStorage) || localStorage.theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.querySelector('meta[name="theme-color"]').setAttribute('content', '${META_THEME_COLORS.dark}')
+    var storedTheme = localStorage.getItem('theme');
+    var isDark = storedTheme === 'dark' || ((!storedTheme || storedTheme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+      document.documentElement.style.colorScheme = 'dark';
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute('content', '${META_THEME_COLORS.dark}');
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.style.colorScheme = 'light';
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute('content', '${META_THEME_COLORS.light}');
     }
   } catch (_) {}
 
   try {
     if (/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
-      document.documentElement.classList.add('os-macos')
+      document.documentElement.classList.add('os-macos');
     }
   } catch (_) {}
 `;
