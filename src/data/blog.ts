@@ -44,34 +44,34 @@ export function getAllPosts(): Post[] {
   }
 
   // 2. Get admin-controlled posts
+  const adminFilePath = path.join(process.cwd(), "src/admin-data/blog-posts.json");
+  if (!fs.existsSync(adminFilePath)) {
+    // If no admin-data file exists at all, fallback to showing MDX posts
+    return Array.from(mdxDataMap.values()).sort(
+      (a, b) =>
+        new Date(b.metadata.createdAt).getTime() -
+        new Date(a.metadata.createdAt).getTime()
+    );
+  }
+
   let adminPosts: any[] = [];
   try {
     adminPosts = readJsonFile<any[]>("blog-posts.json", []);
   } catch {
-    // If json fails, fallback to just showing MDX posts if any
-    return Array.from(mdxDataMap.values()).sort((a, b) => 
-      new Date(b.metadata.createdAt).getTime() - new Date(a.metadata.createdAt).getTime()
-    );
-  }
-
-  // If we have no admin posts yet, show all MDX posts
-  if (adminPosts.length === 0) {
-    return Array.from(mdxDataMap.values()).sort((a, b) => 
-      new Date(b.metadata.createdAt).getTime() - new Date(a.metadata.createdAt).getTime()
-    );
+    return [];
   }
 
   // 3. Filter and Map admin posts to Post type
   const posts = adminPosts
-    .filter(p => p.showInPortfolio !== false && p.published !== false)
-    .map(p => {
+    .filter((p) => p.showInPortfolio !== false && p.published !== false)
+    .map((p) => {
       const mdxPost = mdxDataMap.get(p.slug);
-      
-      // Prefer JSON data if it exists, fallback to MDX frontmatter/content
+
       const metadata: PostMetadata = {
         title: p.title || mdxPost?.metadata.title || "",
         description: p.excerpt || mdxPost?.metadata.description || "",
         image: p.coverImage || mdxPost?.metadata.image || "",
+        icon: p.icon || p.logo || mdxPost?.metadata.icon || "",
         category: p.category || mdxPost?.metadata.category || "",
         createdAt: p.createdAt || mdxPost?.metadata.createdAt || "",
         updatedAt: p.updatedAt || mdxPost?.metadata.updatedAt || p.createdAt || "",
@@ -84,8 +84,10 @@ export function getAllPosts(): Post[] {
       } as Post;
     });
 
-  return posts.sort((a, b) => 
-    new Date(b.metadata.createdAt).getTime() - new Date(a.metadata.createdAt).getTime()
+  return posts.sort(
+    (a, b) =>
+      new Date(b.metadata.createdAt).getTime() -
+      new Date(a.metadata.createdAt).getTime()
   );
 }
 

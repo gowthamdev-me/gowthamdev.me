@@ -1,6 +1,5 @@
-import { RssIcon, Mail } from "lucide-react";
+import React from "react";
 
-import { SITE_INFO } from "@/config/site";
 import { USER } from "@/data/user";
 import { readJsonFile } from "@/lib/admin-data";
 
@@ -8,31 +7,12 @@ import { Icons } from "./icons";
 
 export function SiteFooter() {
   const footerConfig = USER.footer;
-
-  const profile = readJsonFile<{ sectionVisibility?: Record<string, boolean> }>(
-    "profile.json",
-    {}
-  );
-  const visibility = profile.sectionVisibility || {};
-  const visibilityMap: Record<string, string> = {
-    About: "aboutMe",
-    Stack: "techStack",
-    Experience: "experiences",
-    Projects: "projects",
-    Blog: "blog",
-  };
-
-  const filteredLinks = footerConfig.navigationLinks.filter((link) => {
-    const key = visibilityMap[link.label];
-    return key ? visibility[key] !== false : true;
-  });
-
   const linksConfig = footerConfig.socialLinks as any;
 
   let adminSocialLinks: any[] = [];
   try {
     adminSocialLinks = readJsonFile<any[]>("social-links.json", []);
-  } catch (error) {
+  } catch {
     // Keep it empty, fallback to config
   }
 
@@ -81,15 +61,13 @@ export function SiteFooter() {
     },
   ].filter(Boolean) as { href: string; label: string; icon: React.ReactNode }[];
 
-  const year = new Date().getFullYear();
-
   return (
-    <footer className="relative w-full rounded-[20px] sm:rounded-[28px] lg:rounded-[40px] border border-border bg-card overflow-hidden">
-      <div className="relative px-6 sm:px-10 py-6 sm:py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        {/* Left: Brand name + copyright */}
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+    <footer className="w-full rounded-[20px] sm:rounded-[24px] border border-border bg-card overflow-hidden">
+      <div className="px-6 sm:px-8 py-4 sm:py-5 flex items-center justify-between gap-4">
+        {/* Left: Name Logo */}
+        <div className="flex items-center gap-3">
           <h2
-            className="text-2xl font-bold inline-flex items-center tracking-normal select-none"
+            className="text-xl sm:text-2xl font-bold inline-flex items-center tracking-normal select-none"
             style={{ fontFamily: "'JapanDaisuki', serif" }}
           >
             <span
@@ -102,82 +80,23 @@ export function SiteFooter() {
             </span>
             <span className="text-zinc-900 dark:text-zinc-50">owtham</span>
           </h2>
-          <p className="text-xs font-semibold text-zinc-400 dark:text-zinc-500">
-            &copy; {year} Gowtham. All rights reserved.
-          </p>
         </div>
 
-        {/* Right: Nav Links + Socials */}
-        <div className="flex flex-wrap items-center gap-6">
-          <div className="flex flex-wrap gap-x-6 gap-y-2">
-            {filteredLinks.map((link, i) => (
-              <a
-                key={i}
-                href={link.href}
-                className="text-xs font-bold text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-50 uppercase tracking-widest transition-colors duration-200"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-2">
-            {socialLinks.map(({ href, label, icon }) => (
-              <a
-                key={href}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="flex items-center justify-center w-8 h-8 rounded-lg border border-border text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-50 hover:bg-zinc-50 dark:hover:bg-white/5 transition-all duration-200"
-              >
-                {icon}
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ── Giant Half-Submerged Architectural "Gowtham" Wordmark (Big Size, Half Cut Off) ── */}
-      <div className="relative w-full overflow-hidden select-none pointer-events-none mt-2 sm:mt-4">
-        <div className="flex w-full items-end justify-center overflow-hidden">
-          <svg
-            className="w-full h-auto block"
-            viewBox="0 0 1400 150"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {/* Clean, sharp wireframe stroke with transparent inside */}
-            <text
-              x="50%"
-              y="190"
-              textAnchor="middle"
-              dominantBaseline="auto"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              className="text-zinc-900/30 dark:text-white/25"
-              style={{
-                fontFamily: "'JapanDaisuki', serif",
-                fontSize: "280px",
-                fontWeight: 900,
-                letterSpacing: "0.03em",
-              }}
+        {/* Right: Social Icons */}
+        <div className="flex items-center gap-2">
+          {socialLinks.map(({ href, label, icon }) => (
+            <a
+              key={href}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              className="flex items-center justify-center w-8 h-8 rounded-lg border border-border text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-50 hover:bg-zinc-50 dark:hover:bg-white/5 transition-all duration-200"
             >
-              Gowtham
-            </text>
-          </svg>
+              {icon}
+            </a>
+          ))}
         </div>
-
-        {/* Ambient glow line at the bottom center */}
-        <div
-          className="pointer-events-none absolute bottom-0 left-1/2 hidden h-px w-[60%] max-w-full -translate-x-1/2 dark:block"
-          style={{
-            background:
-              "linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0) 0%, rgba(228, 228, 231, 0.4) 50%, rgba(0, 0, 0, 0) 100%)",
-          }}
-          aria-hidden="true"
-        />
       </div>
     </footer>
   );

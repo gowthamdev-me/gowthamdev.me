@@ -490,3 +490,210 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* ── Blog Options Expanding Accordion ───────────────────────────────────── */
+.blog-options {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  overflow: hidden;
+  width: 100%;
+  height: 380px;
+}
+
+@media (min-width: 640px) {
+  .blog-options {
+    height: 420px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .blog-options {
+    height: 450px;
+  }
+}
+
+.blog-option {
+  position: relative;
+  overflow: hidden;
+  min-width: 48px;
+  margin: 8px 4px;
+  background: var(--optionBackground, var(--defaultBackground, #18181b));
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+  will-change: flex-grow, margin, border-radius;
+}
+
+@media (min-width: 640px) {
+  .blog-option {
+    min-width: 60px;
+    margin: 10px;
+  }
+}
+
+.blog-option.active {
+  flex-grow: 10000;
+  max-width: 720px;
+  margin: 0px;
+  border-radius: 28px;
+  background-size: cover;
+  z-index: 2;
+}
+
+@media (min-width: 640px) {
+  .blog-option.active {
+    border-radius: 40px;
+  }
+}
+
+.blog-option.active .shadow {
+  bottom: 0px;
+  box-shadow: inset 0 -120px 120px -120px black, inset 0 -120px 120px -100px black;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.35) 50%, transparent 100%);
+}
+
+.blog-option.active .label {
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+}
+
+@media (min-width: 640px) {
+  .blog-option.active .label {
+    bottom: 22px;
+    left: 22px;
+    right: 22px;
+  }
+}
+
+.blog-option.active .info > div {
+  left: 0px;
+  opacity: 1;
+}
+
+.blog-option:not(.active) {
+  flex-grow: 1;
+  border-radius: 24px;
+}
+
+@media (min-width: 640px) {
+  .blog-option:not(.active) {
+    border-radius: 30px;
+  }
+}
+
+.blog-option:not(.active) .shadow {
+  bottom: -40px;
+  box-shadow: inset 0 -120px 0px -120px black, inset 0 -120px 0px -100px black;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+}
+
+.blog-option:not(.active) .label {
+  bottom: 8px;
+  left: 5px;
+}
+
+@media (min-width: 640px) {
+  .blog-option:not(.active) .label {
+    bottom: 10px;
+    left: 10px;
+  }
+}
+
+.blog-option:not(.active) .info > div {
+  left: 20px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.blog-option .shadow {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 140px;
+  pointer-events: none;
+  transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+}
+
+.blog-option .label {
+  display: flex;
+  position: absolute;
+  right: 0px;
+  height: 44px;
+  align-items: center;
+  transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+}
+
+.blog-option .icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  min-width: 38px;
+  max-width: 38px;
+  height: 38px;
+  border-radius: 100%;
+  background-color: white;
+  color: var(--defaultBackground);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .blog-option .icon {
+    min-width: 42px;
+    max-width: 42px;
+    height: 42px;
+  }
+}
+
+.blog-option:hover .icon {
+  transform: scale(1.06);
+}
+
+.blog-option .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 12px;
+  color: white;
+  overflow: hidden;
+  flex: 1;
+}
+
+.blog-option .info > div {
+  position: relative;
+  transition: 0.5s cubic-bezier(0.05, 0.61, 0.41, 0.95), opacity 0.5s ease-out;
+}
+
+.blog-option .main {
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.25;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 640px) {
+  .blog-option .main {
+    font-size: 1.25rem;
+  }
+}
+
+.blog-option .sub {
+  transition-delay: 0.1s;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+}

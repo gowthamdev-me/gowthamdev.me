@@ -1,7 +1,8 @@
-﻿export type PostMetadata = {
+export type PostMetadata = {
   title: string;
   description: string;
   image?: string;
+  icon?: string;
   category?: string;
   new?: boolean;
   createdAt: string;

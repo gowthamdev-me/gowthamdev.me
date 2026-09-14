@@ -5,9 +5,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { getAllPosts } from "@/data/blog";
 import { readJsonFile } from "@/lib/admin-data";
-
-import { BlogPostCard } from "./blog-post-card";
-import { BlogMarquee } from "./blog-marquee";
+import { BlogAccordion } from "./blog-accordion";
 import { Panel, PanelContent, PanelHeader, PanelTitle } from "./panel";
 
 function getVisibleBlogPosts() {
@@ -35,7 +33,7 @@ function getVisibleBlogPosts() {
 
 export function Blog() {
   const visiblePosts = getVisibleBlogPosts();
-  const carouselPosts = visiblePosts.slice(0, 6);
+  const accordionPosts = visiblePosts.slice(0, 6);
 
   if (visiblePosts.length === 0) {
     return null;
@@ -60,10 +58,8 @@ export function Blog() {
         </div>
       </PanelHeader>
 
-      <PanelContent className="p-3 sm:p-6 md:p-8 lg:p-10 relative">
-        <BlogMarquee posts={carouselPosts} />
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-8 sm:w-14 bg-gradient-to-r from-background/85 dark:from-zinc-900/70 to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-8 sm:w-14 bg-gradient-to-l from-background/85 dark:from-zinc-900/70 to-transparent" />
+      <PanelContent className="p-3 sm:p-5 md:p-6 lg:p-8">
+        <BlogAccordion posts={accordionPosts} />
       </PanelContent>
     </Panel>
   );
