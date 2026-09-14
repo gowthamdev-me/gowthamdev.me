@@ -12,17 +12,15 @@ export function ClientLoadingWrapper({ children }: ClientLoadingWrapperProps) {
   const [isDone, setIsDone]           = useState(false);
 
   useEffect(() => {
-    // Detect Lighthouse / PageSpeed / Googlebot or repeat visitors
+    // Detect Lighthouse / PageSpeed / Googlebot
     if (typeof window !== "undefined") {
       const ua = navigator.userAgent;
       const isAuditBot = /Lighthouse|PageSpeed|Chrome-Lighthouse|Googlebot/i.test(ua);
-      const hasSeen = sessionStorage.getItem("portfolio_splash_seen");
 
-      if (isAuditBot || hasSeen) {
+      if (isAuditBot) {
         setIsDone(true);
         return;
       }
-      sessionStorage.setItem("portfolio_splash_seen", "1");
     }
 
     // Load signature font
