@@ -18,6 +18,7 @@ import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
+import { scrollToSection, getSectionId } from "@/utils/scroll-to-section";
 
 import {
   CommandDialog,
@@ -164,9 +165,18 @@ export function CommandMenu({ posts }: { posts: Post[] }) {
 
       if (openInNewTab) {
         window.open(href, "_blank", "noopener");
-      } else {
-        router.push(href);
+        return;
       }
+
+      // If it's a section hash link (e.g. /#about), scroll smoothly without 
+      // leaving a #hash in the URL
+      const sectionId = getSectionId(href);
+      if (sectionId) {
+        setTimeout(() => scrollToSection(sectionId), 80);
+        return;
+      }
+
+      router.push(href);
     },
     [router]
   );

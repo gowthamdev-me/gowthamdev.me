@@ -1,8 +1,5 @@
-import { ArrowRightIcon } from "lucide-react";
-import Link from "next/link";
 import React from "react";
 
-import { Button } from "@/components/ui/button";
 import { getAllPosts } from "@/data/blog";
 import { readJsonFile } from "@/lib/admin-data";
 import { BlogAccordion } from "./blog-accordion";
@@ -48,13 +45,6 @@ export function Blog() {
               Blog
             </PanelTitle>
           </div>
-
-          <Button variant="outline" asChild className="rounded-[12px] sm:rounded-[16px] h-[34px] sm:h-10 px-3 sm:px-4 bg-zinc-100 border-zinc-200 text-zinc-500 font-semibold hover:bg-zinc-200/50 hover:text-zinc-700 transition-[background-color,border-color] duration-300 ease-out gap-1.5 group/btn text-xs sm:text-sm shrink-0 dark:bg-white/5 dark:border-white/10 dark:text-zinc-400 dark:hover:bg-white/10 dark:hover:text-zinc-300 uppercase tracking-wider">
-            <Link href="/blog" className="flex items-center gap-1.5">
-              Posts
-              <ArrowRightIcon className="h-3 w-3 sm:h-4 sm:w-4 transition-transform duration-300 ease-out group-hover/btn:translate-x-1" />
-            </Link>
-          </Button>
         </div>
       </PanelHeader>
 

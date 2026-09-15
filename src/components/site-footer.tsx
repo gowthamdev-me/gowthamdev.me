@@ -4,6 +4,7 @@ import { USER } from "@/data/user";
 import { readJsonFile } from "@/lib/admin-data";
 
 import { Icons } from "./icons";
+import { FooterNavLinks } from "./footer-nav-links";
 
 interface SiteFooterProps {
   variant?: "default" | "compact";
@@ -154,17 +155,7 @@ export function SiteFooter({ variant = "default" }: SiteFooterProps = {}) {
 
         {/* Right: Nav Links + Socials */}
         <div className="flex flex-wrap items-center gap-6">
-          <div className="flex flex-wrap gap-x-6 gap-y-2">
-            {filteredLinks.map((link, i) => (
-              <a
-                key={i}
-                href={link.href}
-                className="text-xs font-bold text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-50 uppercase tracking-widest transition-colors duration-200"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
+          <FooterNavLinks links={filteredLinks} />
 
           <div className="flex items-center gap-2">
             {socialLinks.map(({ href, label, icon }) => (

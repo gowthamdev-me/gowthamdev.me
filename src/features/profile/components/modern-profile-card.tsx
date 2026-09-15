@@ -17,6 +17,7 @@ import { InstagramIcon } from "@/components/ui/instagram";
 import { FacebookIcon } from "@/components/ui/facebook";
 import { YoutubeIcon } from "@/components/ui/youtube";
 import { TypingAnimation } from "@/components/ui/typing-animation";
+import { scrollToSection } from "@/utils/scroll-to-section";
 
 const SOCIAL_ICONS = {
     facebook: FacebookIcon,
@@ -325,19 +326,7 @@ export function ProfileBio() {
                             href="#projects"
                             onClick={(e) => {
                                 e.preventDefault();
-                                const el = document.getElementById("projects");
-                                if (el) {
-                                    const headerOffset = 80;
-                                    const elementPosition = el.getBoundingClientRect().top;
-                                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                                    window.scrollTo({
-                                        top: offsetPosition,
-                                        behavior: "smooth"
-                                    });
-                                    window.history.pushState(null, "", "#projects");
-                                } else {
-                                    window.location.href = "/#projects";
-                                }
+                                scrollToSection("projects");
                             }}
                             whileHover={{ scale: 1.04 }}
                             whileTap={{ scale: 0.97 }}

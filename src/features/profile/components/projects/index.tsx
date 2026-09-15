@@ -70,10 +70,6 @@ export function Projects() {
           <PanelTitle className="text-lg sm:text-2xl md:text-3xl font-black tracking-tight whitespace-nowrap">
             Projects
           </PanelTitle>
-
-          <div className="px-2.5 py-1 sm:px-4 sm:py-2 rounded-[10px] sm:rounded-[16px] bg-zinc-100 text-[11px] sm:text-sm font-semibold text-muted-foreground border border-zinc-200 dark:bg-white/5 dark:border-white/10 uppercase tracking-wider shrink-0">
-            Work
-          </div>
         </div>
       </PanelHeader>
 

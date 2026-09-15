@@ -487,9 +487,8 @@
   }
 }
 
-html {
-  scroll-behavior: smooth;
-}
+/* scroll-behavior is intentionally NOT set here — Lenis handles all smooth scrolling.
+   Setting scroll-behavior: smooth conflicts with Lenis and causes janky/stuck scrolling. */
 
 /* ── Blog Options Expanding Accordion ───────────────────────────────────── */
 .blog-options {

@@ -12,6 +12,7 @@ import {
   MenuIcon,
   XIcon,
 } from "lucide-react";
+import { scrollToSection, getSectionId } from "@/utils/scroll-to-section";
 
 const NAV_SECTION_ITEMS = [
   { title: "About", href: "/#about", icon: UserIcon },
@@ -110,15 +111,22 @@ export function MobileNav({
               {NAV_SECTION_ITEMS.map((link) => {
                 const Icon = link.icon;
                 return (
-                  <Link
+                  <button
                     key={link.href}
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.08] transition-colors"
+                    type="button"
+                    onClick={() => {
+                      setOpen(false);
+                      const sectionId = getSectionId(link.href);
+                      if (sectionId) {
+                        // Small delay lets the menu close animation finish first
+                        setTimeout(() => scrollToSection(sectionId), 80);
+                      }
+                    }}
+                    className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.08] transition-colors text-left"
                   >
                     <Icon className="w-4 h-4 text-zinc-400 dark:text-zinc-500 shrink-0" />
                     <span>{link.title}</span>
-                  </Link>
+                  </button>
                 );
               })}
             </div>
