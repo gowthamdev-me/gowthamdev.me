@@ -4,26 +4,25 @@ export const SOCIAL_LINKS: SocialLink[] = [
   {
     icon: "",
     title: "LinkedIn",
-    description: "ggowt",
-    href: "https://linkedin.com/in/ggowt",
+    description: "gowthamdev-me",
+    href: "https://www.linkedin.com/in/gowthamdev-me/",
   },
   {
     icon: "",
     title: "GitHub",
-    description: "ggowt",
-    href: "https://github.com/ggowt",
+    description: "gowthamdev-me",
+    href: "https://github.com/gowthamdev-me",
   },
   {
     icon: "",
     title: "X",
-    description: "@ggowt",
-    href: "https://x.com/ggowt",
+    description: "@gowthamdev_me",
+    href: "https://x.com/gowthamdev_me",
   },
   {
     icon: "",
-    title: "daily.dev",
-    description: "@ggowt",
-    href: "https://app.daily.dev/ggowt",
+    title: "Instagram",
+    description: "@gowthamdev.me",
+    href: "https://www.instagram.com/gowthamdev.me/",
   },
 ];
-
