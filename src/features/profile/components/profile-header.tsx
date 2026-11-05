@@ -1,4 +1,4 @@
-﻿import { SimpleTooltip } from "@/components/ui/tooltip";
+import { SimpleTooltip } from "@/components/ui/tooltip";
 import { USER } from "@/data/user";
 import { cn } from "@/lib/utils";
 import { FlipSentences } from "@/registry/flip-sentences";
@@ -39,7 +39,7 @@ export function ProfileHeader() {
         <div className="border-t border-edge flex-1">
           <div className="flex">
             <div className="flex-1 px-6 py-3 border-r border-edge">
-              <h1 className="flex items-center text-3xl font-semibold leading-tight">
+              <h2 className="flex items-center text-3xl font-semibold leading-tight">
                 {USER.displayName}
                 &nbsp;
                 <SimpleTooltip content="Verified">
@@ -54,7 +54,7 @@ export function ProfileHeader() {
                     />
                   </>
                 )}
-              </h1>
+              </h2>
             </div>
             
             <div className="w-32 px-4 py-3 flex items-center justify-center text-sm text-muted-foreground border-r border-edge">

@@ -118,7 +118,7 @@ export function ProfileSidebar() {
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 z-30 p-6 lg:p-7">
                     <div className="mb-4">
-                        <h1 className="text-2xl lg:text-3xl xl:text-4xl font-black text-white leading-none tracking-tight" style={{ fontFamily: "'JapanDaisuki', serif" }}>{renderDisplayName(displayName)}</h1>
+                        <h2 className="text-2xl lg:text-3xl xl:text-4xl font-black text-white leading-none tracking-tight" style={{ fontFamily: "'JapanDaisuki', serif" }}>{renderDisplayName(displayName)}</h2>
                         <p className="text-white/95 text-sm lg:text-base mt-2 font-bold tracking-wide drop-shadow">
                             <TypingAnimation />
                         </p>
@@ -176,7 +176,7 @@ export function ProfileSidebar() {
                 <div className="absolute bottom-0 left-0 right-0 z-30 p-4 sm:p-5">
                     {/* Name + Typing */}
                     <div className="mb-2.5 sm:mb-3">
-                        <h1
+                        <h2
                             className="font-black text-white leading-none tracking-tight"
                             style={{
                                 fontFamily: "'JapanDaisuki', serif",
@@ -184,7 +184,7 @@ export function ProfileSidebar() {
                             }}
                         >
                             {renderDisplayName(displayName)}
-                        </h1>
+                        </h2>
                         <p className="text-white/90 mt-1.5 font-bold drop-shadow-sm"
                            style={{ fontSize: "clamp(0.72rem, 3.2vw, 0.95rem)" }}>
                             <TypingAnimation />

@@ -5,7 +5,7 @@ export const USER = {
   username: "gowtham",
   gender: "male",
   pronouns: "he/him",
-  bio: "Creating with code. Official portfolio of Gowtham (gowthamdev) – Web Developer & Creative Engineer crafting modern, high-performance web applications and interactive digital experiences.",
+  bio: "Official portfolio of Gowtham (gowthamdev) – Web Developer & Creative Engineer crafting modern, high-performance web apps and interactive experiences.",
   flipSentences: [
     "Creating with code. Small details matter.",
     "Web Developer & Creative Engineer",
