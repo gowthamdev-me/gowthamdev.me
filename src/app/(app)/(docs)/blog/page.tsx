@@ -6,12 +6,78 @@ import { ArrowLeft, ArrowUpRight, Calendar, Clock, Sparkles } from "lucide-react
 
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { SITE_INFO } from "@/config/site";
+import { USER } from "@/data/user";
 import { getAllPosts } from "@/data/blog";
 import { BlogPostCard } from "@/features/profile/components/blog-post-card";
 
 export const metadata: Metadata = {
-  title: "Blog",
-  description: "A collection of articles on development, design, and ideas.",
+  title: "Articles & Engineering Insights",
+  description:
+    "Explore in-depth articles, tutorials, and technical insights on modern web development, React, Next.js architecture, and interactive UI engineering by Gowtham.",
+  alternates: {
+    canonical: `${SITE_INFO.url}/blog`,
+  },
+  openGraph: {
+    title: "Articles & Engineering Insights | Gowtham",
+    description:
+      "Explore in-depth articles, tutorials, and technical insights on modern web development, React, Next.js architecture, and interactive UI engineering by Gowtham.",
+    url: `${SITE_INFO.url}/blog`,
+    type: "website",
+    siteName: SITE_INFO.name,
+    images: [
+      {
+        url: SITE_INFO.ogImage,
+        width: 1200,
+        height: 630,
+        alt: "Gowtham Dev | Articles & Insights",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Articles & Engineering Insights | Gowtham",
+    description:
+      "Explore in-depth articles, tutorials, and technical insights on modern web development, React, Next.js architecture, and interactive UI engineering by Gowtham.",
+    creator: `@${USER.username}`,
+    images: [SITE_INFO.ogImage],
+  },
+};
+
+const blogJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": SITE_INFO.url,
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": `${SITE_INFO.url}/blog`,
+        },
+      ],
+    },
+    {
+      "@type": "Blog",
+      "@id": `${SITE_INFO.url}/blog#blog`,
+      "name": "Gowtham's Engineering Blog",
+      "description":
+        "In-depth articles, tutorials, and technical insights on modern web development, React, Next.js architecture, and UI engineering.",
+      "url": `${SITE_INFO.url}/blog`,
+      "publisher": {
+        "@type": "Person",
+        "name": USER.displayName,
+        "url": SITE_INFO.url,
+      },
+    },
+  ],
 };
 
 export default function Page() {
@@ -27,6 +93,12 @@ export default function Page() {
 
   return (
     <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8 max-w-6xl mx-auto py-4 sm:py-6 lg:py-8 min-h-screen flex flex-col justify-between">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(blogJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <div>
         {/* Header */}
         <div className="sticky top-3 sm:top-4 lg:top-6 z-50 mb-4 sm:mb-6 lg:mb-8">
@@ -81,7 +153,7 @@ export default function Page() {
             </h1>
 
             <p className="text-sm sm:text-base text-zinc-500 dark:text-zinc-400 max-w-xl leading-relaxed font-normal">
-              A curated collection of thoughts, tutorials, and insights on development, design engineering, and modern web architecture.
+              A curated collection of technical deep dives, tutorials, and engineering insights on modern web development, Next.js architecture, and interactive web experiences.
             </p>
           </div>
 

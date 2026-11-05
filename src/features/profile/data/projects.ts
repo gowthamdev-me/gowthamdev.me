@@ -18,7 +18,7 @@ export const PROJECTS: Project[] = [
       "Component Registry",
       "Vercel",
     ],
-    description: `A minimal portfolio, component registry, and blog.
+    description: `A high-performance portfolio, blog, and admin dashboard built with Next.js 15, Tailwind CSS v4, and Motion.
 - Clean & modern design
 - Light & Dark theme support
 - vCard integration

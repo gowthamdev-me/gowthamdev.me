@@ -1,11 +1,11 @@
-﻿import { SITE_INFO } from "@/config/site";
+import { SITE_INFO } from "@/config/site";
 import { getAllPosts } from "@/data/blog";
 
 const allPosts = getAllPosts();
 
-const content = `# gowtham.com
+const content = `# gowthamdev.me
 
-> A minimal portfolio, component registry, and blog to showcase my work as a Design Engineer.
+> Official developer portfolio, open-source projects, and technical writing by Gowtham – Web Developer & Creative Engineer.
 
 - [About](${SITE_INFO.url}/about.md): A quick intro to me, my tech stack, and how to connect.
 - [Experience](${SITE_INFO.url}/experience.md): Highlights from my career and key roles I've taken on.
