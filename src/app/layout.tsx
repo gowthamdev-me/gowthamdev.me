@@ -102,6 +102,9 @@ export const metadata: Metadata = {
   publisher: "gowthamdev",
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: {
+      "msvalidate.01": "C1400D360AA4EA39A8A5E494E06F14D4",
+    },
   },
   robots: {
     index: true,
