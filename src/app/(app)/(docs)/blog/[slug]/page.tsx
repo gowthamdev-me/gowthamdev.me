@@ -37,6 +37,14 @@ export async function generateMetadata({
   return {
     title,
     description,
+    robots: {
+      index: false,
+      follow: false,
+      googleBot: {
+        index: false,
+        follow: false,
+      },
+    },
     alternates: { canonical: postUrl },
     openGraph: {
       url: postUrl,

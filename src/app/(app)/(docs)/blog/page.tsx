@@ -15,6 +15,14 @@ export const metadata: Metadata = {
   title: "Articles & Engineering Insights",
   description:
     "Explore in-depth articles, tutorials, and technical insights on modern web development, React, Next.js architecture, and interactive UI engineering by Gowtham.",
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
+  },
   alternates: {
     canonical: `${SITE_INFO.url}/blog`,
   },
