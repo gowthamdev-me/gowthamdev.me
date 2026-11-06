@@ -100,7 +100,7 @@ export default function Page() {
   const isSingle = sortedPosts.length === 1;
 
   return (
-    <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8 max-w-6xl mx-auto py-4 sm:py-6 lg:py-8 min-h-screen flex flex-col justify-between">
+    <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-14 py-4 sm:py-6 lg:py-8 min-h-screen flex flex-col justify-between">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -114,7 +114,7 @@ export default function Page() {
         </div>
 
         {/* Main Card Container */}
-        <div className="relative rounded-[24px] sm:rounded-[32px] border border-border bg-card shadow-sm overflow-hidden mb-6 sm:mb-8">
+        <div className="relative rounded-[24px] sm:rounded-[32px] border border-border bg-card shadow-sm overflow-hidden mb-6 sm:mb-8 w-full">
           {/* Subtle background ambient texture & glow */}
           <div
             aria-hidden="true"
@@ -133,7 +133,7 @@ export default function Page() {
           />
 
           {/* Heading section */}
-          <div className="px-6 sm:px-10 md:px-12 pt-8 sm:pt-12 pb-6 sm:pb-8 border-b border-border/70">
+          <div className="px-6 sm:px-10 md:px-12 lg:px-14 pt-8 sm:pt-12 pb-6 sm:pb-8 border-b border-border/70">
             <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
               <Link
                 href="/"
@@ -160,13 +160,13 @@ export default function Page() {
               </span>
             </h1>
 
-            <p className="text-sm sm:text-base text-zinc-500 dark:text-zinc-400 max-w-xl leading-relaxed font-normal">
+            <p className="text-sm sm:text-base text-zinc-500 dark:text-zinc-400 max-w-2xl leading-relaxed font-normal">
               A curated collection of technical deep dives, tutorials, and engineering insights on modern web development, Next.js architecture, and interactive web experiences.
             </p>
           </div>
 
           {/* Posts list */}
-          <div className="p-6 sm:p-10">
+          <div className="p-6 sm:p-10 lg:p-12">
             {sortedPosts.length === 0 ? (
               <div className="py-24 flex flex-col items-center gap-3 text-center">
                 <div
@@ -184,22 +184,32 @@ export default function Page() {
               </div>
             ) : isSingle ? (
               /* ── Single Post Featured Layout ── */
-              <div className="max-w-4xl mx-auto">
+              <div className="w-full">
                 <Link
                   href={`/blog/${sortedPosts[0].slug}`}
-                  className="group relative flex flex-col md:flex-row overflow-hidden rounded-2xl sm:rounded-3xl bg-zinc-50 dark:bg-zinc-900/60 border border-border hover:border-zinc-300 dark:hover:border-zinc-700 shadow-sm hover:shadow-xl transition-all duration-300"
+                  className="group relative flex flex-col lg:flex-row overflow-hidden rounded-2xl sm:rounded-3xl bg-zinc-50 dark:bg-zinc-900/60 border border-border hover:border-zinc-300 dark:hover:border-zinc-700 shadow-sm hover:shadow-xl transition-all duration-300"
                 >
-                  {/* Image side */}
-                  <div className="relative aspect-[16/10] md:aspect-auto md:w-1/2 overflow-hidden bg-zinc-950 shrink-0">
+                  {/* Image side with uncropped view and ambient blur */}
+                  <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-auto lg:w-7/12 min-h-[260px] sm:min-h-[320px] lg:min-h-[380px] overflow-hidden bg-zinc-950 shrink-0 flex items-center justify-center">
                     {sortedPosts[0].metadata.image ? (
-                      <Image
-                        src={sortedPosts[0].metadata.image}
-                        alt={sortedPosts[0].metadata.title}
-                        fill
-                        priority
-                        unoptimized
-                        className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
-                      />
+                      <>
+                        <Image
+                          src={sortedPosts[0].metadata.image}
+                          alt=""
+                          fill
+                          aria-hidden="true"
+                          unoptimized
+                          className="object-cover blur-2xl opacity-40 scale-110 pointer-events-none"
+                        />
+                        <Image
+                          src={sortedPosts[0].metadata.image}
+                          alt={sortedPosts[0].metadata.title}
+                          fill
+                          priority
+                          unoptimized
+                          className="object-contain object-center p-3 sm:p-5 transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                        />
+                      </>
                     ) : (
                       <div className="w-full h-full min-h-[220px] flex items-center justify-center bg-zinc-900">
                         <span className="text-xs font-mono text-[#FA0143] tracking-widest uppercase">
@@ -207,9 +217,9 @@ export default function Page() {
                         </span>
                       </div>
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent md:hidden" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent lg:hidden pointer-events-none" />
                     <span
-                      className="absolute top-4 left-4 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full text-white shadow-md"
+                      className="absolute top-4 left-4 z-10 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full text-white shadow-md"
                       style={{ background: "#FA0143" }}
                     >
                       Featured
@@ -217,7 +227,7 @@ export default function Page() {
                   </div>
 
                   {/* Content side */}
-                  <div className="flex flex-col justify-between p-6 sm:p-8 md:w-1/2 gap-4">
+                  <div className="flex flex-col justify-between p-6 sm:p-8 lg:p-10 lg:w-5/12 gap-6">
                     <div>
                       {/* Date & category */}
                       <div className="flex items-center gap-2 text-xs font-medium text-zinc-400 dark:text-zinc-500 mb-3">
@@ -228,13 +238,13 @@ export default function Page() {
                       </div>
 
                       {/* Title */}
-                      <h2 className="text-xl sm:text-2xl font-bold leading-snug tracking-tight text-zinc-900 dark:text-zinc-50 group-hover:text-[#FA0143] transition-colors duration-200 mb-3">
+                      <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-snug tracking-tight text-zinc-900 dark:text-zinc-50 group-hover:text-[#FA0143] transition-colors duration-200 mb-3">
                         {sortedPosts[0].metadata.title}
                       </h2>
 
                       {/* Excerpt */}
                       {sortedPosts[0].metadata.description && (
-                        <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-4">
+                        <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-4">
                           {sortedPosts[0].metadata.description}
                         </p>
                       )}
@@ -254,14 +264,14 @@ export default function Page() {
               </div>
             ) : sortedPosts.length === 2 ? (
               /* ── Exactly 2 Posts Balanced 2-Column Grid ── */
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                 {sortedPosts.map((post) => (
                   <BlogPostCard key={post.slug} post={post} />
                 ))}
               </div>
             ) : (
               /* ── 3+ Posts Grid ── */
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                 {sortedPosts.map((post) => (
                   <BlogPostCard key={post.slug} post={post} />
                 ))}
@@ -271,9 +281,9 @@ export default function Page() {
         </div>
       </div>
 
-      {/* Simplified Footer */}
-      <div className="mt-2">
-        <SiteFooter variant="compact" />
+      {/* Footer matching homepage */}
+      <div className="mt-2 sm:mt-3 lg:mt-5">
+        <SiteFooter />
       </div>
     </div>
   );
