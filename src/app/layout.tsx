@@ -39,6 +39,7 @@ function getJsonLd(): (WithContext<WebSite> | WithContext<Person>)[] {
         "https://github.com/ggowt",
         "https://linkedin.com/in/ggowt",
         "https://x.com/ggowt",
+        "https://daily.dev/@gowthamdev",
         "https://instagram.com/ggowt",
       ],
       knowsAbout: [
@@ -87,8 +88,8 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   title: {
-    template: `%s | GowthamDev`,
-    default: `Gowtham (gowthamdev) | Web Developer Portfolio`,
+    template: `%s | Gowtham`,
+    default: `Gowtham | Web Developer Portfolio - Next.js and React`,
   },
   description: SITE_INFO.description,
   keywords: USER.keywords.split(",").map((k) => k.trim()),
@@ -121,7 +122,7 @@ export const metadata: Metadata = {
     siteName: "Gowtham | GowthamDev",
     url: "/",
     type: "website",
-    title: `Gowtham (gowthamdev) | Web Developer Portfolio`,
+    title: `Gowtham | Web Developer Portfolio - Next.js and React`,
     description: SITE_INFO.description,
     locale: "en_US",
     images: [
@@ -129,13 +130,13 @@ export const metadata: Metadata = {
         url: SITE_INFO.ogImage,
         width: 1200,
         height: 630,
-        alt: "Gowtham | GowthamDev Portfolio",
+        alt: "Gowtham | Web Developer Portfolio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `Gowtham (gowthamdev) | Web Developer Portfolio`,
+    title: `Gowtham | Web Developer Portfolio - Next.js and React`,
     description: SITE_INFO.description,
     creator: `@ggowt`,
     images: [SITE_INFO.ogImage],

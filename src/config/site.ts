@@ -3,7 +3,7 @@ import type { NavItem } from "@/types/nav";
 
 export const SITE_INFO = {
   name: "Gowtham | GowthamDev",
-  url: process.env.APP_URL || "https://gowthamdev.me",
+  url: process.env.APP_URL || "https://www.gowthamdev.me",
   ogImage: USER.ogImage,
   description: USER.bio,
   keywords: USER.keywords,

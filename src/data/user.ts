@@ -5,7 +5,7 @@ export const USER = {
   username: "gowtham",
   gender: "male",
   pronouns: "he/him",
-  bio: "Official portfolio of Gowtham (gowthamdev) – Web Developer & Creative Engineer crafting modern, high-performance web apps and interactive experiences.",
+  bio: "Gowtham (gowthamdev) — Web Developer & Creative Engineer. Building fast, modern web apps with Next.js, React, and TypeScript. Portfolio, projects, and blog.",
   flipSentences: [
     "Creating with code. Small details matter.",
     "Web Developer & Creative Engineer",
@@ -14,7 +14,7 @@ export const USER = {
   address: "Web Developer & Creative Engineer",
   phoneNumber: "", // Phone number removed
   email: "Z2dvd3RoYW05MjA4OUBnbWFpbC5jb20=", // base64 encoded (ggowtham92089@gmail.com)
-  website: "https://gowthamdev.me",
+  website: "https://www.gowthamdev.me",
   otherWebsites: [
     "https://github.com/ggowt",
     "https://linkedin.com/in/ggowt",
@@ -24,7 +24,7 @@ export const USER = {
     {
       title: "Web Developer",
       company: "gowthamdev",
-      website: "https://gowthamdev.me",
+      website: "https://www.gowthamdev.me",
     },
   ],
   about: `
@@ -37,7 +37,7 @@ I'm passionate about creating user-centric software solutions with intuitive and
 Let's connect and collaborate!
   `,
   avatar: "/uploads/1779344010991-photo_2026-05-21_11-41-58.jpg",
-  cvUrl: "",
+  cvUrl: "/uploads/1775220568848-Gowtham_CV.pdf",
   ogImage: "/uploads/1779344010991-photo_2026-05-21_11-41-58.jpg",
   namePronunciationUrl: "",
   keywords:
