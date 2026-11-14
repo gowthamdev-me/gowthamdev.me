@@ -14,18 +14,14 @@ export function SiteHeaderMark() {
 function HeaderGowthamMark() {
   return (
     <div
-      className="flex items-center justify-center w-full h-full p-0.5"
+      className="flex items-center justify-center w-full h-full p-1 sm:p-1.5"
     >
       <Image
         src={LogoImg}
         alt="Gowtham Logo"
-        width={48}
-        height={48}
-        className="w-full h-full object-contain scale-110"
-        style={{
-          borderRadius: 6,
-          background: "transparent",
-        }}
+        width={36}
+        height={36}
+        className="w-full h-full object-contain"
         priority
       />
     </div>

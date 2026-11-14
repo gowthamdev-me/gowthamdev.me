@@ -36,7 +36,11 @@ export function SiteHeader() {
           {/* Logo on the left */}
           <div className="flex-shrink-0 z-10">
             <BrandContextMenu>
-              <Link href="/" aria-label="Home" className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl transition-all duration-200 hover:bg-zinc-100/80 dark:hover:bg-white/[0.08] active:scale-95">
+              <Link
+                href="/"
+                aria-label="Home"
+                className="relative flex items-center justify-center w-8 sm:w-10 h-8 sm:h-10 rounded-lg bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900 border border-zinc-200/50 dark:border-white/10 shadow-sm hover:shadow-md hover:from-zinc-200 hover:to-zinc-300 dark:hover:from-zinc-700 dark:hover:to-zinc-800 transition-all duration-200 active:scale-95"
+              >
                 <SiteHeaderMark />
               </Link>
             </BrandContextMenu>
