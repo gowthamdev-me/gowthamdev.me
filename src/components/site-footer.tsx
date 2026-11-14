@@ -176,33 +176,34 @@ export function SiteFooter({ variant = "default" }: SiteFooterProps = {}) {
 
       {/* ── Giant Fully Visible Architectural "Gowtham" Wordmark ── */}
       <div className="relative w-full select-none pointer-events-none mt-2 sm:mt-4">
-        <div className="flex w-full items-end justify-center">
-          <svg
-            className="w-full h-auto block"
-            viewBox="0 0 1400 160"
+        <svg
+          className="w-full h-auto block"
+          viewBox="0 0 1000 200"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          {/* textLength forces the text to span exactly 960/1000 units → equal 20-unit gap each side */}
+          <text
+            x="500"
+            y="190"
+            textAnchor="middle"
+            dominantBaseline="auto"
             fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+            stroke="currentColor"
+            strokeWidth="1.2"
+            textLength="960"
+            lengthAdjust="spacingAndGlyphs"
+            className="text-zinc-900/20 dark:text-white/15"
+            style={{
+              fontFamily: "'JapanDaisuki', serif",
+              fontSize: "190px",
+              fontWeight: 900,
+            }}
           >
-            <text
-              x="50%"
-              y="148"
-              textAnchor="middle"
-              dominantBaseline="auto"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              className="text-zinc-900/20 dark:text-white/15"
-              style={{
-                fontFamily: "'JapanDaisuki', serif",
-                fontSize: "148px",
-                fontWeight: 900,
-                letterSpacing: "0.02em",
-              }}
-            >
-              Gowtham
-            </text>
-          </svg>
-        </div>
+            Gowtham
+          </text>
+        </svg>
 
         {/* Ambient glow line at the bottom center */}
         <div
