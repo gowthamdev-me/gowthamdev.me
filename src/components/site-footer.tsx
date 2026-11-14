@@ -178,26 +178,26 @@ export function SiteFooter({ variant = "default" }: SiteFooterProps = {}) {
       <div className="relative w-full select-none pointer-events-none mt-2 sm:mt-4">
         <svg
           className="w-full h-auto block"
-          viewBox="0 0 1000 200"
+          viewBox="0 0 1000 175"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
         >
-          {/* textLength forces the text to span exactly 960/1000 units → equal 20-unit gap each side */}
+          {/* textLength forces the text to span exactly 880/1000 units → equal 60-unit gap each side (~6%) */}
           <text
             x="500"
-            y="190"
+            y="165"
             textAnchor="middle"
             dominantBaseline="auto"
             fill="none"
             stroke="currentColor"
             strokeWidth="1.2"
-            textLength="960"
+            textLength="880"
             lengthAdjust="spacingAndGlyphs"
             className="text-zinc-900/20 dark:text-white/15"
             style={{
               fontFamily: "'JapanDaisuki', serif",
-              fontSize: "190px",
+              fontSize: "160px",
               fontWeight: 900,
             }}
           >
