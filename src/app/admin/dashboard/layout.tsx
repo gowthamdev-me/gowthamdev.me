@@ -83,49 +83,27 @@ export default function AdminDashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [authenticated, setAuthenticated] = useState(false);
-  const [checking, setChecking] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [profile, setProfile] = useState<{ displayName?: string; avatar?: string } | null>(null);
   const router = useRouter();
   const pathname = usePathname();
 
   useEffect(() => {
-    fetch("/api/admin/check")
-      .then((res) => {
-        if (res.ok) {
-          setAuthenticated(true);
-          // Fetch profile details for avatar & display name
-          fetch("/api/admin/content/profile")
-            .then((r) => r.json())
-            .then((data) => {
-              if (data && !data.error) {
-                setProfile(data);
-              }
-            })
-            .catch(() => {});
-        } else {
-          router.push("/admin/login");
+    // Middleware already guarantees auth — just load profile for display
+    fetch("/api/admin/content/profile")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data && !data.error) {
+          setProfile(data);
         }
       })
-      .catch(() => router.push("/admin/login"))
-      .finally(() => setChecking(false));
-  }, [router]);
+      .catch(() => {});
+  }, []);
 
   const handleLogout = async () => {
     await fetch("/api/admin/logout", { method: "POST" });
     router.push("/admin/login");
   };
-
-  if (checking) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-zinc-900">
-        <div className="animate-spin h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full" />
-      </div>
-    );
-  }
-
-  if (!authenticated) return null;
 
   return (
     <div className="min-h-screen bg-zinc-900 text-white">
