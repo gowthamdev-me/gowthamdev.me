@@ -174,28 +174,28 @@ export function SiteFooter({ variant = "default" }: SiteFooterProps = {}) {
         </div>
       </div>
 
-      {/* ── Giant Half-Submerged Architectural "Gowtham" Wordmark (Big Size, Half Cut Off) ── */}
+      {/* ── Giant Fully Visible Architectural "Gowtham" Wordmark ── */}
       <div className="relative w-full overflow-hidden select-none pointer-events-none mt-2 sm:mt-4">
-        <div className="flex w-full items-end justify-center overflow-hidden">
+        <div className="flex w-full items-end justify-center">
           <svg
             className="w-full h-auto block"
-            viewBox="0 0 1400 150"
+            viewBox="0 0 1400 220"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             {/* Clean, sharp wireframe stroke with transparent inside */}
             <text
               x="50%"
-              y="190"
+              y="200"
               textAnchor="middle"
               dominantBaseline="auto"
               fill="none"
               stroke="currentColor"
-              strokeWidth="2.5"
-              className="text-zinc-900/30 dark:text-white/25"
+              strokeWidth="2"
+              className="text-zinc-900/20 dark:text-white/15"
               style={{
                 fontFamily: "'JapanDaisuki', serif",
-                fontSize: "280px",
+                fontSize: "220px",
                 fontWeight: 900,
                 letterSpacing: "0.03em",
               }}
