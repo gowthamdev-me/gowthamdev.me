@@ -31,10 +31,10 @@ export function SiteHeader() {
         "transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.04),0_12px_24px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.6),0_1px_0_0_rgba(255,255,255,0.12)_inset]"
       )}
     >
-      <div className="mx-auto px-3 sm:px-4 md:px-5">
+      <div className="mx-auto px-1.5 sm:px-2">
         <div className="flex h-11 sm:h-12 md:h-13 items-center justify-between gap-2">
-          {/* Logo on the left with slight inward offset for balanced edge gap */}
-          <div className="flex-shrink-0 z-10 pl-1 sm:pl-1.5">
+          {/* Logo on the left */}
+          <div className="flex-shrink-0 z-10">
             <BrandContextMenu>
               <Link
                 href="/"
@@ -53,8 +53,8 @@ export function SiteHeader() {
             </div>
           )}
 
-          {/* Action buttons on the right with slight inward offset for balanced edge gap */}
-          <div className="flex-shrink-0 flex items-center gap-1.5 sm:gap-2 z-10 pr-1 sm:pr-1.5">
+          {/* Action buttons on the right */}
+          <div className="flex-shrink-0 flex items-center gap-1.5 sm:gap-2 z-10">
             <CommandMenu posts={posts} />
             <NavItemGitHub />
             <ToggleTheme />
