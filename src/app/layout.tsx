@@ -176,7 +176,7 @@ export default function RootLayout({
         />
         <link
           rel="preload"
-          href="/signatur/japan-daisuki-font/JapanDaisuki-8OeaZ.otf"
+          href="/signatur/japan-daisuki-font/JapanDaisuki-v2.otf?v=2"
           as="font"
           type="font/otf"
           crossOrigin="anonymous"
