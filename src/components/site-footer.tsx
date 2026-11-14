@@ -174,46 +174,23 @@ export function SiteFooter({ variant = "default" }: SiteFooterProps = {}) {
         </div>
       </div>
 
-      {/* ── Giant Fully Visible Architectural "Gowtham" Wordmark ── */}
-      <div className="relative w-full select-none pointer-events-none mt-2 sm:mt-4">
-        <svg
-          className="w-full h-auto block"
-          viewBox="0 0 1000 175"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          {/* textLength forces the text to span exactly 880/1000 units → equal 60-unit gap each side (~6%) */}
-          <text
-            x="500"
-            y="165"
-            textAnchor="middle"
-            dominantBaseline="auto"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.2"
-            textLength="880"
-            lengthAdjust="spacingAndGlyphs"
-            className="text-zinc-900/20 dark:text-white/15"
-            style={{
-              fontFamily: "'JapanDaisuki', serif",
-              fontSize: "160px",
-              fontWeight: 900,
-            }}
-          >
-            Gowtham
-          </text>
-        </svg>
-
-        {/* Ambient glow line at the bottom center */}
-        <div
-          className="pointer-events-none absolute bottom-0 left-1/2 hidden h-px w-[60%] max-w-full -translate-x-1/2 dark:block"
+      {/* ── Giant Architectural "Gowtham" Wordmark ── */}
+      <div
+        aria-hidden="true"
+        className="w-full select-none pointer-events-none mt-2 sm:mt-3 px-[4%] pb-3 sm:pb-5"
+      >
+        <p
+          className="text-center leading-none font-black text-zinc-900/20 dark:text-white/15"
           style={{
-            background:
-              "linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0) 0%, rgba(228, 228, 231, 0.4) 50%, rgba(0, 0, 0, 0) 100%)",
+            fontFamily: "'JapanDaisuki', serif",
+            fontSize: "clamp(2.5rem, 11.5vw, 10rem)",
+            fontWeight: 900,
+            WebkitTextStroke: "1.5px currentColor",
+            WebkitTextFillColor: "transparent",
           }}
-          aria-hidden="true"
-        />
+        >
+          Gowtham
+        </p>
       </div>
     </footer>
   );
