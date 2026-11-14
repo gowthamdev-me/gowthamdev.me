@@ -31,8 +31,8 @@ export function SiteHeader() {
         "transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.04),0_12px_24px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.6),0_1px_0_0_rgba(255,255,255,0.12)_inset]"
       )}
     >
-      <div className="mx-auto px-3 sm:px-4 md:px-5">
-        <div className="flex h-11 sm:h-12 md:h-13 items-center justify-between gap-2">
+      <div className="mx-auto px-4 sm:px-6 md:px-7">
+        <div className="flex h-12 sm:h-13 md:h-14 items-center justify-between gap-3">
           {/* Logo on the left */}
           <div className="flex-shrink-0 z-10">
             <BrandContextMenu>
