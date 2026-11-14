@@ -27,7 +27,7 @@ export function SiteHeader() {
     <SiteHeaderWrapper
       className={cn(
         "relative w-full bg-white/90 dark:bg-[#141416]/95 backdrop-blur-2xl supports-[backdrop-filter]:bg-white/80 dark:supports-[backdrop-filter]:bg-[#141416]/90",
-        "border border-zinc-200/90 dark:border-zinc-800/90 dark:ring-1 dark:ring-white/[0.08] rounded-2xl sm:rounded-[22px] md:rounded-[26px]",
+        "border border-zinc-200/90 dark:border-zinc-800/90 dark:ring-1 dark:ring-white/[0.08] rounded-xl sm:rounded-2xl",
         "transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.04),0_12px_24px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.6),0_1px_0_0_rgba(255,255,255,0.12)_inset]"
       )}
     >
@@ -39,7 +39,7 @@ export function SiteHeader() {
               <Link
                 href="/"
                 aria-label="Home"
-                className="relative flex items-center justify-center w-8 sm:w-10 h-8 sm:h-10 rounded-lg bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900 border border-zinc-200/50 dark:border-white/10 shadow-sm hover:shadow-md hover:from-zinc-200 hover:to-zinc-300 dark:hover:from-zinc-700 dark:hover:to-zinc-800 transition-all duration-200 active:scale-95"
+                className="relative flex items-center justify-center w-9 sm:w-10 h-9 sm:h-10 rounded-lg bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900 border border-zinc-200/50 dark:border-white/10 shadow-sm hover:shadow-md hover:from-zinc-200 hover:to-zinc-300 dark:hover:from-zinc-700 dark:hover:to-zinc-800 transition-all duration-200 active:scale-95"
               >
                 <SiteHeaderMark />
               </Link>
