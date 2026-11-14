@@ -31,15 +31,15 @@ export function SiteHeader() {
         "transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.04),0_12px_24px_rgba(0,0,0,0.03)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.6),0_1px_0_0_rgba(255,255,255,0.12)_inset]"
       )}
     >
-      <div className="mx-auto px-4 sm:px-6 md:px-7">
-        <div className="flex h-12 sm:h-13 md:h-14 items-center justify-between gap-3">
-          {/* Logo on the left */}
-          <div className="flex-shrink-0 z-10">
+      <div className="mx-auto px-3 sm:px-4 md:px-5">
+        <div className="flex h-11 sm:h-12 md:h-13 items-center justify-between gap-2">
+          {/* Logo on the left with slight inward offset for balanced edge gap */}
+          <div className="flex-shrink-0 z-10 pl-1 sm:pl-1.5">
             <BrandContextMenu>
               <Link
                 href="/"
                 aria-label="Home"
-                className="relative flex items-center justify-center w-9 sm:w-10 h-9 sm:h-10 rounded-lg bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900 border border-zinc-200/50 dark:border-white/10 shadow-sm hover:shadow-md hover:from-zinc-200 hover:to-zinc-300 dark:hover:from-zinc-700 dark:hover:to-zinc-800 transition-all duration-200 active:scale-95"
+                className="relative flex items-center justify-center w-8 sm:w-10 h-8 sm:h-10 rounded-lg bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900 border border-zinc-200/50 dark:border-white/10 shadow-sm hover:shadow-md hover:from-zinc-200 hover:to-zinc-300 dark:hover:from-zinc-700 dark:hover:to-zinc-800 transition-all duration-200 active:scale-95"
               >
                 <SiteHeaderMark />
               </Link>
@@ -53,8 +53,8 @@ export function SiteHeader() {
             </div>
           )}
 
-          {/* Action buttons on the right */}
-          <div className="flex-shrink-0 flex items-center gap-1.5 sm:gap-2 z-10">
+          {/* Action buttons on the right with slight inward offset for balanced edge gap */}
+          <div className="flex-shrink-0 flex items-center gap-1.5 sm:gap-2 z-10 pr-1 sm:pr-1.5">
             <CommandMenu posts={posts} />
             <NavItemGitHub />
             <ToggleTheme />
