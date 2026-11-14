@@ -183,7 +183,7 @@ export function SiteFooter({ variant = "default" }: SiteFooterProps = {}) {
           className="text-center leading-none font-black text-zinc-900/20 dark:text-white/15"
           style={{
             fontFamily: "'JapanDaisuki', serif",
-            fontSize: "clamp(2.5rem, 11.5vw, 10rem)",
+            fontSize: "clamp(3.5rem, 16vw, 14rem)",
             fontWeight: 900,
             WebkitTextStroke: "1.5px currentColor",
             WebkitTextFillColor: "transparent",
