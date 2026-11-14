@@ -34,3 +34,4 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: ["/admin/dashboard/:path*", "/admin/login"],
 };
+
