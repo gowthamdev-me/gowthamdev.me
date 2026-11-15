@@ -98,13 +98,13 @@ export default async function Page({
       <PostKeyboardShortcuts basePath="/blog" previous={previous} next={next} />
 
       {/* ── Top toolbar ─────────────────────────────────────────────────────── */}
-      <div className="flex items-center justify-between px-5 sm:px-8 py-3 border-b border-zinc-100 dark:border-white/[0.06]">
+      <div className="flex items-center justify-between px-6 sm:px-10 md:px-14 py-4 border-b border-border/70">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors group"
+          className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors uppercase tracking-wider group"
         >
           <ArrowLeftIcon className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5" />
-          All posts
+          Back to all posts
         </Link>
 
         <div className="flex items-center gap-1.5">
@@ -117,7 +117,7 @@ export default async function Page({
           {previous && (
             <Link
               href={`/blog/${previous.slug}`}
-              className="flex items-center justify-center w-8 h-8 rounded-lg border border-zinc-200/80 dark:border-white/[0.08] text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-white/[0.05] transition-colors"
+              className="flex items-center justify-center w-8 h-8 rounded-lg border border-border text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-white/[0.05] transition-colors"
               title="Previous post"
             >
               <ArrowLeftIcon className="w-3.5 h-3.5" />
@@ -126,7 +126,7 @@ export default async function Page({
           {next && (
             <Link
               href={`/blog/${next.slug}`}
-              className="flex items-center justify-center w-8 h-8 rounded-lg border border-zinc-200/80 dark:border-white/[0.08] text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-white/[0.05] transition-colors"
+              className="flex items-center justify-center w-8 h-8 rounded-lg border border-border text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-50 dark:hover:bg-white/[0.05] transition-colors"
               title="Next post"
             >
               <ArrowRightIcon className="w-3.5 h-3.5" />
@@ -135,42 +135,46 @@ export default async function Page({
         </div>
       </div>
 
-      {/* ── Hero image ──────────────────────────────────────────────────────── */}
+      {/* ── Hero image with ambient backdrop ──────────────────────────────────── */}
       {post.metadata.image && (
-        <div className="relative w-full aspect-[16/7] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+        <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] lg:aspect-[24/9] min-h-[240px] sm:min-h-[320px] lg:min-h-[400px] overflow-hidden bg-zinc-950 flex items-center justify-center border-b border-border/70">
+          <Image
+            src={post.metadata.image}
+            alt=""
+            fill
+            aria-hidden="true"
+            unoptimized
+            className="object-cover blur-2xl opacity-40 scale-110 pointer-events-none"
+          />
           <Image
             src={post.metadata.image}
             alt={post.metadata.title}
             fill
             priority
-            quality={90}
+            quality={95}
             unoptimized
-            className="object-cover object-center"
+            className="object-contain object-center p-3 sm:p-6"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
         </div>
       )}
 
       {/* ── Article header ───────────────────────────────────────────────────── */}
-      <div className="px-6 sm:px-10 md:px-14 pt-10 sm:pt-12 pb-8 sm:pb-10 border-b border-zinc-100 dark:border-white/[0.06]">
+      <div className="px-6 sm:px-10 md:px-14 lg:px-20 pt-8 sm:pt-12 pb-8 sm:pb-10 border-b border-border/70">
         {/* Category / label */}
         {post.metadata.category && (
-          <div className="flex items-center gap-2 mb-5">
-            <div className="h-px w-5" style={{ background: "#FA0143" }} />
-            <span className="text-[11px] font-bold uppercase tracking-[0.28em]" style={{ color: "#FA0143" }}>
-              {post.metadata.category}
-            </span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FA0143]/10 border border-[#FA0143]/20 text-[11px] font-bold text-[#FA0143] uppercase tracking-widest mb-4">
+            <span>{post.metadata.category}</span>
           </div>
         )}
 
         {/* Title */}
-        <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] font-black leading-[1.1] tracking-tight text-zinc-900 dark:text-zinc-50 mb-5 text-balance">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight tracking-tight text-zinc-900 dark:text-zinc-50 mb-4">
           {post.metadata.title}
         </h1>
 
         {/* Description */}
         {post.metadata.description && (
-          <p className="text-base sm:text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-2xl mb-6">
+          <p className="text-base sm:text-lg text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-3xl mb-6">
             {post.metadata.description}
           </p>
         )}
@@ -199,16 +203,18 @@ export default async function Page({
       </div>
 
       {/* ── Article body ─────────────────────────────────────────────────────── */}
-      <Prose className="px-6 sm:px-10 md:px-14 py-10 sm:py-12 font-sans prose-base sm:prose-lg prose-p:leading-8 prose-headings:tracking-tight prose-headings:font-bold prose-a:text-[#FA0143] prose-a:no-underline hover:prose-a:underline">
-        <InlineTOC items={toc} />
-        <div>
-          <MDX code={post.content} />
-        </div>
-      </Prose>
+      <div className="px-6 sm:px-10 md:px-14 lg:px-20 py-10 sm:py-14">
+        <Prose className="max-w-4xl mx-auto font-sans prose-base sm:prose-lg prose-p:leading-8 prose-headings:tracking-tight prose-headings:font-bold prose-a:text-[#FA0143] prose-a:no-underline hover:prose-a:underline">
+          <InlineTOC items={toc} />
+          <div>
+            <MDX code={post.content} />
+          </div>
+        </Prose>
+      </div>
 
       {/* ── Previous / Next navigation ───────────────────────────────────────── */}
       {(previous || next) && (
-        <div className="border-t border-zinc-100 dark:border-white/[0.06] grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-zinc-100 dark:divide-white/[0.06]">
+        <div className="border-t border-border/70 grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-border/70">
           {previous ? (
             <Link
               href={`/blog/${previous.slug}`}
