@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ArrowUpRight, Calendar, Clock, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Calendar } from "lucide-react";
 
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -10,18 +10,19 @@ import { SITE_INFO } from "@/config/site";
 import { USER } from "@/data/user";
 import { getAllPosts } from "@/data/blog";
 import { BlogPostCard } from "@/features/profile/components/blog-post-card";
+import { Panel, PanelContent, PanelHeader, PanelTitle } from "@/features/profile/components/panel";
 
 export const metadata: Metadata = {
-  title: "Articles & Engineering Insights",
+  title: "Blog",
   description:
-    "Explore in-depth articles, tutorials, and technical insights on modern web development, React, Next.js architecture, and interactive UI engineering by Gowtham.",
+    "Explore articles, tutorials, and engineering insights on modern web development, Next.js architecture, and UI engineering by Gowtham.",
   alternates: {
     canonical: `${SITE_INFO.url}/blog`,
   },
   openGraph: {
-    title: "Articles & Engineering Insights | Gowtham",
+    title: "Blog | Gowtham",
     description:
-      "Explore in-depth articles, tutorials, and technical insights on modern web development, React, Next.js architecture, and interactive UI engineering by Gowtham.",
+      "Explore articles, tutorials, and engineering insights on modern web development, Next.js architecture, and UI engineering by Gowtham.",
     url: `${SITE_INFO.url}/blog`,
     type: "website",
     siteName: SITE_INFO.name,
@@ -30,15 +31,15 @@ export const metadata: Metadata = {
         url: SITE_INFO.ogImage,
         width: 1200,
         height: 630,
-        alt: "Gowtham Dev | Articles & Insights",
+        alt: "Gowtham | Blog",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Articles & Engineering Insights | Gowtham",
+    title: "Blog | Gowtham",
     description:
-      "Explore in-depth articles, tutorials, and technical insights on modern web development, React, Next.js architecture, and interactive UI engineering by Gowtham.",
+      "Explore articles, tutorials, and engineering insights on modern web development, Next.js architecture, and UI engineering by Gowtham.",
     creator: `@${USER.username}`,
     images: [SITE_INFO.ogImage],
   },
@@ -67,9 +68,9 @@ const blogJsonLd = {
     {
       "@type": "Blog",
       "@id": `${SITE_INFO.url}/blog#blog`,
-      "name": "Gowtham's Engineering Blog",
+      "name": "Gowtham's Blog",
       "description":
-        "In-depth articles, tutorials, and technical insights on modern web development, React, Next.js architecture, and UI engineering.",
+        "Articles, tutorials, and engineering insights on modern web development, Next.js architecture, and UI engineering.",
       "url": `${SITE_INFO.url}/blog`,
       "publisher": {
         "@type": "Person",
@@ -101,180 +102,123 @@ export default function Page() {
       />
       <div>
         {/* Header */}
-        <div className="sticky top-3 sm:top-4 lg:top-6 z-50 mb-4 sm:mb-6 lg:mb-8">
+        <div className="sticky top-3 sm:top-4 lg:top-6 z-50 mb-2 sm:mb-3 lg:mb-5">
           <SiteHeader />
         </div>
 
-        {/* Main Card Container */}
-        <div className="relative rounded-[24px] sm:rounded-[32px] border border-border bg-card shadow-sm overflow-hidden mb-6 sm:mb-8 w-full">
-          {/* Subtle background ambient texture & glow */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
-            style={{
-              backgroundImage: "radial-gradient(circle, currentColor 1px, transparent 1px)",
-              backgroundSize: "24px 24px",
-            }}
-          />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -top-24 -right-24 w-80 h-80 rounded-full"
-            style={{
-              background: "radial-gradient(circle, rgba(250,1,67,0.08) 0%, transparent 70%)",
-            }}
-          />
+        {/* Main Panel matching homepage */}
+        <Panel className="mb-6 sm:mb-8">
+          <PanelHeader className="px-4 sm:px-8 md:px-10 py-3.5 sm:py-6">
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3 sm:gap-4">
+                <Link
+                  href="/"
+                  className="flex size-8 sm:size-9 items-center justify-center rounded-xl border border-zinc-200 dark:border-white/10 bg-zinc-100 dark:bg-white/5 text-muted-foreground hover:text-foreground hover:bg-zinc-200/60 dark:hover:bg-white/10 transition-colors"
+                  title="Back to home"
+                  aria-label="Back to home"
+                >
+                  <ArrowLeft className="size-4" />
+                </Link>
+                <PanelTitle className="text-lg sm:text-2xl md:text-3xl font-black tracking-tight whitespace-nowrap">
+                  Blog
+                </PanelTitle>
+              </div>
 
-          {/* Heading section */}
-          <div className="px-6 sm:px-10 md:px-12 lg:px-14 pt-8 sm:pt-12 pb-6 sm:pb-8 border-b border-border/70">
-            <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-              <Link
-                href="/"
-                className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors uppercase tracking-wider"
-              >
-                <ArrowLeft className="w-3.5 h-3.5" />
-                <span>Back to Home</span>
-              </Link>
-
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FA0143]/10 border border-[#FA0143]/20 text-[11px] font-bold text-[#FA0143] uppercase tracking-widest">
-                <Sparkles className="w-3 h-3" />
-                <span>Articles &amp; Insights</span>
+              <div className="px-2.5 py-1 sm:px-4 sm:py-2 rounded-[10px] sm:rounded-[16px] bg-zinc-100 text-[11px] sm:text-sm font-semibold text-muted-foreground border border-zinc-200 dark:bg-white/5 dark:border-white/10 uppercase tracking-wider shrink-0">
+                {sortedPosts.length} {sortedPosts.length === 1 ? "Article" : "Articles"}
               </div>
             </div>
+          </PanelHeader>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-zinc-900 dark:text-zinc-50 mb-3">
-              Writing &amp;{" "}
-              <span className="relative inline-block">
-                <span className="relative z-10">Ideas</span>
-                <span
-                  className="absolute bottom-0.5 left-0 right-0 h-[3px] rounded-full"
-                  style={{ background: "rgba(250,1,67,0.4)" }}
-                />
-              </span>
-            </h2>
-
-            <p className="text-sm sm:text-base text-zinc-500 dark:text-zinc-400 max-w-2xl leading-relaxed font-normal">
-              A curated collection of technical deep dives, tutorials, and engineering insights on modern web development, Next.js architecture, and interactive web experiences.
-            </p>
-          </div>
-
-          {/* Posts list */}
-          <div className="p-6 sm:p-10 lg:p-12">
+          <PanelContent className="p-4 sm:p-6 md:p-8">
             {sortedPosts.length === 0 ? (
-              <div className="py-24 flex flex-col items-center gap-3 text-center">
-                <div
-                  className="w-12 h-12 rounded-2xl flex items-center justify-center mb-1"
-                  style={{ background: "rgba(250,1,67,0.08)" }}
-                >
-                  <span style={{ color: "#FA0143", fontSize: "1.4rem" }}>✍</span>
-                </div>
+              <div className="py-20 flex flex-col items-center gap-2 text-center">
                 <p className="text-base font-semibold text-zinc-800 dark:text-zinc-200">
                   No articles published yet
                 </p>
-                <p className="text-xs text-zinc-400 dark:text-zinc-500">
-                  Check back soon for upcoming articles and updates.
+                <p className="text-xs text-muted-foreground">
+                  Check back soon for new articles and updates.
                 </p>
               </div>
             ) : isSingle ? (
-              /* ── Single Post Featured Layout ── */
+              /* ── Single Article Editorial Layout ── */
               <div className="w-full">
                 <Link
                   href={`/blog/${sortedPosts[0].slug}`}
-                  className="group relative flex flex-col lg:flex-row overflow-hidden rounded-2xl sm:rounded-3xl bg-zinc-50 dark:bg-zinc-900/60 border border-border hover:border-zinc-300 dark:hover:border-zinc-700 shadow-sm hover:shadow-xl transition-all duration-300"
+                  className="group flex flex-col lg:flex-row rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-50/80 dark:bg-white/[0.03] hover:bg-zinc-50 dark:hover:bg-white/[0.05] hover:border-zinc-300 dark:hover:border-white/20 transition-all duration-200 overflow-hidden"
                 >
-                  {/* Image side with uncropped view and ambient blur */}
-                  <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-auto lg:w-7/12 min-h-[260px] sm:min-h-[320px] lg:min-h-[380px] overflow-hidden bg-zinc-950 shrink-0 flex items-center justify-center">
+                  {/* Image container */}
+                  <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-auto lg:w-7/12 min-h-[220px] sm:min-h-[280px] lg:min-h-[340px] bg-zinc-100 dark:bg-zinc-900 overflow-hidden shrink-0 border-b lg:border-b-0 lg:border-r border-zinc-200/80 dark:border-white/10">
                     {sortedPosts[0].metadata.image ? (
-                      <>
-                        <Image
-                          src={sortedPosts[0].metadata.image}
-                          alt=""
-                          fill
-                          aria-hidden="true"
-                          unoptimized
-                          className="object-cover blur-2xl opacity-40 scale-110 pointer-events-none"
-                        />
-                        <Image
-                          src={sortedPosts[0].metadata.image}
-                          alt={sortedPosts[0].metadata.title}
-                          fill
-                          priority
-                          unoptimized
-                          className="object-contain object-center p-3 sm:p-5 transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                        />
-                      </>
+                      <Image
+                        src={sortedPosts[0].metadata.image}
+                        alt={sortedPosts[0].metadata.title}
+                        fill
+                        priority
+                        unoptimized
+                        className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                      />
                     ) : (
-                      <div className="w-full h-full min-h-[220px] flex items-center justify-center bg-zinc-900">
-                        <span className="text-xs font-mono text-[#FA0143] tracking-widest uppercase">
-                          Featured Article
-                        </span>
+                      <div className="w-full h-full flex items-center justify-center font-mono text-xs text-muted-foreground uppercase tracking-widest">
+                        Article
                       </div>
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent lg:hidden pointer-events-none" />
-                    <span
-                      className="absolute top-4 left-4 z-10 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full text-white shadow-md"
-                      style={{ background: "#FA0143" }}
-                    >
-                      Featured
-                    </span>
                   </div>
 
-                  {/* Content side */}
-                  <div className="flex flex-col justify-between p-6 sm:p-8 lg:p-10 lg:w-5/12 gap-6">
+                  {/* Content */}
+                  <div className="flex flex-col justify-between p-5 sm:p-7 lg:p-8 lg:w-5/12 gap-5">
                     <div>
-                      {/* Date & category */}
-                      <div className="flex items-center gap-2 text-xs font-medium text-zinc-400 dark:text-zinc-500 mb-3">
-                        <Calendar className="w-3.5 h-3.5" />
+                      <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+                        <Calendar className="size-3.5" />
                         <time dateTime={dayjs(sortedPosts[0].metadata.createdAt).toISOString()}>
-                          {dayjs(sortedPosts[0].metadata.createdAt).format("MMMM DD, YYYY")}
+                          {dayjs(sortedPosts[0].metadata.createdAt).format("MMM DD, YYYY")}
                         </time>
+                        {sortedPosts[0].metadata.category && (
+                          <span className="px-2 py-0.5 rounded-md bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10 text-[11px] font-medium text-zinc-600 dark:text-zinc-300">
+                            {sortedPosts[0].metadata.category}
+                          </span>
+                        )}
                       </div>
 
-                      {/* Title */}
-                      <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-snug tracking-tight text-zinc-900 dark:text-zinc-50 group-hover:text-[#FA0143] transition-colors duration-200 mb-3">
+                      <h3 className="text-xl sm:text-2xl font-bold leading-snug tracking-tight text-zinc-900 dark:text-white group-hover:text-primary transition-colors duration-200 mb-2.5">
                         {sortedPosts[0].metadata.title}
-                      </h2>
+                      </h3>
 
-                      {/* Excerpt */}
                       {sortedPosts[0].metadata.description && (
-                        <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-4">
+                        <p className="text-sm sm:text-base text-zinc-500 dark:text-zinc-400 font-normal leading-relaxed line-clamp-4">
                           {sortedPosts[0].metadata.description}
                         </p>
                       )}
                     </div>
 
-                    {/* Bottom row: Read Article action */}
-                    <div className="pt-4 border-t border-border flex items-center justify-between">
-                      <span className="text-xs font-bold uppercase tracking-widest text-[#FA0143]">
-                        Read full article
-                      </span>
-                      <div className="w-9 h-9 rounded-full bg-[#FA0143]/10 text-[#FA0143] flex items-center justify-center group-hover:bg-[#FA0143] group-hover:text-white transition-all duration-300">
-                        <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <div className="pt-4 border-t border-zinc-200/80 dark:border-white/10 flex items-center justify-between text-xs sm:text-sm font-semibold text-zinc-700 dark:text-zinc-300 group-hover:text-primary transition-colors">
+                      <span>Read article</span>
+                      <div className="flex size-8 items-center justify-center rounded-xl bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10 text-muted-foreground group-hover:bg-primary group-hover:text-white group-hover:border-transparent transition-all">
+                        <ArrowUpRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </div>
                     </div>
                   </div>
                 </Link>
               </div>
             ) : sortedPosts.length === 2 ? (
-              /* ── Exactly 2 Posts Balanced 2-Column Grid ── */
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
                 {sortedPosts.map((post) => (
                   <BlogPostCard key={post.slug} post={post} />
                 ))}
               </div>
             ) : (
-              /* ── 3+ Posts Grid ── */
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
                 {sortedPosts.map((post) => (
                   <BlogPostCard key={post.slug} post={post} />
                 ))}
               </div>
             )}
-          </div>
-        </div>
+          </PanelContent>
+        </Panel>
       </div>
 
       {/* Footer matching homepage */}
-      <div className="mt-2 sm:mt-3 lg:mt-5">
+      <div className="mt-2 sm:mt-3 lg:mt-5" data-section="footer">
         <SiteFooter />
       </div>
     </div>
