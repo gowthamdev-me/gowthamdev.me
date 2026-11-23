@@ -53,7 +53,7 @@ export function AdminContent() {
               <img
                 src={content.profile.avatar}
                 alt={content.profile.displayName}
-                className="w-16 h-16 rounded-2xl object-cover"
+                className="w-16 h-16 rounded-2xl object-cover object-[50%_25%] scale-[1.25]"
               />
             )}
             <div>

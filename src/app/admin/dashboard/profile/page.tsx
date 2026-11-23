@@ -212,7 +212,7 @@ export default function AdminProfilePage() {
           <h2 className="text-base font-semibold text-white mb-4">Profile Photo</h2>
           <div className="flex items-center gap-4">
             {profile.avatar ? (
-              <img src={profile.avatar} alt="Avatar" className="w-20 h-20 rounded-2xl object-cover border border-zinc-600/50" />
+              <img src={profile.avatar} alt="Avatar" className="w-20 h-20 rounded-2xl object-cover object-[50%_25%] scale-[1.25] border border-zinc-600/50" />
             ) : (
               <div className="w-20 h-20 rounded-2xl bg-zinc-700/50 border border-zinc-600/50 flex items-center justify-center text-zinc-500 text-2xl">👤</div>
             )}

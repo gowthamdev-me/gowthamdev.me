@@ -206,7 +206,7 @@ export default function AdminDashboardLayout({
                   <img
                     src={profile.avatar}
                     alt={profile.displayName || "Admin"}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-[50%_25%] scale-[1.35]"
                   />
                 </div>
               ) : (

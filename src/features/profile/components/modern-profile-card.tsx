@@ -281,8 +281,15 @@ export function ProfileBio({ initialProfile }: { initialProfile?: any } = {}) {
 
                 {/* Avatar header — visible on all screen sizes */}
                 <div className="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-6 lg:mb-8">
-                    <div className="relative size-10 sm:size-12 rounded-full overflow-hidden border-2 border-zinc-100 dark:border-white/10 shadow-sm">
-                        <Image src={avatar} alt={displayName} fill sizes="48px" className="object-cover" priority />
+                    <div className="relative size-10 sm:size-12 rounded-full overflow-hidden border-2 border-zinc-100 dark:border-white/10 shadow-sm shrink-0">
+                        <Image
+                            src={avatar}
+                            alt={displayName}
+                            fill
+                            sizes="48px"
+                            className="object-cover object-[50%_25%] scale-[1.35]"
+                            priority
+                        />
                     </div>
                     <div className="flex flex-col">
                         <span className="text-zinc-900 dark:text-white font-bold text-base sm:text-lg leading-tight" style={{ fontFamily: "'JapanDaisuki', serif" }}>{renderDisplayName(displayName)}</span>
