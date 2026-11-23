@@ -73,9 +73,9 @@ export default function Page() {
         </div>
 
         {/* Main content: HeroLayout handles card slide-in + full-width bio */}
-        <HeroLayout>
+        <HeroLayout initialProfile={profile}>
           <div id="about" data-section="about">
-            <ProfileBio />
+            <ProfileBio initialProfile={profile} />
           </div>
           {sectionVisibility.aboutMe ? <AboutMe /> : null}
           {sectionVisibility.socialLinks ? <SocialLinks /> : null}

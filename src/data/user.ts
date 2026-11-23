@@ -36,9 +36,9 @@ I'm passionate about creating user-centric software solutions with intuitive and
 
 Let's connect and collaborate!
   `,
-  avatar: "/uploads/1779344010991-photo_2026-05-21_11-41-58.jpg",
+  avatar: "/uploads/gowtham-profile.jpg",
   cvUrl: "/uploads/1775220568848-Gowtham_CV.pdf",
-  ogImage: "/uploads/1779344010991-photo_2026-05-21_11-41-58.jpg",
+  ogImage: "/uploads/gowtham-profile.jpg",
   namePronunciationUrl: "",
   keywords:
     "gowtham, gowthamdev, gowtham portfolio, gowtham dev, gowtham web developer, gowtham frontend developer, gowtham software engineer, gowthamdev portfolio, gowthamdev.me, react developer, nextjs, typescript, web developer portfolio",

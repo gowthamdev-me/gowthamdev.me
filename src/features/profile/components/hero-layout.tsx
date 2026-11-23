@@ -5,9 +5,10 @@ import { ProfileSidebar } from "./modern-profile-card";
 
 interface HeroLayoutProps {
     children: React.ReactNode;
+    initialProfile?: any;
 }
 
-export function HeroLayout({ children }: HeroLayoutProps) {
+export function HeroLayout({ children, initialProfile }: HeroLayoutProps) {
     const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
@@ -23,7 +24,7 @@ export function HeroLayout({ children }: HeroLayoutProps) {
         <div className="w-full">
             {/* ── Mobile (< md / 768px): Profile Sidebar on top ── */}
             <div className="w-full md:hidden mb-3 sm:mb-5">
-                <ProfileSidebar />
+                <ProfileSidebar initialProfile={initialProfile} />
             </div>
 
             {/* ── Main Layout: Sidebar + Unified Content Stream ── */}
@@ -52,7 +53,7 @@ export function HeroLayout({ children }: HeroLayoutProps) {
                             willChange: "transform, opacity",
                         }}
                     >
-                        <ProfileSidebar />
+                        <ProfileSidebar initialProfile={initialProfile} />
                     </div>
                 </div>
 

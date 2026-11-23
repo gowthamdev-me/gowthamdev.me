@@ -43,9 +43,9 @@ const renderDisplayName = (name: string) => {
 };
 
 // Profile Sidebar
-export function ProfileSidebar() {
-    const [profile, setProfile] = useState<any>(null);
-    const [cvUrl, setCvUrl] = useState(USER.cvUrl || "");
+export function ProfileSidebar({ initialProfile }: { initialProfile?: any } = {}) {
+    const [profile, setProfile] = useState<any>(initialProfile || null);
+    const [cvUrl, setCvUrl] = useState(initialProfile?.cvUrl || USER.cvUrl || "");
 
     useEffect(() => {
         fetch(`/api/content?t=${Date.now()}`)
@@ -245,8 +245,8 @@ export function ProfileSidebar() {
 }
 
 // Profile Bio — full-width with vertical auto-scrolling about text
-export function ProfileBio() {
-    const [profile, setProfile] = useState<any>(null);
+export function ProfileBio({ initialProfile }: { initialProfile?: any } = {}) {
+    const [profile, setProfile] = useState<any>(initialProfile || null);
 
     useEffect(() => {
         fetch(`/api/content?t=${Date.now()}`)

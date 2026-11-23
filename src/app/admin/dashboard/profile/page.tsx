@@ -90,6 +90,7 @@ export default function AdminProfilePage() {
     } catch {
       setMessage("Error uploading photo.");
     }
+    e.target.value = "";
     setTimeout(() => setMessage(""), 3000);
   };
 
@@ -215,10 +216,39 @@ export default function AdminProfilePage() {
             ) : (
               <div className="w-20 h-20 rounded-2xl bg-zinc-700/50 border border-zinc-600/50 flex items-center justify-center text-zinc-500 text-2xl">👤</div>
             )}
-            <label className="cursor-pointer px-4 py-2.5 rounded-xl bg-zinc-700/50 hover:bg-zinc-700 border border-zinc-600/50 text-sm text-zinc-300 transition-all">
-              {profile.avatar ? "Change Photo" : "Upload Photo"}
-              <input type="file" accept="image/*" onChange={handleAvatarUpload} className="hidden" />
+            <div className="flex flex-col gap-2">
+              <label className="cursor-pointer inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-zinc-700/50 hover:bg-zinc-700 border border-zinc-600/50 text-sm text-zinc-300 transition-all">
+                {profile.avatar ? "Upload New Photo" : "Upload Photo"}
+                <input type="file" accept="image/*" onChange={handleAvatarUpload} className="hidden" />
+              </label>
+              {profile.avatar && (
+                <button
+                  type="button"
+                  onClick={() => setProfile((p) => ({ ...p, avatar: "" }))}
+                  className="text-xs text-red-400 hover:text-red-300 transition-colors text-left"
+                >
+                  Remove Photo
+                </button>
+              )}
+            </div>
+          </div>
+
+          <div className="mt-4 pt-4 border-t border-zinc-700/40">
+            <label className="block text-xs font-medium text-zinc-400 mb-1.5">
+              Image URL / Path:
             </label>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={profile.avatar}
+                onChange={(e) => setProfile((p) => ({ ...p, avatar: e.target.value }))}
+                placeholder="/uploads/gowtham-profile.jpg or https://..."
+                className="flex-1 px-4 py-2 rounded-xl bg-zinc-900/50 border border-zinc-600/50 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all text-xs sm:text-sm font-mono"
+              />
+            </div>
+            <p className="text-[11px] text-zinc-500 mt-1">
+              Supports local upload paths (e.g. <span className="font-mono text-zinc-400">/uploads/...</span>) or external image URLs (e.g. GitHub raw, Cloudinary, Imgur). Click &quot;Save Profile&quot; below when finished.
+            </p>
           </div>
         </div>
 
