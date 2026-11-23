@@ -106,8 +106,8 @@ export function ProfileSidebar({ initialProfile }: { initialProfile?: any } = {}
             <div className="hidden md:flex flex-col relative overflow-hidden rounded-[28px] lg:rounded-[40px] border border-zinc-200/80 dark:border-white/10 bg-zinc-950 group text-left w-full shadow-2xl transition-all duration-300" style={{ height: "calc(100vh - 120px)", minHeight: "520px", maxHeight: "800px" }}>
                 <Image src={avatar} alt={displayName} fill priority sizes="(max-width: 1024px) 50vw, 30vw" className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105" />
                 {/* Bottom gradient fades photo into card dark section */}
-                <div className="absolute bottom-0 left-0 right-0 h-[52%] bg-gradient-to-t from-zinc-950 via-zinc-950/85 via-30% to-transparent pointer-events-none" />
-                <div className="absolute top-5 left-5 z-30">
+                <div className="absolute bottom-0 left-0 right-0 h-[44%] bg-gradient-to-t from-zinc-950 via-zinc-950/80 via-35% to-transparent pointer-events-none" />
+                <div className="absolute top-4 lg:top-5 left-4 lg:left-5 z-30">
                     <div className="flex items-center gap-2 bg-black/70 backdrop-blur-xl px-3.5 py-1.5 rounded-full border border-[#A3E635]/60 shadow-lg shadow-black/50">
                         <span className="relative flex size-2.5 shrink-0">
                             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#A3E635] opacity-75" />
@@ -116,28 +116,28 @@ export function ProfileSidebar({ initialProfile }: { initialProfile?: any } = {}
                         <span className="text-white text-xs font-bold tracking-wide whitespace-nowrap">Available for Work</span>
                     </div>
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 z-30 p-6 lg:p-7">
-                    <div className="mb-4">
-                        <h2 className="text-2xl lg:text-3xl xl:text-4xl font-black text-white leading-none tracking-tight" style={{ fontFamily: "'JapanDaisuki', serif" }}>{renderDisplayName(displayName)}</h2>
-                        <p className="text-white/95 text-sm lg:text-base mt-2 font-bold tracking-wide drop-shadow">
+                <div className="absolute bottom-0 left-0 right-0 z-30 p-4 lg:p-5">
+                    <div className="mb-2 lg:mb-2.5">
+                        <h2 className="text-2xl lg:text-3xl font-black text-white leading-none tracking-tight" style={{ fontFamily: "'JapanDaisuki', serif" }}>{renderDisplayName(displayName)}</h2>
+                        <p className="text-white/95 text-xs lg:text-sm mt-1 font-bold tracking-wide drop-shadow">
                             <TypingAnimation />
                         </p>
                     </div>
-                    <div className="flex items-center gap-2 lg:gap-2.5 mb-4">
+                    <div className="flex items-center gap-2 mb-2.5 lg:mb-3">
                         {socialLinks.slice(0, 4).map(({ name, href, Icon }) => (
-                            <motion.a key={name} href={href} target="_blank" rel="noopener noreferrer" aria-label={`Visit Gowtham's ${name}`} whileHover={{ scale: 1.12 }} transition={{ type: "spring", stiffness: 300, damping: 20 }} className="flex items-center justify-center size-8.5 lg:size-9.5 rounded-xl bg-white/15 hover:bg-white/25 border border-white/20 text-white/80 hover:text-white transition-colors backdrop-blur-sm">
-                                <Icon size={15} className="flex-shrink-0" />
+                            <motion.a key={name} href={href} target="_blank" rel="noopener noreferrer" aria-label={`Visit Gowtham's ${name}`} whileHover={{ scale: 1.12 }} transition={{ type: "spring", stiffness: 300, damping: 20 }} className="flex items-center justify-center size-8 lg:size-8.5 rounded-xl bg-white/15 hover:bg-white/25 border border-white/20 text-white/80 hover:text-white transition-colors backdrop-blur-sm">
+                                <Icon size={14} className="flex-shrink-0" />
                             </motion.a>
                         ))}
                         <div className="flex-1 h-px bg-white/20 ml-1" />
                     </div>
-                    <div className="flex items-center gap-2.5">
-                        <a href={cvUrl || "#"} download={cvUrl ? cvUrl.split("/").pop() : "CV.pdf"} onClick={(e) => { if (!cvUrl) { e.preventDefault(); toast.error("CV not available", { description: "Sorry CV can't upload I will upload Soon" }); } }} className="flex-1 h-11 lg:h-12 rounded-xl bg-white/15 hover:bg-white/25 text-white font-bold text-xs lg:text-sm border border-white/25 hover:border-white/45 backdrop-blur-sm transition-all duration-300 group/cv flex items-center justify-center gap-1.5">
-                            <DownloadIcon size={15} className="flex-shrink-0" />
+                    <div className="flex items-center gap-2">
+                        <a href={cvUrl || "#"} download={cvUrl ? cvUrl.split("/").pop() : "CV.pdf"} onClick={(e) => { if (!cvUrl) { e.preventDefault(); toast.error("CV not available", { description: "Sorry CV can't upload I will upload Soon" }); } }} className="flex-1 h-10 lg:h-10.5 rounded-xl bg-white/15 hover:bg-white/25 text-white font-bold text-xs border border-white/25 hover:border-white/45 backdrop-blur-sm transition-all duration-300 group/cv flex items-center justify-center gap-1.5">
+                            <DownloadIcon size={14} className="flex-shrink-0" />
                             <span>Download CV</span>
                         </a>
-                        <a href={`mailto:${USER.email ? decodeEmail(USER.email) || USER.email : "ggowtham92089@gmail.com"}?subject=${encodeURIComponent("Hi, I've seen your Portfolio")}`} onClick={handleEmailClick} className="flex-1 h-11 lg:h-12 rounded-xl bg-[#FA0143] hover:bg-[#ff1e5c] text-white font-extrabold text-xs lg:text-sm shadow-lg shadow-[#FA0143]/30 hover:shadow-[#FA0143]/55 transition-all duration-300 group/btn flex items-center justify-center gap-1.5">
-                            <ArrowUpRightIcon size={15} className="flex-shrink-0" />
+                        <a href={`mailto:${USER.email ? decodeEmail(USER.email) || USER.email : "ggowtham92089@gmail.com"}?subject=${encodeURIComponent("Hi, I've seen your Portfolio")}`} onClick={handleEmailClick} className="flex-1 h-10 lg:h-10.5 rounded-xl bg-[#FA0143] hover:bg-[#ff1e5c] text-white font-extrabold text-xs shadow-lg shadow-[#FA0143]/30 hover:shadow-[#FA0143]/55 transition-all duration-300 group/btn flex items-center justify-center gap-1.5">
+                            <ArrowUpRightIcon size={14} className="flex-shrink-0" />
                             <span>{"Let's talk"}</span>
                         </a>
                     </div>
@@ -159,40 +159,40 @@ export function ProfileSidebar({ initialProfile }: { initialProfile?: any } = {}
                 />
 
                 {/* Bottom gradient */}
-                <div className="absolute bottom-0 left-0 right-0 h-[48%] bg-gradient-to-t from-black/95 via-black/65 to-transparent pointer-events-none" />
+                <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-gradient-to-t from-black/95 via-black/60 via-30% to-transparent pointer-events-none" />
 
                 {/* Top-Left Available for Work Badge */}
-                <div className="absolute top-4 left-4 z-30">
-                    <div className="flex items-center gap-1.5 bg-black/70 backdrop-blur-xl px-3 py-1.5 rounded-full border border-white/25 shadow-lg">
+                <div className="absolute top-3.5 left-3.5 z-30">
+                    <div className="flex items-center gap-1.5 bg-black/70 backdrop-blur-xl px-2.5 py-1 rounded-full border border-white/25 shadow-lg">
                         <span className="relative flex size-2 shrink-0">
                             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#A3E635] opacity-75" />
                             <span className="relative inline-flex size-2 rounded-full bg-[#A3E635]" />
                         </span>
-                        <span className="text-white text-[11px] sm:text-xs font-bold tracking-wide whitespace-nowrap">Available for Work</span>
+                        <span className="text-white text-[10.5px] font-bold tracking-wide whitespace-nowrap">Available for Work</span>
                     </div>
                 </div>
 
                 {/* Bottom Content */}
-                <div className="absolute bottom-0 left-0 right-0 z-30 p-4 sm:p-5">
+                <div className="absolute bottom-0 left-0 right-0 z-30 p-3.5 sm:p-4">
                     {/* Name + Typing */}
-                    <div className="mb-2.5 sm:mb-3">
+                    <div className="mb-1.5">
                         <h2
                             className="font-black text-white leading-none tracking-tight"
                             style={{
                                 fontFamily: "'JapanDaisuki', serif",
-                                fontSize: "clamp(1.6rem, 7vw, 2.4rem)",
+                                fontSize: "clamp(1.4rem, 6.2vw, 2rem)",
                             }}
                         >
                             {renderDisplayName(displayName)}
                         </h2>
-                        <p className="text-white/90 mt-1.5 font-bold drop-shadow-sm"
-                           style={{ fontSize: "clamp(0.72rem, 3.2vw, 0.95rem)" }}>
+                        <p className="text-white/90 mt-1 font-bold drop-shadow-sm"
+                           style={{ fontSize: "clamp(0.68rem, 2.7vw, 0.82rem)" }}>
                             <TypingAnimation />
                         </p>
                     </div>
 
                     {/* Social Links */}
-                    <div className="flex items-center gap-2 mb-3 sm:mb-3.5">
+                    <div className="flex items-center gap-1.5 mb-2 sm:mb-2.5">
                         {socialLinks.slice(0, 4).map(({ name, href, Icon }) => (
                             <motion.a
                                 key={name}
@@ -201,17 +201,17 @@ export function ProfileSidebar({ initialProfile }: { initialProfile?: any } = {}
                                 rel="noopener noreferrer"
                                 aria-label={`Visit Gowtham's ${name}`}
                                 whileTap={{ scale: 0.92 }}
-                                style={{ width: "clamp(2rem, 9vw, 2.5rem)", height: "clamp(2rem, 9vw, 2.5rem)" }}
+                                style={{ width: "clamp(1.9rem, 8vw, 2.2rem)", height: "clamp(1.9rem, 8vw, 2.2rem)" }}
                                 className="flex items-center justify-center rounded-xl bg-white/15 hover:bg-white/25 border border-white/20 text-white/80 hover:text-white transition-colors backdrop-blur-sm flex-shrink-0"
                             >
-                                <Icon size={14} className="flex-shrink-0" />
+                                <Icon size={13} className="flex-shrink-0" />
                             </motion.a>
                         ))}
                         <div className="flex-1 h-px bg-white/20 ml-1" />
                     </div>
 
                     {/* Buttons */}
-                    <div className="flex items-center gap-2 sm:gap-2.5">
+                    <div className="flex items-center gap-2">
                         <a
                             href={cvUrl || "#"}
                             download={cvUrl ? cvUrl.split("/").pop() : "CV.pdf"}
@@ -222,7 +222,7 @@ export function ProfileSidebar({ initialProfile }: { initialProfile?: any } = {}
                                 }
                             }}
                             className="flex-1 rounded-xl bg-white/15 hover:bg-white/25 text-white font-bold border border-white/25 hover:border-white/45 backdrop-blur-sm transition-all duration-300 flex items-center justify-center gap-1.5"
-                            style={{ height: "clamp(2.4rem, 10vw, 3rem)", fontSize: "clamp(0.7rem, 3vw, 0.875rem)" }}
+                            style={{ height: "clamp(2.2rem, 8.5vw, 2.6rem)", fontSize: "clamp(0.68rem, 2.7vw, 0.82rem)" }}
                         >
                             <DownloadIcon size={13} className="flex-shrink-0" />
                             <span>Download CV</span>
@@ -231,7 +231,7 @@ export function ProfileSidebar({ initialProfile }: { initialProfile?: any } = {}
                             href={`mailto:${USER.email ? decodeEmail(USER.email) || USER.email : "ggowtham92089@gmail.com"}?subject=${encodeURIComponent("Hi, I've seen your Portfolio")}`}
                             onClick={handleEmailClick}
                             className="flex-1 rounded-xl bg-[#FA0143] hover:bg-[#ff1e5c] text-white font-extrabold shadow-lg shadow-[#FA0143]/30 transition-all duration-300 flex items-center justify-center gap-1.5"
-                            style={{ height: "clamp(2.4rem, 10vw, 3rem)", fontSize: "clamp(0.7rem, 3vw, 0.875rem)" }}
+                            style={{ height: "clamp(2.2rem, 8.5vw, 2.6rem)", fontSize: "clamp(0.68rem, 2.7vw, 0.82rem)" }}
                         >
                             <ArrowUpRightIcon size={13} className="flex-shrink-0" />
                             <span>{"Let's talk"}</span>
