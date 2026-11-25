@@ -180,17 +180,26 @@ export function SiteFooter({ variant = "default" }: SiteFooterProps = {}) {
         className="w-full select-none pointer-events-none mt-2 sm:mt-3 px-[4%] pb-3 sm:pb-5"
       >
         <p
-          className="text-center leading-none font-black text-zinc-900/35 dark:text-white/30 md:text-zinc-900/20 md:dark:text-white/15 whitespace-nowrap"
+          className="text-center leading-none font-black text-zinc-900/35 dark:text-white/30 md:text-zinc-900/20 md:dark:text-white/15 whitespace-nowrap footer-wordmark-outline"
           style={{
             fontFamily: "'JapanDaisuki', serif",
             fontSize: "clamp(2rem, 12vw, 14rem)",
             fontWeight: 900,
-            WebkitTextStroke: "1.5px currentColor",
             WebkitTextFillColor: "transparent",
           }}
         >
           Gowtham
         </p>
+        <style>{`
+          .footer-wordmark-outline {
+            -webkit-text-stroke: 1px currentColor;
+          }
+          @media (min-width: 768px) {
+            .footer-wordmark-outline {
+              -webkit-text-stroke: 1.5px currentColor;
+            }
+          }
+        `}</style>
       </div>
     </footer>
   );

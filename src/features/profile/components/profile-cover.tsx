@@ -79,13 +79,13 @@ export function ProfileCover({
 
   return (
     <BrandContextMenu>
-      <div className="relative aspect-[3/1] sm:aspect-[4/1] md:aspect-[5/1] select-none overflow-hidden rounded-[20px] sm:rounded-[28px] lg:rounded-[40px] bg-black border border-zinc-800">
+      <div className="relative aspect-[2.5/1] sm:aspect-[4/1] md:aspect-[5/1] select-none overflow-hidden rounded-[20px] sm:rounded-[28px] lg:rounded-[40px] bg-black border border-zinc-800">
         {/* Blinking squares background */}
         <BlinkingSquaresCanvas {...settings} />
 
         {/* Brand text overlay */}
         {settings.textEnabled && (
-          <div className={`relative z-10 flex flex-row items-center justify-center gap-2.5 sm:gap-4 h-full w-full pointer-events-none ${positionClass}`}>
+          <div className={`relative z-10 flex flex-col md:flex-row items-center justify-center gap-0.5 md:gap-4 h-full w-full pointer-events-none ${positionClass}`}>
             {/* Prefix word e.g. "I'm" */}
             {settings.textPrefix && (
               <span
@@ -123,7 +123,7 @@ export function ProfileCover({
             font-size: var(--cover-mobile-size);
           }
           .cover-accent-char, .cover-base-char {
-            -webkit-text-stroke: 1.4px var(--cover-stroke);
+            -webkit-text-stroke: 0.65px var(--cover-stroke);
           }
           @media (min-width: 768px) {
             .cover-hero-text {
