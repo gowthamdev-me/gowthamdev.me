@@ -8,14 +8,12 @@ function HeaderGowthamMark() {
   return (
     <div className="flex items-center justify-center w-full h-full">
       <span
+        className="text-[1.35rem] sm:text-[1.6rem] font-black select-none leading-none flex items-center justify-center"
         style={{
           fontFamily: "'JapanDaisuki', serif",
-          fontSize: "1.45rem",
           color: "#FA0143",
-          lineHeight: 1,
-          fontWeight: 700,
-          letterSpacing: "-0.01em",
-          userSelect: "none",
+          WebkitTextStroke: "1.1px #FA0143",
+          transform: "translate(0.5px, 1px)",
         }}
       >
         G
