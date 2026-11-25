@@ -13,12 +13,20 @@ function renderAccentText(text: string, accentColor: string, baseColor: string, 
       <span
         style={{
           color: accentColor,
+          WebkitTextStroke: `1.5px ${accentColor}`,
           textShadow: glow ? `0 0 30px ${glowColor}, 0 0 60px ${glowColor}` : "none",
         }}
       >
         {first}
       </span>
-      <span style={{ color: baseColor }}>{rest}</span>
+      <span
+        style={{
+          color: baseColor,
+          WebkitTextStroke: `1.5px ${baseColor}`,
+        }}
+      >
+        {rest}
+      </span>
     </>
   );
 }
@@ -48,12 +56,12 @@ export function ProfileCover({
       .catch(() => {});
   }, []);
 
-  const fontSize = `clamp(1.5rem, ${settings.textFontSize * 0.07}vw + 0.8rem, ${settings.textFontSize / 11}rem)`;
+  const fontSize = `clamp(2rem, ${settings.textFontSize * 0.095}vw + 0.85rem, ${settings.textFontSize / 9}rem)`;
   const letterSpacing = `${settings.textLetterSpacing / 100}em`;
   const fontStyle: React.CSSProperties = {
     fontFamily: "'JapanDaisuki', serif",
     fontSize,
-    fontWeight: settings.textWeight,
+    fontWeight: 900,
     letterSpacing,
     lineHeight: 1.1,
   };

@@ -314,13 +314,13 @@ export function ProfileBio({ initialProfile }: { initialProfile?: any } = {}) {
                             ? aboutParagraphs.map((para, idx) => (
                                 <p
                                     key={idx}
-                                    className="text-zinc-500 dark:text-zinc-400 text-sm sm:text-base md:text-lg leading-relaxed font-medium text-left"
+                                    className="text-zinc-500 dark:text-zinc-400 text-sm sm:text-base md:text-lg leading-relaxed font-medium text-justify"
                                 >
                                     {para}
                                 </p>
                             ))
                             : (
-                                <p className="text-zinc-500 dark:text-zinc-400 text-sm sm:text-base md:text-lg leading-relaxed font-medium text-left">
+                                <p className="text-zinc-500 dark:text-zinc-400 text-sm sm:text-base md:text-lg leading-relaxed font-medium text-justify">
                                     {about}
                                 </p>
                             )

@@ -180,7 +180,7 @@ export function SiteFooter({ variant = "default" }: SiteFooterProps = {}) {
         className="w-full select-none pointer-events-none mt-2 sm:mt-3 px-[4%] pb-3 sm:pb-5"
       >
         <p
-          className="text-center leading-none font-black text-zinc-900/20 dark:text-white/15 whitespace-nowrap"
+          className="text-center leading-none font-black text-zinc-900/35 dark:text-white/30 whitespace-nowrap"
           style={{
             fontFamily: "'JapanDaisuki', serif",
             fontSize: "clamp(2rem, 12vw, 14rem)",
