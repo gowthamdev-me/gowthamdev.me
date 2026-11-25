@@ -114,7 +114,7 @@ function ProjectItemClient({ project }: { project: Project }) {
       {isOpen && (
         <div className="space-y-3 border-t border-zinc-200/80 dark:border-white/10 px-3.5 sm:px-5 py-3 sm:py-4 bg-zinc-50/50 dark:bg-white/[0.01]">
           {project.description && (
-            <div className="prose prose-sm dark:prose-invert max-w-none !font-sans text-zinc-500 dark:text-zinc-400 text-sm sm:text-base md:text-lg leading-relaxed font-medium [&_p]:my-1.5 [&_p]:leading-relaxed [&_ul]:my-2 [&_ul]:pl-4 [&_ul]:space-y-1 [&_li]:my-0.5 [&_li]:leading-relaxed text-justify break-words">
+            <div className="prose prose-sm dark:prose-invert max-w-none !font-sans text-zinc-500 dark:text-zinc-400 text-sm sm:text-base md:text-lg leading-relaxed font-medium [&_p]:my-1.5 [&_p]:leading-relaxed [&_ul]:my-2 [&_ul]:pl-4 [&_ul]:space-y-1 [&_li]:my-0.5 [&_li]:leading-relaxed text-justify md:text-left break-words">
               <ReactMarkdown
                 components={{
                   a: ({ node, ...props }) => (

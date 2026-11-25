@@ -11,18 +11,20 @@ function renderAccentText(text: string, accentColor: string, baseColor: string, 
   return (
     <>
       <span
+        className="cover-accent-char"
         style={{
           color: accentColor,
-          WebkitTextStroke: `1.5px ${accentColor}`,
+          ["--cover-stroke" as string]: accentColor,
           textShadow: glow ? `0 0 30px ${glowColor}, 0 0 60px ${glowColor}` : "none",
         }}
       >
         {first}
       </span>
       <span
+        className="cover-base-char"
         style={{
           color: baseColor,
-          WebkitTextStroke: `1.5px ${baseColor}`,
+          ["--cover-stroke" as string]: baseColor,
         }}
       >
         {rest}
@@ -56,14 +58,16 @@ export function ProfileCover({
       .catch(() => {});
   }, []);
 
-  const fontSize = `clamp(2rem, ${settings.textFontSize * 0.095}vw + 0.85rem, ${settings.textFontSize / 9}rem)`;
+  const desktopFontSize = `clamp(1.5rem, ${settings.textFontSize * 0.07}vw + 0.8rem, ${settings.textFontSize / 11}rem)`;
+  const mobileFontSize = `clamp(2.1rem, 11vw, 3.4rem)`;
   const letterSpacing = `${settings.textLetterSpacing / 100}em`;
   const fontStyle: React.CSSProperties = {
     fontFamily: "'JapanDaisuki', serif",
-    fontSize,
-    fontWeight: 900,
+    fontWeight: settings.textWeight,
     letterSpacing,
     lineHeight: 1.1,
+    ["--cover-mobile-size" as string]: mobileFontSize,
+    ["--cover-desktop-size" as string]: desktopFontSize,
   };
 
   const positionClass =
@@ -86,7 +90,7 @@ export function ProfileCover({
             {settings.textPrefix && (
               <span
                 style={fontStyle}
-                className="inline-block"
+                className="inline-block cover-hero-text"
               >
                 {renderAccentText(
                   settings.textPrefix,
@@ -101,7 +105,7 @@ export function ProfileCover({
             {settings.textName && (
               <span
                 style={fontStyle}
-                className="inline-block"
+                className="inline-block cover-hero-text"
               >
                 {renderAccentText(
                   settings.textName,
@@ -114,6 +118,22 @@ export function ProfileCover({
             )}
           </div>
         )}
+        <style>{`
+          .cover-hero-text {
+            font-size: var(--cover-mobile-size);
+          }
+          .cover-accent-char, .cover-base-char {
+            -webkit-text-stroke: 1.4px var(--cover-stroke);
+          }
+          @media (min-width: 768px) {
+            .cover-hero-text {
+              font-size: var(--cover-desktop-size);
+            }
+            .cover-accent-char, .cover-base-char {
+              -webkit-text-stroke: 0px transparent;
+            }
+          }
+        `}</style>
       </div>
     </BrandContextMenu>
   );
