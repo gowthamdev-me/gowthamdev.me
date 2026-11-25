@@ -81,7 +81,7 @@ export function ClientLoadingWrapper({ children }: ClientLoadingWrapperProps) {
           <div
             style={{
               fontFamily: "'JapanDaisuki', serif",
-              fontSize: "clamp(3.8rem, 11vw, 13rem)",
+              fontSize: "clamp(2rem, 13vw, 10rem)",
               color: "#ffffff",
               margin: 0,
               lineHeight: 1,
@@ -90,6 +90,9 @@ export function ClientLoadingWrapper({ children }: ClientLoadingWrapperProps) {
               transform: isFadingOut ? "scale(1.04)" : "scale(1)",
               transition: "opacity 0.4s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)",
               userSelect: "none",
+              maxWidth: "92vw",
+              textAlign: "center",
+              whiteSpace: "nowrap",
             }}
           >
             <span
